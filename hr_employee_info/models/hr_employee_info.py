@@ -57,6 +57,8 @@ class Employee(models.Model):
     family_id = fields.Many2one(
         'hr.employee.family', 'Family', groups="hr.group_hr_user", tracking=True)
 
+    qualifications = fields.Many2one(
+        'hr.employee.qualifications', 'Qualifications', groups="hr.group_hr_user", tracking=True)
 
 
 class EmployeeStatus(models.Model):
@@ -81,3 +83,32 @@ class EmployeeFamily(models.Model):
     relation = fields.Char(string="Relative Relation", store=True)
     relation_status = fields.Char(string="Social and occupational status", store=True)
     national_id = fields.Char(string='National No', groups="hr.group_hr_user", tracking=True)
+
+
+
+
+class EmployeeQualifications(models.Model):
+    _name = 'hr.employee.qualifications'
+    _description = "Employee Qualifications"
+
+    educational_level = fields.Many2one(
+        'hr.employee.educational', 'Educational level', groups="hr.group_hr_user", tracking=True)
+
+
+    specialization = fields.Char(string="Specialization", store=True)
+    graduation_place = fields.Date('Graduation place', groups="hr.group_hr_user", tracking=True)
+
+    graduation_date = fields.Date(string="Graduation Date", groups="hr.group_hr_user", tracking=True)
+
+    graduation_type = fields.Selection([
+        ('general', 'General'),
+        ('private', 'Private')
+    ], string="Type", default="general", tracking=True)
+
+
+class EmployeeEducational(models.Model):
+    _name = 'hr.employee.educational'
+    _description = "Employee Educational"
+
+    name = fields.Char(string="Educational level", store=True)
+

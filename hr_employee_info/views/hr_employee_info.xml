@@ -50,19 +50,22 @@
 
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Financial Information">
-                    <field name="financial_id"/>
-                    <field name="warranty_id"/>
-                    <field name="bank_account_id"/>
+                    <group>
+                        <field name="financial_id"/>
+                        <field name="warranty_id"/>
+                        <field name="bank_account_id"/>
+                    </group>
                 </page>
             </xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Family Information">
-                    <field name="family_registration_id"/>
-                    <field name="family_booklet_id"/>
-                    <field name="issuing_booklet"/>
-                    <field name="family_paper_id"/>
-                    <field name="family_id">
+                    <group>
+                        <field name="family_registration_id"/>
+                        <field name="family_booklet_id"/>
+                        <field name="issuing_booklet"/>
+                        <field name="family_paper_id"/>
+                        <field name="family_id">
                         <tree string="Family" editable="bottom">
                             <field name="name"/>
                             <field name="gender"/>
@@ -71,8 +74,21 @@
                             <field name="relation_status"/>
                             <field name="national_id"/>
                         </tree>
-                    </field>
-
+                        </field>
+                    </group>
+                </page>
+                <page string="Qualifications">
+                    <group>
+                        <field name="qualifications">
+                        <tree string="Family" editable="bottom">
+                            <field name="educational_level"/>
+                            <field name="specialization"/>
+                            <field name="graduation_place"/>
+                            <field name="graduation_date"/>
+                            <field name="graduation_type"/>
+                        </tree>
+                        </field>
+                    <group>
                 </page>
             </xpath>
 
