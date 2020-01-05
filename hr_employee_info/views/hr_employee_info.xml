@@ -21,6 +21,8 @@
             </xpath>
 
 
+            <xpath expr="//field[@name='bank_account_id']" position="replace">
+            </xpath>
 
 
 
@@ -45,15 +47,17 @@
             </xpath>
 
 
-            <xpath expr="//field[@name='bank_account_id']" position="replace">
-            </xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Financial">
                     <group>
-                        <field name="financial_id"/>
-                        <field name="warranty_id"/>
-                        <field name="bank_account_id"/>
+                        <group>
+                            <field name="bank_account_id"/>
+                        </group>
+                        <group>
+                            <field name="financial_id"/>
+                            <field name="warranty_id"/>
+                        </group>
                     </group>
                 </page>
             </xpath>
@@ -61,10 +65,16 @@
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Family">
                     <group>
-                        <field name="family_registration_id"/>
-                        <field name="family_booklet_id"/>
-                        <field name="issuing_booklet"/>
-                        <field name="family_paper_id"/>
+                        <group>
+                            <field name="family_registration_id"/>
+                            <field name="family_booklet_id"/>
+                        </group>
+                        <group>
+                            <field name="issuing_booklet"/>
+                            <field name="family_paper_id"/>
+                        </group>
+                    </group>
+                    <group>
                         <field name="family_id">
                         <tree string="Family" editable="bottom">
                             <field name="name"/>
