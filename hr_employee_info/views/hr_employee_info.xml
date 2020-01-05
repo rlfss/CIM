@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="hr_employee_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.resume</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='job_title']" position="before">
+                <label for="employee_num" name="employee_num">
+                <field name="employee_num"/>
+            </xpath>
+
+
+            <xpath expr="//field[@name='department_id']" position="before">
+                <field name="employee_status"/>
+            </xpath>
+
+            <xpath expr="//field[@name='birthday']" position="before">
+                <field name="health_status"/>
+                <field name="blood_group"/>
+            </xpath>
+
+            <xpath expr="//field[@name='passport_id']" position="after">
+                <field name="passport_issue_date"/>
+            </xpath>
+
+            <xpath expr="//field[@name='identification_id']" position="after">
+                <field name="id_issue_date"/>
+            </xpath>
+            <xpath expr="//field[@name='identification_id']" position="before">
+                <field name="national_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
