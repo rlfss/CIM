@@ -64,12 +64,12 @@
                     <field name="family_paper_id"/>
                     <field name="family_id">
                         <tree string="Family" editable="bottom">
-                            <field name="name">
-                            <field name="gender">
-                            <field name="birthday">
-                            <field name="relation">
-                            <field name="relation_status">
-                            <field name="national_id">
+                            <field name="name"/>
+                            <field name="gender"/>
+                            <field name="birthday"/>
+                            <field name="relation"/>
+                            <field name="relation_status"/>
+                            <field name="national_id"/>
                         </tree>
                     </field>
 
