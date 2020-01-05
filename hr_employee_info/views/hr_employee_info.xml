@@ -9,8 +9,10 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='job_title']" position="before">
+                            <h2>
                 <label for="employee_num" name="employee_num"/>
                 <field name="employee_num"/>
+                            </h2>
             </xpath>
 
 
@@ -18,7 +20,12 @@
                 <field name="employee_status"/>
             </xpath>
 
+
+
+
+
             <xpath expr="//field[@name='birthday']" position="before">
+                <field name="mother_name"/>
                 <field name="health_status"/>
                 <field name="blood_group"/>
             </xpath>
@@ -32,6 +39,41 @@
             </xpath>
             <xpath expr="//field[@name='identification_id']" position="before">
                 <field name="national_id"/>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="mobile"/>
+            </xpath>
+
+
+            <xpath expr="//field[@name='bank_account_id']" position="replace">
+            </xpath>
+
+            <xpath expr="//notebook[last()]" position="inside">
+                <page string="Financial Information">
+                    <field name="financial_id"/>
+                    <field name="warranty_id"/>
+                    <field name="bank_account_id"/>
+                </page>
+            </xpath>
+
+            <xpath expr="//notebook[last()]" position="inside">
+                <page string="Family Information">
+                    <field name="family_registration_id"/>
+                    <field name="family_booklet_id"/>
+                    <field name="issuing_booklet"/>
+                    <field name="family_paper_id"/>
+                    <field name="family_id">
+                        <tree string="Family" editable="bottom">
+                            <field name="name">
+                            <field name="gender">
+                            <field name="birthday">
+                            <field name="relation">
+                            <field name="relation_status">
+                            <field name="national_id">
+                        </tree>
+                    </field>
+
+                </page>
             </xpath>
 
         </field>
