@@ -49,7 +49,7 @@
             </xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
-                <page string="Financial Information">
+                <page string="Financial">
                     <group>
                         <field name="financial_id"/>
                         <field name="warranty_id"/>
@@ -59,7 +59,7 @@
             </xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
-                <page string="Family Information">
+                <page string="Family">
                     <group>
                         <field name="family_registration_id"/>
                         <field name="family_booklet_id"/>
