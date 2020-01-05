@@ -4,3 +4,8 @@ access_hr_employee_info_employee_status,hr.employee.status,hr_employee_info.mode
 access_hr_employee_info_employee_family,hr.employee.family,hr_employee_info.model_hr_employee_family,base.group_user,1,1,1,1
 access_hr_employee_info_employee_qualifications,hr.employee.qualifications,hr_employee_info.model_hr_employee_qualifications,base.group_user,1,1,1,1
 access_hr_employee_info_employee_educational,hr.employee.educational,hr_employee_info.model_hr_employee_educational,base.group_user,1,1,1,1
+access_hr_employee_info_employee_training,hr.employee.training,hr_employee_info.model_hr_employee_training,base.group_user,1,1,1,1
+access_hr_employee_info_employee_guardianship,hr.employee.guardianship,hr_employee_info.model_hr_employee_guardianship,base.group_user,1,1,1,1
+access_hr_employee_info_employee_guardianship_type,hr.employee.guardianship.type,hr_employee_info.model_hr_employee_guardianship_type,base.group_user,1,1,1,1
+
+

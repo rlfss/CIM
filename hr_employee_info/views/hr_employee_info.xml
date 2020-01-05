@@ -80,7 +80,7 @@
                 <page string="Qualifications">
                     <group>
                         <field name="qualifications">
-                        <tree string="Family" editable="bottom">
+                        <tree string="Qualifications" editable="bottom">
                             <field name="educational_level"/>
                             <field name="specialization"/>
                             <field name="graduation_place"/>
@@ -88,7 +88,34 @@
                             <field name="graduation_type"/>
                         </tree>
                         </field>
+                    </group>
+                </page>
+                <page string="Training Courses">
                     <group>
+                        <field name="training">
+                            <tree string="Training Courses" editable="bottom">
+                                <field name="training_type"/>
+                                <field name="course_field"/>
+                                <field name="training_date_from"/>
+                                <field name="training_date_to"/>
+                                <field name="training_place"/>
+                                <field name="degree"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+                <page string="Guardianship">
+                    <group>
+                        <field name="guardianship">
+                            <tree string="Guardianship" editable="bottom">
+                                <field name="guardianship_type"/>
+                                <field name="receipt_date"/>
+                                <field name="lock_date"/>
+                                <field name="statement"/>
+                                <field name="value"/>
+                            </tree>
+                        </field>
+                    </group>
                 </page>
             </xpath>
 

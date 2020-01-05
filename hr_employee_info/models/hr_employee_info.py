@@ -59,6 +59,13 @@ class Employee(models.Model):
 
     qualifications = fields.Many2one(
         'hr.employee.qualifications', 'Qualifications', groups="hr.group_hr_user", tracking=True)
+    training = fields.Many2one(
+        'hr.employee.training', 'Training Courses', groups="hr.group_hr_user", tracking=True)
+
+
+    guardianship = fields.Many2one(
+        'hr.employee.guardianship', 'Training Courses', groups="hr.group_hr_user", tracking=True)
+
 
 
 class EmployeeStatus(models.Model):
@@ -111,4 +118,47 @@ class EmployeeEducational(models.Model):
     _description = "Employee Educational"
 
     name = fields.Char(string="Educational level", store=True)
+
+
+
+
+class EmployeeTrainingCourses(models.Model):
+    _name = 'hr.employee.training'
+    _description = "Employee Training Courses"
+
+
+
+    training_type = fields.Selection([
+        ('in', 'In Country'),
+        ('out', 'Out Country')
+    ], string="Type", default="general", tracking=True)
+    course_field = fields.Char(string="Course field", store=True)
+
+    training_date_from = fields.Date(string="Date From", groups="hr.group_hr_user", tracking=True)
+    training_date_to = fields.Date(string="Date To", groups="hr.group_hr_user", tracking=True)
+    training_place = fields.Char('Training place', groups="hr.group_hr_user", tracking=True)
+
+    degree = fields.Char(string="Degree", store=True)
+
+class EmployeeTrainingGuardianship(models.Model):
+    _name = 'hr.employee.guardianship'
+    _description = "Employee Guardianship"
+
+
+
+    guardianship_type = fields.Many2one(
+        'hr.employee.guardianship.type', 'Type', groups="hr.group_hr_user", tracking=True)
+
+
+    receipt_date = fields.Date(string="Receipt Date", groups="hr.group_hr_user", tracking=True)
+    lock_date = fields.Date(string="Lock Date", groups="hr.group_hr_user", tracking=True)
+    statement = fields.Char(string="Statement", store=True)
+
+    value = fields.Char(string="Value", store=True)
+
+class EmployeeTrainingGuardianshipType(models.Model):
+    _name = 'hr.employee.guardianship.type'
+    _description = "Employee Guardianship Type"
+
+    name = fields.Char(string="Guardianship Type", store=True)
 
