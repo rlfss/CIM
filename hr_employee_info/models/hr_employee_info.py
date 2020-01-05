@@ -12,6 +12,11 @@ from odoo.exceptions import ValidationError, AccessError
 from odoo.modules.module import get_module_resource
 from odoo.addons.resource.models.resource_mixin import timezone_datetime
 
+class HrEmployeeInfo(models.Model):
+    _name = "hr.employee.info"
+    _description = "Employee info"
+
+
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
