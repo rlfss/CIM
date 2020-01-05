@@ -54,17 +54,17 @@ class Employee(models.Model):
     issuing_booklet = fields.Char(string='Issuing authority', groups="hr.group_hr_user", tracking=True)
     family_paper_id = fields.Char(string='Family paper number', groups="hr.group_hr_user", tracking=True)
 
-    family_id = fields.Many2many(
+    family_id = fields.One2many(
         'hr.employee.family', string="Family", groups="hr.group_hr_user", tracking=True)
 
-    qualifications = fields.Many2many(
-        'hr.employee.qualifications', string="Qualifications", groups="hr.group_hr_user", tracking=True)
-    training = fields.Many2many(
-        'hr.employee.training', string="Training Courses", groups="hr.group_hr_user", tracking=True)
+    qualifications = fields.One2many(
+        'hr.employee.qualifications', 'employee_id', string="Qualifications", groups="hr.group_hr_user", tracking=True)
+    training = fields.One2many(
+        'hr.employee.training', 'employee_id', string="Training Courses", groups="hr.group_hr_user", tracking=True)
 
 
-    guardianship = fields.Many2many(
-        'hr.employee.guardianship', string="Guardianship", groups="hr.group_hr_user", tracking=True)
+    guardianship = fields.One2many(
+        'hr.employee.guardianship', 'employee_id', string="Guardianship", groups="hr.group_hr_user", tracking=True)
 
 
 
@@ -79,6 +79,7 @@ class EmployeeFamily(models.Model):
     _name = 'hr.employee.family'
     _description = "Employee Family"
 
+    employee_id = fields.Many2one('hr.employee', string="Employee")
     name = fields.Char(string="Name", store=True)
     gender = fields.Selection([
         ('male', 'Male'),
@@ -97,6 +98,7 @@ class EmployeeFamily(models.Model):
 class EmployeeQualifications(models.Model):
     _name = 'hr.employee.qualifications'
     _description = "Employee Qualifications"
+    employee_id = fields.Many2one('hr.employee', string="Employee")
 
     educational_level = fields.Many2one(
         'hr.employee.educational', 'Educational level', groups="hr.group_hr_user", tracking=True)
@@ -127,6 +129,7 @@ class EmployeeTrainingCourses(models.Model):
     _description = "Employee Training Courses"
 
 
+    employee_id = fields.Many2one('hr.employee', string="Employee")
 
     training_type = fields.Selection([
         ('in', 'In Country'),
@@ -144,6 +147,7 @@ class EmployeeTrainingGuardianship(models.Model):
     _name = 'hr.employee.guardianship'
     _description = "Employee Guardianship"
 
+    employee_id = fields.Many2one('hr.employee', string="Employee")
 
 
     guardianship_type = fields.Many2one(
