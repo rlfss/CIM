@@ -55,7 +55,7 @@ class Employee(models.Model):
     family_paper_id = fields.Char(string='Family paper number', groups="hr.group_hr_user", tracking=True)
 
     family_id = fields.One2many(
-        'hr.employee.family', string="Family", groups="hr.group_hr_user", tracking=True)
+        'hr.employee.family', 'employee_id', string="Family", groups="hr.group_hr_user", tracking=True)
 
     qualifications = fields.One2many(
         'hr.employee.qualifications', 'employee_id', string="Qualifications", groups="hr.group_hr_user", tracking=True)
