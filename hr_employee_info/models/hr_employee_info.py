@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
+import base64
+from random import choice
+from string import digits
+import itertools
+from werkzeug import url_encode
+import pytz
+
 from odoo import api, fields, models, _
-from odoo.addons import decimal_precision as dp
-from odoo.exceptions import UserError
-from odoo.tools import float_utils
-
-class HrEmployeeInfo(models.Model):
-    _inherit = "hr.employee.info"
-
-
+from odoo.exceptions import ValidationError, AccessError
+from odoo.modules.module import get_module_resource
+from odoo.addons.resource.models.resource_mixin import timezone_datetime
 
 class Employee(models.Model):
     _inherit = 'hr.employee'
