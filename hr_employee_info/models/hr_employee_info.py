@@ -43,7 +43,8 @@ class Employee(models.Model):
 
 
 
-class Employee(models.Model):
-    _inherit = 'hr.employee.status'
+class EmployeeStatus(models.Model):
+    _name = 'hr.employee.status'
+    _description = "Employee status"
 
     name = fields.Char(string="Employee Status", store=True)
