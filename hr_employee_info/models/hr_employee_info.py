@@ -55,16 +55,16 @@ class Employee(models.Model):
     family_paper_id = fields.Char(string='Family paper number', groups="hr.group_hr_user", tracking=True)
 
     family_id = fields.Many2many(
-        'hr.employee.family', 'Family', groups="hr.group_hr_user", tracking=True)
+        'hr.employee.family', string="Family", groups="hr.group_hr_user", tracking=True)
 
     qualifications = fields.Many2many(
-        'hr.employee.qualifications', 'Qualifications', groups="hr.group_hr_user", tracking=True)
+        'hr.employee.qualifications', string="Qualifications", groups="hr.group_hr_user", tracking=True)
     training = fields.Many2many(
-        'hr.employee.training', 'Training Courses', groups="hr.group_hr_user", tracking=True)
+        'hr.employee.training', string="Training Courses", groups="hr.group_hr_user", tracking=True)
 
 
     guardianship = fields.Many2many(
-        'hr.employee.guardianship', 'Guardianship', groups="hr.group_hr_user", tracking=True)
+        'hr.employee.guardianship', string="Guardianship", groups="hr.group_hr_user", tracking=True)
 
 
 
