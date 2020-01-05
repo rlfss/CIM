@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='job_title']" position="before">
-                <label for="employee_num" name="employee_num">
+                <label for="employee_num" name="employee_num"/>
                 <field name="employee_num"/>
             </xpath>
 
