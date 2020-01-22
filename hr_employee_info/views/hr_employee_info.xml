@@ -2,6 +2,16 @@
 <odoo>
 
 
+    <record id="view_employee_filter_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="employee_num" string="Employee No." filter_domain="[('employee_num', 'ilike', self)]"/>
+            </xpath>
+         </field>
+    </record>
     <record id="hr_employee_view_form" model="ir.ui.view">
         <field name="name">hr.employee.view.form.inherit.resume</field>
         <field name="model">hr.employee</field>
@@ -18,6 +28,7 @@
 
             <xpath expr="//field[@name='department_id']" position="before">
                 <field name="employee_status"/>
+                <field name="employee_branch"/>
             </xpath>
 
 
@@ -34,10 +45,14 @@
 
             <xpath expr="//field[@name='passport_id']" position="after">
                 <field name="passport_issue_date"/>
+                <field name="passport_issue_place"/>
+                <field name="driver_license_id"/>
+                <field name="driver_license_type"/>
             </xpath>
 
             <xpath expr="//field[@name='identification_id']" position="after">
                 <field name="id_issue_date"/>
+                <field name="id_issue_place"/>
             </xpath>
             <xpath expr="//field[@name='identification_id']" position="before">
                 <field name="national_id"/>
@@ -59,13 +74,44 @@
                             <field name="warranty_id"/>
                         </group>
                     </group>
+                    <group col="3">
+                        <group>
+                            <field name="appointmentdegree"/>
+                            <field name="appointmentsalary"/>
+                        </group>
+                        <group>
+                            <field name="currentdegree"/>
+                            <field name="currentdegree_date"/>
+                        </group>
+                        <group>
+                            <field name="currentsalary"/>
+                            <field name="currentsalary_date"/>
+                        </group>
+                    </group>
                 </page>
+
+                <page string="Job Data">
+                    <group col="3">
+                        <group>
+                            <field name="hiring_date"/>
+                            <field name="position_type"/>
+                        </group>
+                        <group>
+                            <field name="started_date"/>
+                            <field name="appointment_decision"/>
+                        </group>
+                        <group>
+                            <field name="first_work_date"/>
+                        </group>
+                    </group>
+                </page>            
             </xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Family">
                     <group>
                         <group>
+                            <field name="social_situation"/>
                             <field name="family_registration_id"/>
                             <field name="family_booklet_id"/>
                         </group>
@@ -132,4 +178,44 @@
         </field>
     </record>
 
+<!-- 
+
+
+
+
+        <record id="action_educationallevel" model="ir.actions.act_window">
+            <field name="name">hr.employee.appointmentdegree</field>
+            <field name="res_model">hr.employee.appointmentdegree</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_educationallevel" name="appointment degree"  id="action_educationallevel" sequence="6" parent="hr.menu_hr_root"/>
+
+
+
+
+
+        <record id="action_educationallevelspecialization" model="ir.actions.act_window">
+            <field name="name">hr.employee.appointmentsalary</field>
+            <field name="res_model">hr.employee.appointmentsalary</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_educationallevelspecialization" name="appointment salary"  id="action_educationallevelspecialization" sequence="6" parent="hr.menu_hr_root"/>
+
+
+
+        <record id="action_educationallevelplace" model="ir.actions.act_window">
+            <field name="name">hr.employee.currentdegree</field>
+            <field name="res_model">hr.employee.currentdegree</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_educationallevelplace" name="current degree"  id="action_educationallevelplace" sequence="6" parent="hr.menu_hr_root"/>
+
+
+        <record id="action_educationallcurrentsalary" model="ir.actions.act_window">
+            <field name="name">hr.employee.currentsalary</field>
+            <field name="res_model">hr.employee.currentsalary</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_educationallcurrentsalary" name="current salary"  id="action_educationallcurrentsalary" sequence="6" parent="hr.menu_hr_root"/>
+ -->
 </odoo>
