@@ -15,6 +15,7 @@
         'website',
         'portal',
         'hr_holidays',
+        'leave_sequence',
     ],
     # Views
     'data': [
