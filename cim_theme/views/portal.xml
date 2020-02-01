@@ -8,7 +8,7 @@
                 <nav id="menu" class="shadow-sm">
                     <div class="p-3">
                         <div class="media profile-media border-bottom pb-3">
-                            <img class="mr-2 shadow-sm img-thumbnail" src="images/profile.jpg"  alt="profile">
+                            <img class="mr-2 shadow-sm img-thumbnail" src="images/profile.jpg"  alt="profile"/>
                             <div class="media-body">
                                 <h5 class="mt-0">Eli Lambert</h5>
                                 <p class="m-0">
