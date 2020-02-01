@@ -3,7 +3,6 @@
 
 
     <template id="portal_layout" name="Portal Layout">
-        <t t-set="is_portal" t-value="True">
             <xpath expr="//header" position="replace">
                 <nav id="menu" class="shadow-sm">
                     <div class="p-3">
@@ -63,7 +62,6 @@
                     </div>
                 </nav>
             </xpath>
-        </t>
     </template>
 
 
