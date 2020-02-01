@@ -2,12 +2,237 @@
 <odoo>
 
 
-    <template id="portal_layout" name="Portal Layout">
-            <xpath expr="//header" position="replace">
+    <template id="custom_portal_layout" name="Custom portal layout" inherit_id="portal.portal_layout">
+            <xpath expr="//div[@id='wrap']" position="replace">
+                <t t-if="page_name == 'home'">
+                <div id="wrap" class='o_portal_wrap' style='display:none;'>
+                    <div class="container mb64">
+                        <t t-if="my_details">
+                            <div class="row justify-content-between mt-4">
+                                <div t-attf-class="col-12 col-md col-lg-6">
+                                    <t t-raw="0"/>
+                                </div>
+                                <div id="o_my_sidebar" class="col-12 col-md col-lg-4 col-xl-3 o_my_sidebar">
+                                    <div class="o_my_contact" t-if="sales_user">
+                                        <t t-call="portal.portal_contact"/>
+                                    </div>
+                                    <div class="o_portal_my_details">
+                                        <h4>Details <a role="button" href="/my/account" class="btn btn-sm btn-link"><i class="fa fa-pencil"/> Edit</a></h4>
+                                        <hr class="mt-1 mb-0"/>
+                                        <div t-field="user_id.partner_id" t-options='{"widget": "contact", "fields": ["email", "phone", "address", "name"]}'/>
+                                    </div>
+                                    <div class="o_my_archives" t-if="archive_groups">
+                                        <t t-call="portal.portal_archive_groups"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <t t-raw="0"/>
+                        </t>
+                    </div>
+                </div>
+                </t>
+                <t t-else="">
+                <div id="wrap" class='o_portal_wrap'>
+                    <div class="container mb64">
+                        <t t-if="my_details">
+                            <div class="row justify-content-between mt-4">
+                                <div t-attf-class="col-12 col-md col-lg-6">
+                                    <t t-raw="0"/>
+                                </div>
+                                <div id="o_my_sidebar" class="col-12 col-md col-lg-4 col-xl-3 o_my_sidebar">
+                                    <div class="o_my_contact" t-if="sales_user">
+                                        <t t-call="portal.portal_contact"/>
+                                    </div>
+                                    <div class="o_portal_my_details">
+                                        <h4>Details <a role="button" href="/my/account" class="btn btn-sm btn-link"><i class="fa fa-pencil"/> Edit</a></h4>
+                                        <hr class="mt-1 mb-0"/>
+                                        <div t-field="user_id.partner_id" t-options='{"widget": "contact", "fields": ["email", "phone", "address", "name"]}'/>
+                                    </div>
+                                    <div class="o_my_archives" t-if="archive_groups">
+                                        <t t-call="portal.portal_archive_groups"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <t t-raw="0"/>
+                        </t>
+                    </div>
+                </div>
+
+
+                </t>
+
+
+
+
+            </xpath>
+    </template>
+
+
+
+    <template id="custom_portal_layout2" name="Custom portal layout" inherit_id="portal.portal_layout">
+           <xpath expr="//div[hasclass('o_portal')]" position="before">
+              <section class="top-section">
+                    <header class="p-4">
+                        <a class="menu-btn" href="#menu">
+                            <i class="fal fa-bars"></i>
+                        </a>
+                        <div class="container">
+                            <div class="row justify-content-end align-items-center">
+                                <div class="col-auto">
+                                    <ul class="header-list list-inline m-0">
+                                        <li class="list-inline-item">
+                                            <a href="#" class="not-link active">
+                                                <i class="fas fa-bell"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#">
+                                                <i class="fas fa-envelope"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="/my/account">
+                                                <i class="fas fa-cog"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-8">
+                                <div class="top-text-container">
+                                    <h3 class="text-white">
+                                        Hello, <span t-field="user_id.partner_id.name"/>
+
+                                    </h3>
+                                    <p class="text-white">
+                                        Welcome to <span t-field="user_id.company_id.name"/>. How can we help ?
+                                    </p>
+                                    <form action="#">
+                                        <div class="top-search-container">
+                                            <i class="far fa-search"></i>
+                                            <input type="text" class="search-input form-control" placeholder="Search.."/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+            <t t-if="page_name == 'home'">
+                <section class="py-4">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="/my/leaves" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Time Off
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link1.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Memos
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/memos.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="/my/leaves" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Helpdesk
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link2.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Attendance
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link3.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Payroll
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link4.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Equipments
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link5.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Tasks &amp; Activities
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link6.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        Consumables
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link7.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
+                                <a href="#" class="dashboard-link-container">
+                                    <span class="d-link-text text-white">
+                                        General Requests
+                                    </span>
+                                    <img src="/cim_theme/static/src/img/link8.jpg" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                </t>
+
+
+
+
+
+
+
+
+
+            </xpath>
+    </template>
+
+    <template id="custom_frontend_layout" name="Custom portal layout" inherit_id="portal.frontend_layout">
+
+            
+           <xpath expr="//header" position="after">
+            <t t-if="page_name == 'home'">
                 <nav id="menu" class="shadow-sm">
                     <div class="p-3">
                         <div class="media profile-media border-bottom pb-3">
-                            <img class="mr-2 shadow-sm img-thumbnail" src="images/profile.jpg"  alt="profile"/>
+                            <img class="mr-2 shadow-sm img-thumbnail" src="/cim_theme/static/src/img/profile.jpg"  alt="profile"/>
                             <div class="media-body">
                                 <h5 class="mt-0">Eli Lambert</h5>
                                 <p class="m-0">
@@ -61,6 +286,7 @@
                         </div>
                     </div>
                 </nav>
+                </t>
             </xpath>
     </template>
 
@@ -68,4 +294,12 @@
 
 
 
+    <template id="frontend_layout" name="Main Frontend Layout" inherit_id="web.frontend_layout">
+        <xpath expr="//div[@id='wrapwrap']" position="attributes">
+            <attribute name="t-attf-class" add="#{'content mm-page mm-slideout'}" separator=" "/>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']" position="after">
+            <div id='mm-0'></div>
+        </xpath>
+    </template>
 </odoo>
