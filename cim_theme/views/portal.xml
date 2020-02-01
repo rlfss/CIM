@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <template id="portal_layout" name="Portal Layout">
+        <t t-set="is_portal" t-value="True">
+            <xpath expr="//header" position="replace">
+                <nav id="menu" class="shadow-sm">
+                    <div class="p-3">
+                        <div class="media profile-media border-bottom pb-3">
+                            <img class="mr-2 shadow-sm img-thumbnail" src="images/profile.jpg"  alt="profile">
+                            <div class="media-body">
+                                <h5 class="mt-0">Eli Lambert</h5>
+                                <p class="m-0">
+                                    Marketing and community Manage
+                                </p>
+                            </div>
+                        </div>
+                        <div class="profile-card border-bottom pb-3">
+                            <div class="profile-card-item">
+                                <h4>
+                                    Work Phone
+                                </h4>
+                                <a href="tel:123456789" class="my-link">
+                                    (644)-169+1352
+                                </a>
+                            </div>
+                            <div class="profile-card-item">
+                                <h4>
+                                    Work Email
+                                </h4>
+                                <a href="mailto:hamza@hotmail.com" class="my-link">
+                                    hamza@hotmail.com
+                                </a>
+                            </div>
+                            <div class="profile-card-item">
+                                <h4>
+                                    Work Location
+                                </h4>
+                                <a href="JavaScript:void(0)" class="my-link">
+                                    Building 1,Second Floor
+                                </a>
+                            </div>
+                            <div class="profile-card-item">
+                                <h4>
+                                    Department
+                                </h4>
+                                <a href="JavaScript:void(0)" class="my-link">
+                                    Sales
+                                </a>
+                            </div>
+                        </div>
+                        <div class="calendar-container pt-3">
+                            <p class="fw-500 mb-0">
+                                6:10 PM
+                            </p>
+                            <p class="fw-400">
+                                Saturday, December 7, 2019
+                            </p>
+
+                            <div id="datepicker" ></div>
+                        </div>
+                    </div>
+                </nav>
+            </xpath>
+        </t>
+    </template>
+
+
+
+
+
+</odoo>
