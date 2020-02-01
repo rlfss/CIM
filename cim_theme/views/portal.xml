@@ -104,6 +104,9 @@
                             </div>
                         </div>
                     </header>
+                    <style>
+                        header#top {display: none;}
+                    </style>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-md-8">
