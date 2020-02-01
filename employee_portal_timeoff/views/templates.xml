@@ -288,6 +288,7 @@
                     <t t-foreach="grouped_timeoff" t-as="leave">
                         <thead>
                             <tr t-attf-class="{{'thead-light' if not groupby == 'none' else ''}}">
+                                <th>Reference</th>
                                 <th t-if="groupby == 'none'">Time Off type</th>
                                 <th t-else="">
                                     <em class="font-weight-normal text-muted">Time Off Type:</em>
@@ -302,6 +303,7 @@
                         <tbody>
                             <t t-foreach="leave" t-as="leave">
                                 <tr>
+                                    <td><span t-field="leave.reference"/></td>
                                     <td><span t-field="leave.holiday_status_id.name"/></td>
                                     <td><a t-attf-href="/my/timeoff/#{leave.id}"><span t-field="leave.name"/></a></td>
                                     <td><span t-field="leave.request_date_from"/></td>
