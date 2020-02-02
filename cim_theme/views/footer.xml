@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <template id="footer_custom1" inherit_id="website.layout" name="Footer">
+        <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace">
+            <div class="o_footer_copyright" style="display:none;">
+                <div class="container py-3">
+                    <div class="row">
+                        <div class="col-sm text-center text-sm-left text-muted">
+                            <t t-call="web.debug_icon"/>
+                            <span>Copyright &amp;copy;</span> <span t-field="res_company.name" itemprop="name">Company name</span>
+                        </div>
+                        <div class="col-sm text-center text-sm-right">
+                            <t t-call="web.brand_promotion"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="footer_custom" inherit_id="website.layout" name="Footer">
+        <xpath expr="//div[@id='footer']" position="replace">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-7">
+                                <ul class="list-inline footer-list mb-3 mb-lg-0 text-lg-left text-center">
+                                    <li class="list-inline-item">
+                                        <a href="#" class="line-hover">
+                                            Security
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="line-hover">
+                                            Privacy Policy
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="line-hover">
+                                            Copyright
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#" class="line-hover">
+                                            Conditions
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-5 text-lg-right text-center">
+                                <img src="/cim_theme/static/src/img/footer.png" class="img-fluid"/>
+                            </div>
+                        </div>
+                    </div>
+            </xpath>
+        </template>
+
+
+
+</odoo>

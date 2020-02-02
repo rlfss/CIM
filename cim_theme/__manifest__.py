@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Theme CIM",
+    'name': "Theme Cim Portal",
     'version': '1.0',
     'category': 'Theme',
-    'depends': ['website_crm'],
+    'depends': ['website'],
     'data': [
         'views/assets.xml',
+        'views/header.xml',
+        'views/footer.xml',
+        'views/snippets.xml',
+        'views/login.xml',
         'views/portal.xml',
     ],
 }

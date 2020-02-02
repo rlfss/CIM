@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="s_text_portal_info" name="Portal Description">
+<section class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-inline big-icon-title reveal" data-sr-id="0" style="visibility: visible; opacity: 1; transition: opacity 1.5s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                    <li class="list-inline-item">
+                        <i class="fal fa-list-alt"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <h3>
+                            Description of Portal
+                        </h3>
+                    </li>
+                </ul>
+                <p class="text-justify fs-18 reveal" data-sr-id="2" style="visibility: visible; opacity: 1; transition: opacity 1.5s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <ul class="list-inline big-icon-title reveal" data-sr-id="3" style="visibility: visible; opacity: 1; transition: opacity 1.5s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                    <li class="list-inline-item">
+                        <i class="fal fa-bullseye-arrow"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <h3>
+                            Description of Portal
+                        </h3>
+                    </li>
+                </ul>
+                <ul class="list-unstyled dot-list" data-sr-id="4" style="visibility: visible; opacity: 1; transition: opacity 1.5s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                    <li data-sr-id="6" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </li>
+                    <li data-sr-id="7" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </li>
+                    <li data-sr-id="8" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </li>
+                    <li data-sr-id="9" style="visibility: visible; opacity: 1; transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1) 0s;">
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+</template>
+
+
+
+<template id="slider_portal_cim" name="CIM Slider">
+
+<section class="slider">
+    <div class="fadeOut owl-carousel custom1 owl-theme">
+        <div class="item">
+            <div class="slider-content">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12 text-center">
+                        <h2>
+                            Welcome
+                        </h2>
+                        <h3 class="m-0">
+                            Employee Self Services Portal
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <img src="/cim_theme/static/src/img/slider3.webp" class="img-fluid" alt=""/>
+        </div>
+        <div class="item">
+            <div class="slider-content">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12 text-center">
+                        <h2>
+                            Welcome
+                        </h2>
+                        <h3 class="m-0">
+                            Employee Self Services Portal
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <img src="/cim_theme/static/src/img/slider2.webp" class="img-fluid" alt=""/>
+        </div>
+        <div class="item">
+            <div class="slider-content">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-12 text-center">
+                        <h2>
+                            Welcome
+                        </h2>
+                        <h3 class="m-0">
+                            Employee Self Services Portal
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <img src="/cim_theme/static/src/img/slider.webp" class="img-fluid" alt=""/>
+        </div>
+    </div>
+</section>
+
+</template>
+
+
+<template id="place_into_bar" inherit_id="website.snippets" name="Place into bar">
+  <xpath expr="//div[@id='snippet_structure']/div[contains(@class, 'o_panel_body')]/t" position="before">
+      <t t-snippet="cim_theme.s_text_portal_info"
+      t-thumbnail="/cim_theme/static/src/img/s_des.png"/>
+      <t t-snippet="cim_theme.slider_portal_cim"
+      t-thumbnail="/cim_theme/static/src/img/s_slider.png"/>
+    </xpath>
+</template>
+
+
+
+</odoo>

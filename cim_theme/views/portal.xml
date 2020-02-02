@@ -105,7 +105,8 @@
                         </div>
                     </header>
                     <style>
-                        header#top {display: none;}
+                        .top-nav.py-2.bg-light {display: none;}
+                        header.header.sticky {display: none;}
                     </style>
                     <div class="container">
                         <div class="row">
@@ -237,9 +238,9 @@
                         <div class="media profile-media border-bottom pb-3">
                             <img class="mr-2 shadow-sm img-thumbnail" src="/cim_theme/static/src/img/profile.jpg"  alt="profile"/>
                             <div class="media-body">
-                                <h5 class="mt-0">Eli Lambert</h5>
+                                <h5 class="mt-0"><span t-field="user_id.employee_id.name"/></h5>
                                 <p class="m-0">
-                                    Marketing and community Manage
+                                    <span t-field="user_id.employee_id.job_id.name"/>
                                 </p>
                             </div>
                         </div>
@@ -249,7 +250,7 @@
                                     Work Phone
                                 </h4>
                                 <a href="tel:123456789" class="my-link">
-                                    (644)-169+1352
+                                    <span t-field="user_id.employee_id.work_phone"/>
                                 </a>
                             </div>
                             <div class="profile-card-item">
@@ -257,7 +258,7 @@
                                     Work Email
                                 </h4>
                                 <a href="mailto:hamza@hotmail.com" class="my-link">
-                                    hamza@hotmail.com
+                                    <span t-field="user_id.employee_id.work_email"/>
                                 </a>
                             </div>
                             <div class="profile-card-item">
@@ -265,7 +266,7 @@
                                     Work Location
                                 </h4>
                                 <a href="JavaScript:void(0)" class="my-link">
-                                    Building 1,Second Floor
+                                    <span t-field="user_id.employee_id.address_id.street"/> ,<span t-field="user_id.employee_id.address_id.country_id.name"/>
                                 </a>
                             </div>
                             <div class="profile-card-item">
@@ -273,7 +274,7 @@
                                     Department
                                 </h4>
                                 <a href="JavaScript:void(0)" class="my-link">
-                                    Sales
+                                    <span t-field="user_id.employee_id.department_id.name"/>
                                 </a>
                             </div>
                         </div>

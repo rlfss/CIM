@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+        <template id="custom_navbar" name="Custom Header" customize_show="True" inherit_id="website.layout">
+            <xpath expr="//header" position="replace">
+                <header id="menu_odoo" style="display:none;">
+                    <div class="navbar navbar-default navbar-static-top">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-top-collapse">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="/" t-if="website" t-field="website.name">My Website</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </header>
+               <!-- Start Navigation -->
+
+
+                   <section class="loading-overly">
+                      <div class="sk-folding-cube">
+                          <div class="sk-cube1 sk-cube"></div>
+                          <div class="sk-cube2 sk-cube"></div>
+                          <div class="sk-cube4 sk-cube"></div>
+                          <div class="sk-cube3 sk-cube"></div>
+                      </div>
+                  </section>
+
+                  
+                  <div class="top-nav py-2 bg-light">
+                      <div class="container">
+                          <div class="row justify-content-lg-end justify-content-center">
+                              <div class="col-auto">
+                                  <div class="lang-container br-5 border">
+                                      <ul class="list-inline m-0">
+                                          <li class="list-inline-item active">
+                                        <a href="/en/"
+                                           class="dropdown-item js_change_lang"
+                                           data-url_code="en">
+                                            ENGLISH
+                                        </a>
+                                          </li>
+                                          <li class="list-inline-item ">
+                                        <a href="/ar/"
+                                           class="dropdown-item js_change_lang"
+                                           data-url_code="ar">
+                                            العربية
+                                        </a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <header class="header sticky">
+                      <div class="container">
+                          <nav class="navbar px-0 navbar-expand-lg navbar-light bg-white">
+                              <a class="navbar-brand" href="/">
+                                  <img src="/cim_theme/static/src/img/logo.png" class="img-fluid"/>
+                              </a>
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                  <span class="navbar-toggler-icon"></span>
+                              </button>
+
+
+                            <div class="collapse navbar-collapse navbar-top-collapse">
+                                <ul class="nav navbar-nav navbar-left mr-auto text-center text-lg-left" id="top_menu">
+                                    <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                                        <t t-call="website.submenu">
+                                            <t t-set="item_class" t-value="'nav-item'"/>
+                                            <t t-set="link_class" t-value="'nav-link'"/>
+                                        </t>
+                                    </t>
+                                </ul>
+
+                                  <div class="d-flex justify-content-center">
+                                      <a href="/web/login" t-if="not(website.user_id != user_id)" class="my-btn mainColor-bg br-5 btn-4 px-5">
+                                          SIGN IN
+                                      </a>
+                                      <a href="/my/home" t-if="website.user_id != user_id" class="my-btn mainColor-bg br-5 btn-4 px-5">
+                                          My Account
+                                      </a>
+                                      <a t-attf-href="/web/session/logout?redirect=/" t-if="website.user_id != user_id" class="my-btn mainColor-bg br-5 btn-4 px-5">
+                                          Logout
+                                      </a>
+                                  </div>
+
+                            </div>
+
+
+                          </nav>
+                      </div>
+                  </header>
+
+
+            </xpath>
+        </template>
+   
+</odoo>
