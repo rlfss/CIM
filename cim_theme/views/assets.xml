@@ -1,20 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-  <data>
     <template id="asset_frontend" inherit_id="website.assets_frontend" name="Theme Frontend">
       <xpath expr="." position="inside">
+          <link href="/cim_theme/static/src/css/main.css" rel="stylesheet" />
+          <link href="/cim_theme/static/src/css/bootstrap.min.css" rel="stylesheet" />
+          <link href="/cim_theme/static/src/css/fontawesome-all.css" rel="stylesheet" />
+          <link href="/cim_theme/static/src/css/main.css" rel="stylesheet" />
+          <link href="/cim_theme/static/src/css/owl.carousel.min.css" rel="stylesheet" />
+          <link href="/cim_theme/static/src/css/owl.theme.default.min.css" rel="stylesheet" />
+
         <link href="/cim_theme/static/src/css/style-en.css" rel="stylesheet" />
-        <link href="/cim_theme/static/src/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/cim_theme/static/src/css/fontawesome-all.css" rel="stylesheet" />
         <link href="/cim_theme/static/src/css/bootstrap-datepicker.css" rel="stylesheet" />
         <link href="/cim_theme/static/src/css/daterangepicker.css" rel="stylesheet" />
-        <link href="/cim_theme/static/src/css/mmenu.css" rel="stylesheet" />
-        <script src="/cim_theme/static/src/js/bootstrap.min.js"></script>
+        <link t-if="lang_direction == 'rtl'" href="/cim_theme/static/src/css/mmenu-ar.css" rel="stylesheet" />
+        <link t-if="lang_direction == 'ltr'" href="/cim_theme/static/src/css/mmenu.css" rel="stylesheet" />
+          <script src="/cim_theme/static/src/js/bootstrap.min.js"></script>
+
+
+        <script src="/cim_theme/static/src/js/popper.min.js"></script>
+        <script src="/cim_theme/static/src/js/mmenu.js"></script>
+        <script src="/cim_theme/static/src/js/main-portal.js"></script>
+      </xpath>
+    </template>
+
+
+    <template id="footer_js" inherit_id="website.layout" name="Footer js">
+        <xpath expr="//footer" position="after">
+
+
+          <script src="/cim_theme/static/src/js/jquery-3.3.1.min.js"></script>
+          
+         
+          <script src="/cim_theme/static/src/js/datepicker.min.js"></script>
+          <script src="/cim_theme/static/src/js/owl.carousel.min.js"></script>
+          <script src="/cim_theme/static/src/js/scrollreveal.min.js"></script>
+          <script src="/cim_theme/static/src/js/bootstrap-datepicker.min.js"></script>
+          <script src="/cim_theme/static/src/js/moment.min.js"></script>
+          <script src="/cim_theme/static/src/js/daterangepicker.js"></script>
+          <script t-if="lang_direction == 'rtl'" src="/cim_theme/static/src/js/main-rtl.js"></script>
+          <script t-if="lang_direction == 'ltr'" src="/cim_theme/static/src/js/main.js"></script>
+          <script>
+
+
+              $('.daterange').daterangepicker();
+
+              $(function() {
+                  $('.dateTimeInput').daterangepicker({
+                      timePicker: true,
+                      singleDatePicker: true,
+                      timePicker24Hour: true,
+                      showDropdowns: true,
+                      locale: {
+                          format: 'YYYY-MM-DD HH:MM:00'
+                      }
+                  });
+              });
+              $(function() {
+                  $('.dateInput').daterangepicker({
+                      singleDatePicker: true,
+                      showDropdowns: true,
+                      drops: "up",
+                      locale: {
+                          format: 'M/DD/YYYY'
+                      }
+                  });
+              });
+
+          </script>
+
+        </xpath>
+    </template>
+
+
+<!--     <template id="asset_frontend" inherit_id="website.assets_frontend" name="Theme Frontend">
+      <xpath expr="." position="inside">
         <script src="/cim_theme/static/src/js/bootstrap-datepicker.min.js"></script>
         <script src="/cim_theme/static/src/js/popper.min.js"></script>
         <script src="/cim_theme/static/src/js/mmenu.js"></script>
-        <script src="/cim_theme/static/src/js/main.js"></script>
+        <script src="/cim_theme/static/src/js/main-portal.js"></script>
       </xpath>
     </template>
-  </data>
+ -->
+
 </odoo>
