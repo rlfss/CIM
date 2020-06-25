@@ -7,11 +7,28 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_filter"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="name" string="Employee" filter_domain="['|', '|', ('employee_num', 'ilike', self), ('work_email', 'ilike', self), ('name', 'ilike', self)]"/>
                 <field name="employee_num" string="Employee No." filter_domain="[('employee_num', 'ilike', self)]"/>
             </xpath>
          </field>
     </record>
+
+
+
+    <record id="hr_kanban_view_employees_in" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.resume</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//div[hasclass('oe_kanban_details')]/ul" position="inside">
+                       <li t-if="record.employee_num.raw_value" class="o_text_overflow"><field name="employee_num" /></li>
+                    </xpath>
+                </data>
+        </field>
+    </record>
+
     <record id="hr_employee_view_form" model="ir.ui.view">
         <field name="name">hr.employee.view.form.inherit.resume</field>
         <field name="model">hr.employee</field>

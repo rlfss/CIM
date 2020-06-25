@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="permission_sequence" model="ir.sequence">
+            <field name="name">hr.permission</field>
+            <field name="code">hr.permission</field>
+            <field name="prefix">PRQ-</field>
+            <field name="padding">6</field>
+        </record>
+        <record id="leavereturn_sequence" model="ir.sequence">
+            <field name="name">hr.leavereturn</field>
+            <field name="code">hr.leavereturn</field>
+            <field name="prefix">LRD-</field>
+            <field name="padding">6</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_hr_permission_view_form" model="ir.ui.view">
+            <field name="name">hr.permission.form</field>
+            <field name="model">hr.permission</field>
+            <field name="arch" type="xml">
+            <form string="Permission Requests">
+            <header>
+                <button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
+                <button string="Approve" name="action_approve" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirm')]}"/>
+                <button string="Validate" name="action_validate" states="validate1" type="object" groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+                <button string="Refuse" name="action_refuse"  type="object" attrs="{'invisible': [('state', 'not in', ('confirm','validate','validate1'))]}"/>
+                <button string="Reset to Draft" name="action_draft" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['confirm', 'refuse'])]}"/>
+                <field name="state" widget="statusbar" statusbar_visible="confirm,validate"/>
+            </header>
+                <sheet>
+                    <div class="oe_title" name="title">
+                        <h1>
+                        <field name="name" nolabel="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="req_type"/>
+                        </group>
+                        <group>
+                            <field name="date_time"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+            </form>
+            </field>
+        </record>
+
+    <record id="hr_permission_action_my_request" model="ir.actions.act_window">
+        <field name="name">Permission Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.permission</field>
+    </record>
+
+        
+    <menuitem
+        id="menu_hr_holidays_my_permissions"
+        name="Permission Requests"
+        action="hr_permission_action_my_request"
+        parent="hr_holidays.menu_hr_holidays_my_leaves"
+        sequence="4"/>
+
+</odoo>

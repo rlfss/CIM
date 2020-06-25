@@ -46,6 +46,10 @@ msgstr "رقم الموظف"
 msgid "Employee No."
 msgstr "رقم الموظف"
 
+#. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.view_employee_filter_inherit
+msgid "Employee"
+msgstr "الموظف"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__employee_status
@@ -67,7 +71,7 @@ msgstr "الحالة الصحية"
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__mother_name
 msgid "Mother Name"
-msgstr "إسم الأم"
+msgstr "اسم الام الثلاثي"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__mobile
@@ -166,7 +170,7 @@ msgstr "رقم قيد العائلة"
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__family_booklet_id
 msgid "Family Booklet Number"
-msgstr "رقم قتيب العائلة"
+msgstr "رقم كتيب العائلة"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__issuing_booklet
@@ -459,3 +463,8 @@ msgid "Appointment Decision No."
 msgstr "رقم قرار التعيين"
 
 
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__identification_id
+#: model:ir.model.fields,field_description:hr.field_res_users__identification_id
+msgid "Identification No"
+msgstr "رقم البطاقة الشخصية"

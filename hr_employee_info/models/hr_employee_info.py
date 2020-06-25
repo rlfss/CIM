@@ -109,12 +109,22 @@ class Employee(models.Model):
         Contract = self.env['hr.contract']
         for employee in self:
             mycontract = Contract.search([('employee_id', '=', employee.id)], order='date_start desc', limit=1)
+            employee.hiring_date = None
+            employee.started_date = None
+            employee.first_work_date = None
+            employee.position_type = None
+            employee.appointment_decision = None
             for line in mycontract:
-                employee.hiring_date = line.hiring_date
-                employee.started_date = line.started_date
-                employee.first_work_date = line.first_work_date
-                employee.position_type = line.position_type
-                employee.appointment_decision = line.appointment_decision
+                if employee.hiring_date:
+                    employee.hiring_date = line.hiring_date
+                if employee.started_date:
+                    employee.started_date = line.started_date
+                if employee.first_work_date:
+                    employee.first_work_date = line.first_work_date
+                if employee.position_type:
+                    employee.position_type = line.position_type
+                if employee.appointment_decision:
+                    employee.appointment_decision = line.appointment_decision
 
 
 class EmployeeDegreeAppointment(models.Model):
