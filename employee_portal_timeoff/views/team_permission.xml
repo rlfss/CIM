@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <template id="my_team_portal_my_permission_details" name="My Team Permission Requests">
+            <t t-call="portal.portal_layout">
+                <section class="py-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="nav horizontal-tab  nav-pills" id="v-pills-tab" role="tablist"
+                                     aria-orientation="vertical">
+                                    <a class="nav-link" id="v-pills-leave-tab" href="./leaves"
+                                       role="tab" aria-controls="v-pills-leave" aria-selected="true">Team Time Off</a>
+                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                       role="tab" aria-controls="v-pills-home" aria-selected="true">Team Permission Requests</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 pl-lg-0">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                         aria-labelledby="v-pills-home-tab">
+                                        <div class="row justify-content-end mb-1">
+                                            <t t-call="portal.portal_searchbar">
+                                                <t t-set="title"> </t>
+                                            </t>
+                                        </div>
+                                        <t t-if="grouped_timeoff">
+                                        <t t-foreach="grouped_timeoff" t-as="leave">
+                                        <div class="table-responsive my-table-container">
+                                            <table class="table my-table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Reference</th>
+                                                    <th scope="col">Employee</th>
+                                                    <th scope="col">Type</th>
+                                                    <th scope="col">Date &amp; Time</th>
+                                                    <th scope="col">Status</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <t t-foreach="leave" t-as="leave">
+                                                    <tr>
+                                                        <td><a t-attf-href="/my/team/permission/#{leave.id}"><span t-field="leave.name"/></a></td>
+                                                        <td><span t-field="leave.employee_id.name"/></td>
+                                                        <td><span t-field="leave.req_type"/></td>
+                                                        <td><span t-field="leave.date_time"/></td>
+                                                        <td><span t-att-class="'green-color' if leave.state=='validate' else '' 
+                                                                               'yellow-color' if leave.state=='confirm' else ''
+                                                                               'red-color' if leave.state=='cancel' else ''
+                                                                               'red-color' if leave.state=='refuse' else ''
+                                                                               'yellow-color' if leave.state=='draft' else ''
+                                                                               'green-color' if leave.state=='validate1' else ''
+                                                                               " t-field="leave.state"/></td>
+                                                    </tr>
+                                                </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </t>
+                                        </t>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                </t>
+</template>
+
+
+
+
+    <template id="portal_my_permission_team" name="My Team" inherit_id="portal.portal_sidebar" primary="True">
+
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="attributes">
+            <attribute name="id">o_fsm_my_team_portal</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+
+            <div class="row">
+
+                <!-- sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none actions_form'"/>
+
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li class="list-group-item flex-grow-1">
+
+                                <input type="hidden" name="timeoff_id" class="timeoff_id" t-att-value="timeoff.id"/>
+
+
+<!--                                 <div t-if="timeoff.leave_signature" class="o_download_pdf btn-toolbar flex-sm-nowrap">
+
+
+
+                                <button type="button" t-if="timeoff.state == 'draft'" class="btbtn btn-primary btn-block mb8 action_confirm" data-original-title="" title=""><span>Confirm</span></button>
+
+
+                                <a role="button" style="display:none;" class="btn btn-primary action_confirm_conf" data-toggle="modal" data-target="#modalconfirm" href="#">
+                                    approve
+                                </a>
+
+                                    <div role="dialog" class="modal fade" id="modalconfirm">
+                                    <div class="modal-dialog">
+                                        <form method="POST" class="js_accept_json modal-content js_website_submit_form code_confirm_form">
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" name="timeoff_id" class="timeoff_id" t-att-value="timeoff.id"/>
+                                            <header class="modal-header">
+                                                <h4 class="modal-title">Confirmation To Confirm</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                            </header>
+                                            <main class="modal-body new-opp-dialog-conf" id="sign-dialog">
+                                                <div class="form-group">
+                                                <div> Code Expired in : <span id="count"></span></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="conf_code">Enter Confirmation Code We Sent to your email</label>
+                                                    <input type="text" class="form-control conf_code" t-att-value="timeoff.conf_code" name="conf_code" placeholder="Code"/>
+                                                </div>
+                                            </main>
+                                            <footer class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button t-attf-class="btn btn-primary action_confirm2">Confirm</button>
+                                            </footer>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+
+
+
+                                 <div  class="o_download_pdf btn-toolbar flex-sm-nowrap">
+
+                                <div>
+
+                                <a role="button" t-if="timeoff.has_to_be_signed()" class="btn btn-primary btn-block mb8 modalaccept" data-toggle="modal" data-target="#modalaccept" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Approve
+                                </a>
+                                <a srole="button"  t-if="timeoff.has_to_be_signed2()" class="btn btn-primary btn-block mb8 modalsignrefuse" data-toggle="modal" data-target="#modalsignrefuse" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Refuse
+                                </a>
+
+
+                                </div>
+                                </div>
+                                
+<!--                                 <div t-if="timeoff.leave_signature" class="o_download_pdf btn-toolbar flex-sm-nowrap">
+
+
+                                <button type="button" t-if="timeoff.state == 'validate1' " class="btn btn-primary btn-block mb8 action_validate" data-original-title="" title=""><span>Validate</span></button>
+
+
+
+                              <a role="button" style="display:none;" class="btn btn-primary action_validate_conf" data-toggle="modal" data-target="#modalvalidate" href="#">
+                                    validate
+                                </a>
+
+                                    <div role="dialog" class="modal fade" id="modalvalidate">
+                                    <div class="modal-dialog">
+                                        <form method="POST" class="js_accept_json modal-content js_website_submit_form code_validate_form">
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" name="timeoff_id" class="timeoff_id" t-att-value="timeoff.id"/>
+                                            <header class="modal-header">
+                                                <h4 class="modal-title">Confirmation To Validate</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                            </header>
+                                            <main class="modal-body new-opp-dialog-val" id="sign-dialog">
+                                                <div class="form-group">
+                                                <div> Code Expired in : <span id="count3"></span></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="conf_code">Enter Confirmation Code We Sent to your email</label>
+                                                    <input type="text" class="form-control conf_code" t-att-value="timeoff.conf_code" name="conf_code" placeholder="Code"/>
+                                                </div>
+                                            </main>
+                                            <footer class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <button t-attf-class="btn btn-primary action_validate2">Validate</button>
+                                            </footer>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+                                </div> -->
+
+
+
+                            </li>
+
+
+
+
+                            <div role="dialog" class="modal fade modal_edit_timeoff">
+                                <div class="modal-dialog">
+                                    <form method="POST" class="js_accept_json modal-content js_website_submit_form edit_timeoff_form">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <input type="hidden" name="timeoff_id" class="timeoff_id" t-att-value="timeoff.id"/>
+                                        <header class="modal-header">
+                                            <h4 class="modal-title">Edit Time Off</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                        </header>
+                                        <main class="modal-body" id="sign-dialog">
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="name">Description</label>
+                                                <input type="text" class="form-control name" name="name" t-att-value="timeoff.name" placeholder="Description"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="timeoff">Time off Type</label>
+                                                <select name="holiday_status_id" class="form-control time_off_type_select holiday_status_id" required="True">
+                                                    <t t-foreach="holiday_types or []" t-as="htype">
+                                                        <option t-att-value="htype[0]" t-att-selected="htype[0] == timeoff.holiday_status_id.id">
+                                                            <t t-esc="htype[1]" />
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label" for="date_from">From</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label class="control-label" for="date_to">To</label>
+                                                    <div class="input-group date">
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </main>
+                                        <footer class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button t-attf-class="btn btn-primary edit_timeoff_confirm">Confirm</button>
+                                        </footer>
+                                    </form>
+                                </div>
+                            </div>
+
+
+
+                            <li t-if="timeoff.user_id" class="list-group-item flex-grow-1">
+                                <div class="small mb-1"><strong class="text-muted">Contact person</strong></div>
+                                <div class="row flex-nowrap">
+                                    <div class="col pl-0" style="min-width: 150px">
+                                        <img t-att-src="'/web/image?model=res.users&amp;id='+str(timeoff.user_id.id)+'&amp;field=image_128'" alt="contact avatar" class="rounded-circle mr-2 float-left o_portal_contact_img" />
+                                        <span t-field="timeoff.user_id" t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True}'/>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+
+                <div class="col-12 col-lg justify-content-end">
+
+                    <!-- modal relative to the sign action -->
+                    <div role="dialog" class="modal fade" id="modalaccept">
+                        <div class="modal-dialog" t-if="timeoff.has_to_be_signed()">
+                            <form id="accept" method="POST" t-att-data-task-id="timeoff.id" t-att-data-token="timeoff.access_token" class="js_accept_json modal-content js_website_submit_form">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <header class="modal-header">
+                                    <h4 class="modal-title">Sign Leave</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                </header>
+                                <main class="modal-body" id="sign-dialog">
+                                    <t t-call="portal.signature_form">
+                                        <t t-set="call_url" t-value="str(timeoff.id) + '/aprove_sign'"/>
+                                        <t t-set="default_name" t-value="request.env.user.employee_id.name"/>
+                                        <t t-set="send_label" t-value="'Sign'"/>
+                                    </t>
+                                </main>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- modal relative to the sign action -->
+                    <div role="dialog" class="modal fade" id="modalsignrefuse">
+                        <div class="modal-dialog" t-if="timeoff.has_to_be_signed2()">
+                            <form id="accept" method="POST" t-att-data-task-id="timeoff.id" t-att-data-token="timeoff.access_token" class="js_accept_json modal-content js_website_submit_form">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <header class="modal-header">
+                                    <h4 class="modal-title">Sign Leave</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                </header>
+                                <main class="modal-body" id="sign-dialog">
+                                    <t t-call="portal.signature_form">
+                                        <t t-set="call_url" t-value="str(timeoff.id) + '/refuse_sign'"/>
+                                        <t t-set="default_name" t-value="request.env.user.employee_id.name"/>
+                                        <t t-set="send_label" t-value="'Sign'"/>
+                                    </t>
+                                </main>
+                            </form>
+                        </div>
+                    </div>                    <!-- status message -->
+                    <div t-if="message == 'sign_ok'" class="alert alert-success alert-dismissable d-print-none text-center mt-2" role="status">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&amp;times;</button>
+                        <strong>Thank You!</strong><br/>
+                        Leave is now signed.
+                    </div>
+
+                    <!-- worksheet content -->
+                    <div t-attf-class="card p-3" name="Content" id="worksheet_content">
+                        <h1>Permission Request Info</h1>
+                        <hr/>
+                        <t t-set="doc" t-value="timeoff"/>
+                        <div t-call="employee_portal_timeoff.custom_page_per"/>
+                    </div>
+
+
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+
+
+        <template id="custom_page_per">
+                <div class="page">
+                        <div class="col-md text-md-right">
+                            <div class="d-inline-block">
+                                <small class="mr-2 mt-1 float-left"><b>State:</b></small>
+                                <div t-foreach="doc" t-as="tf" class="float-left">
+                                    <span t-att-class="'badge badge-success' if tf.state=='validate' else '' 
+                                                       'badge badge-primary' if tf.state=='confirm' else ''
+                                                       'badge badge-danger' if tf.state=='cancel' else ''
+                                                       'badge badge-warning' if tf.state=='refuse' else ''
+                                                       'badge badge-light' if tf.state=='draft' else ''
+                                                       'badge badge-info' if tf.state=='validate1' else ''
+                                                       " t-field="tf.state"/>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="d-flex flex-wrap justify-content-md-around">
+                    <h2 class="mt-4 mb-4"> Employee : <span t-if="doc.employee_id.name" t-field="doc.employee_id.name"/></h2>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-md-around">
+
+                            <div class="row mb-2">
+                                <strong class="col-12 col-sm-4">Date &amp; Time</strong>
+                                <div class="col">
+                                    <span t-if="doc.date_time" t-field="doc.date_time"/>
+                                </div>
+                        </div>
+                    </div>
+
+
+
+                    <div t-if="doc.permission_signature">
+
+                        <div t-if="report_type == html" class="ribbon" style="
+                            position: absolute;
+                            right: 0px; top: 0px;
+                            z-index: 1;
+                            overflow: hidden;
+                            width: 75px; height: 75px;
+                            text-align: right;">
+                            <span style="
+                                font-size: 10px;
+                                color: #fff;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-weight: bold; line-height: 20px;
+                                transform: rotate(45deg);
+                                width: 100px; display: block;
+                                background: green;
+                                position: absolute;
+                                top: 19px; right: -21px;">
+                                Signed
+                            </span>
+                        </div>
+
+                        <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
+                            <h5>Aprove Signature</h5>
+                            <img t-att-src="image_data_uri(doc.permission_signature)" style="max-height: 6rem; max-width: 100%;"/>
+                            <span t-field="doc.permission_signed_by"/>
+                        </div>
+                    </div>
+
+                    <div t-if="doc.r_permission_signature">
+
+                        <div t-if="report_type == html" class="ribbon" style="
+                            position: absolute;
+                            right: 0px; top: 0px;
+                            z-index: 1;
+                            overflow: hidden;
+                            width: 75px; height: 75px;
+                            text-align: right;">
+                            <span style="
+                                font-size: 10px;
+                                color: #fff;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-weight: bold; line-height: 20px;
+                                transform: rotate(45deg);
+                                width: 100px; display: block;
+                                background: green;
+                                position: absolute;
+                                top: 19px; right: -21px;">
+                                Signed
+                            </span>
+                        </div>
+
+                        <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
+                            <h5>Refuse Signature</h5>
+                            <img t-att-src="image_data_uri(doc.r_permission_signature)" style="max-height: 6rem; max-width: 100%;"/>
+                            <span t-field="doc.r_permission_signed_by"/>
+                        </div>
+                    </div>
+
+                </div>
+        </template>
+
+</odoo>

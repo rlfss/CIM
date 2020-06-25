@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <data>
+
+    <record id="team_action_confirm_template_id" model="mail.template">
+        <field name="name">Leave Confirm Confirmation Code</field>
+        <field name="email_from">${(object.user_id.company_id.email or user.email_formatted) | safe}</field>
+        <field name="subject">Leave Confirm Confirmation Code</field>
+        <field name="email_to">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="lang">${object.lang}</field>
+        <field name="body_html"><![CDATA[
+
+<table style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td align="center">
+<table style="padding:16px;background-color: white; color: #454748; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+    <!-- HEADER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td valign="middle">
+                    <span style="font-size:10px;">Your Account</span><br>
+                    <span style="font-size:20px;font-weight: bold;"> ${object.employee_id.parent_id.name} </span>
+                </td><td valign="middle" align="right">
+                    <img src="/logo.png?company=${object.user_id.company_id.id}" style="padding:0px;margin: 0px; height: auto; width: 80px;" alt="${object.user_id.company_id.name}">
+                </td></tr>
+                <tr><td colspan="2" style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- CONTENT -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td style="font-size:13px;" valign="top">
+                    <div>
+                        Dear ${object.employee_id.parent_id.name},<br><br>Time Off ${object.conf_action_type} Code <span style="font-size:20px;font-weight: bold;"></span><br><br><br>
+                        Leave Confirmation Code,<br>&nbsp;<br> <strong>  ${object.conf_code} </strong>
+                    </div>
+                </td></tr>
+                <tr><td style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <br></td></tr></tbody></table></td></tr></tbody></table>
+            ]]></field>
+    </record>
+
+
+
+
+
+
+
+
+
+    <record id="aprove_email_email_template_id" model="mail.template">
+        <field name="name">Permission Approval</field>
+        <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+        <field name="subject">Permission Approval</field>
+        <field name="email_to">${object.employee_id.work_email|safe}</field>
+        <field name="model_id" ref="hr_permission.model_hr_permission"/>
+        <field name="lang">${object.lang}</field>
+        <field name="body_html"><![CDATA[
+
+<table style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td align="center">
+<table style="padding:16px;background-color: white; color: #454748; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+    <!-- HEADER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td valign="middle">
+                    <span style="font-size:10px;">Your Account</span><br>
+                    <span style="font-size:20px;font-weight: bold;"> ${object.employee_id.name} </span>
+                </td><td valign="middle" align="right">
+                    <img src="/logo.png?company=${object.user_id.company_id.id}" style="padding:0px;margin: 0px; height: auto; width: 80px;" alt="${object.user_id.company_id.name}">
+                </td></tr>
+                <tr><td colspan="2" style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- CONTENT -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td style="font-size:13px;" valign="top">
+                    <div>
+                        Dear ${object.employee_id.name},<br><br>Your Permission Requests Approved <span style="font-size:20px;font-weight: bold;"></span><br><br><br>
+                        Thanks,<br>&nbsp;<br>
+                    </div>
+                </td></tr>
+                <tr><td style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <br></td></tr></tbody></table></td></tr></tbody></table>
+            ]]></field>
+    </record>
+
+
+
+
+    <record id="refuse_email_email_template_id" model="mail.template">
+        <field name="name">Permission Requests Refuse</field>
+        <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+        <field name="subject">Permission Requests Refused</field>
+        <field name="email_to">${object.employee_id.work_email|safe}</field>
+        <field name="model_id" ref="hr_permission.model_hr_permission"/>
+        <field name="lang">${object.lang}</field>
+        <field name="body_html"><![CDATA[
+
+<table style="padding-top:16px;background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td align="center">
+<table style="padding:16px;background-color: white; color: #454748; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+    <!-- HEADER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td valign="middle">
+                    <span style="font-size:10px;">Your Account</span><br>
+                    <span style="font-size:20px;font-weight: bold;"> ${object.employee_id.name} </span>
+                </td><td valign="middle" align="right">
+                    <img src="/logo.png?company=${object.user_id.company_id.id}" style="padding:0px;margin: 0px; height: auto; width: 80px;" alt="${object.user_id.company_id.name}">
+                </td></tr>
+                <tr><td colspan="2" style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- CONTENT -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <table style="min-width:590px;background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;" width="590" cellspacing="0" cellpadding="0" border="0">
+                <tbody><tr><td style="font-size:13px;" valign="top">
+                    <div>
+                        Dear ${object.employee_id.name},<br><br>Your Permission Requests Refused <span style="font-size:20px;font-weight: bold;"></span><br><br><br>
+                        Thanks,<br>&nbsp;<br>
+                    </div>
+                </td></tr>
+                <tr><td style="text-align:center;">
+                  <hr style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;" width="100%">
+                </td></tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td style="min-width:590px;" align="center">
+            <br></td></tr></tbody></table></td></tr></tbody></table>
+            ]]></field>
+    </record>
+
+        </data>
+</odoo>
