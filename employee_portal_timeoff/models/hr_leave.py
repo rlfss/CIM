@@ -341,7 +341,7 @@ class LeaveType(models.Model):
     def name_get_only(self):
         if not self._context.get('employee_id'):
             # leave counts is based on employee_id, would be inaccurate if not based on correct employee
-            return super(HolidaysType, self).name_get()
+            return super(LeaveType, self).name_get()
         res = []
         for record in self:
             name = record.name
