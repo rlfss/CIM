@@ -121,10 +121,9 @@ class Holidays(models.Model):
 
             today_hours = self.env.company.resource_calendar_id.get_work_hours_count(
                 datetime.combine(date_from.date(), time.min),
-                datetime.combine(date_from.date(), time.max),
-                False)
+                datetime.combine(date_from.date(), time.max), resource=None, domain=None, tz=None)
 
-            hours = self.env.company.resource_calendar_id.get_work_hours_count(date_from, date_to)
+            hours = self.env.company.resource_calendar_id.get_work_hours_count(date_from, date_to, resource=None, domain=None, tz=None)
 
             return {'days': hours / (today_hours or HOURS_PER_DAY), 'hours': hours}
         else:
