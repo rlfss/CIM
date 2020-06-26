@@ -7,9 +7,61 @@ from odoo import http
 from odoo.http import request
 from odoo.tools import date_utils, groupby as groupbyelem
 from odoo.addons.portal.controllers.portal import CustomerPortal
+from odoo.addons.portal.controllers.portal import OAuthController
 from odoo.tools.translate import _
 from odoo.exceptions import AccessError, MissingError
 import binascii
+
+
+
+class AuthController(OAuthController):
+    @http.route('/auth_oauth/signin', type='http', auth='none')
+    @fragment_to_query_string
+    def signin(self, **kw):
+        state = json.loads(kw['state'])
+        dbname = state['d']
+        if not http.db_filter([dbname]):
+            return BadRequest()
+        provider = state['p']
+        context = state.get('c', {})
+        registry = registry_get(dbname)
+        with registry.cursor() as cr:
+            try:
+                env = api.Environment(cr, SUPERUSER_ID, context)
+                credentials = env['res.users'].sudo().auth_oauth(provider, kw)
+                cr.commit()
+                action = state.get('a')
+                menu = state.get('m')
+                redirect = werkzeug.url_unquote_plus(state['r']) if state.get('r') else False
+                url = '/my/home'
+                if redirect:
+                    url = redirect
+                elif action:
+                    url = '/web#action=%s' % action
+                elif menu:
+                    url = '/web#menu_id=%s' % menu
+                resp = login_and_redirect(*credentials, redirect_url=url)
+                # Since /web is hardcoded, verify user has right to land on it
+                if werkzeug.urls.url_parse(resp.location).path == '/web' and not request.env.user.has_group('base.group_user'):
+                    resp.location = '/my/home'
+                return resp
+            except AttributeError:
+                # auth_signup is not installed
+                _logger.error("auth_signup not installed on database %s: oauth sign up cancelled." % (dbname,))
+                url = "/web/login?oauth_error=1"
+            except AccessDenied:
+                # oauth credentials not valid, user could be on a temporary session
+                _logger.info('OAuth2: access denied, redirect to main page in case a valid session exists, without setting cookies')
+                url = "/web/login?oauth_error=3"
+                redirect = werkzeug.utils.redirect(url, 303)
+                redirect.autocorrect_location_header = False
+                return redirect
+            except Exception as e:
+                # signup error
+                _logger.exception("OAuth2: %s" % str(e))
+                url = "/web/login?oauth_error=2"
+
+        return set_cookie_and_redirect(url)
 
 
 class WebsiteAccount(CustomerPortal):
