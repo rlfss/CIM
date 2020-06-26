@@ -16,6 +16,20 @@ class HrEmployeeInfo(models.Model):
     _name = "hr.employee.info"
     _description = "Employee info"
 
+class allocation(models.Model):
+    _inherit = 'hr.leave.allocation'
+    state = fields.Selection([
+        ('draft', 'To Submit'),
+        ('cancel', 'Cancelled'),
+        ('confirm', 'To Approve'),
+        ('refuse', 'Refused'),
+        ('validate1', 'Second Approval'),
+        ('validate', 'Approved')
+        ], string='Status', readonly=False, tracking=True, copy=False, default='confirm',
+        help="The status is set to 'To Submit', when an allocation request is created." +
+        "\nThe status is 'To Approve', when an allocation request is confirmed by user." +
+        "\nThe status is 'Refused', when an allocation request is refused by manager." +
+        "\nThe status is 'Approved', when an allocation request is approved by manager.")
 
 class Employee(models.Model):
     _inherit = 'hr.employee'
