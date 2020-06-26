@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 hr_permission_access,hr.permission,model_hr_permission,base.group_user,1,1,1,1
 hr_leavereturn_access,hr.leavereturn,model_hr_leavereturn,base.group_user,1,1,1,1
+hr_permission_access_portal,hr.permission,model_hr_permission,base.group_portal,1,1,1,1
+hr_leavereturn_access_portal,hr.leavereturn,model_hr_leavereturn,base.group_portal,1,1,1,1
