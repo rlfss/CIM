@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_internal_memo_user,internal.memo.user,model_internal_memo,,1,0,0,0
+access_internal_memo_manager,internal.memo.manager,model_internal_memo,,1,1,1,1

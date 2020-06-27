@@ -1,0 +1,162 @@
+<odoo>
+    <template id="portal_my_home_internal_memo" name="Portal My Home : internal memo" inherit_id="portal.portal_my_home"
+              priority="40">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-if="internal_memo_count" t-call="portal.portal_docs_entry">
+                <t t-set="title">Internal memo</t>
+                <t t-set="url" t-value="'/my/memo'"/>
+                <t t-set="count" t-value="internal_memo_count"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_internal_memo" name="My Internal memo">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+                <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="list-inline d-flex align-items-center">
+                                        <li class="list-inline-item">
+                                            <a href="index.html" class="fs-20">
+                                                <i class="fa fa-home"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item fs-20">
+                                            <i class="fal fa-angle-right"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <p class="m-0">
+                                                Internal Memo
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="nav horizontal-tab  nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                        <a class="nav-link active" id="my_memos-tab" data-toggle="pill" href="#my_memos" role="tab" aria-controls="my_memos" aria-selected="true">My Memos</a>
+                                        <a class="nav-link" id="new_memos-tab" data-toggle="pill" href="#new_memos" role="tab" aria-controls="new_memos" aria-selected="false">New Memos</a>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 pl-lg-0">
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="my_memos" role="tabpanel" aria-labelledby="my_memos-tab">
+                                            <div class="table-responsive my-table-container">
+
+                                                <table class="table my-table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">Memo #</th>
+                                                        <th scope="col">Last Modified on</th>
+                                                        <th scope="col">Manager </th>
+                                                        <th scope="col">Message</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <t t-foreach="internal_memo" t-as="memo">
+                                                            <tr>
+                                                                <td>
+                                                                    <a t-attf-href="/my/memo/#{memo.id}#{memo.get_portal_url()}" t-att-title="memo.name">
+                                                                        <t t-esc="memo.name"/>
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-field="memo.write_date"/>
+                                                                </td>
+
+                                                                <td t-if="not memo.manager_id">
+                                                                    <p>.</p>
+                                                                </td>
+
+                                                                <td t-if="memo.manager_id">
+                                                                    <span t-field="memo.manager_id"/>
+                                                                </td>
+
+                                                                <td class="ellipsis mw-200">
+                                                                    <span t-field="memo.message"/>
+                                                                </td>
+
+                                                            </tr>
+                                                        </t>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
+                                            <div class="my-card p-3">
+                                                    <div class="row">
+
+                                                    <form action="/memo_form/internal.memo" method="post">
+                                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Subject:</label>
+                                                                    <input type="text" class="form-control o_website_form_input" name="subject"
+                                                                           t-att-value="request.params.get('subject', '')" required=""/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Memo:</label>
+                                                                    <textarea class="form-control o_website_form_input" name="message" required="">
+                                                                        <t t-esc="request.params.get('message', '')"/>
+                                                                    </textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 text-lg-right text-center">
+                                                            <input class="btn btn-primary px-4" type="Submit" value="send"/>
+                                                        </div>
+                                                    </form>
+
+
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+        </t>
+    </template>
+
+    <template id="portal_internal_memo_page" name="Memos Portal Template" inherit_id="portal.portal_sidebar"
+              primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+            <t t-set="o_portal_fullwidth_alert" groups="sales_team.group_sale_salesman,account.group_account_invoice">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t t-set="backend_url"
+                       t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (memo._name, memo.id, memo.env.ref('internal_memo.internal_memo_action').id)"/>
+                </t>
+            </t>
+
+
+
+            <div class="row mt16 o_portal_memo_sidebar">
+                <div id="memo_content" class="col-12 col-lg card-body">
+                    <div id="memo_communication" class="mt-4">
+                        <strong>Subject : </strong> <strong t-esc="memo.name"/>
+                        <br/>
+                        <br/>
+                        <strong>Memo :</strong>
+                        <br/>
+                        <p t-esc="memo.message"/>
+                        <br/>
+
+                        <t t-call="portal.message_thread">
+                            <t t-set="object" t-value="memo"/>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

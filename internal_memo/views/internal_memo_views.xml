@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--  tree view  -->
+    <record id="view_internal_memo_tree" model="ir.ui.view">
+        <field name="name">internal.memo.tree</field>
+        <field name="model">internal.memo</field>
+        <field name="arch" type="xml">
+            <tree string="Internal memo">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="manager_id"/>
+                <field name="message"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--  form view  -->
+    <record id="view_internal_memo_form" model="ir.ui.view">
+        <field name="name">internal.memo.form</field>
+        <field name="model">internal.memo</field>
+        <field name="arch" type="xml">
+            <form string="Internal memo">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Title"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="manager_id"/>
+                            <field name="message"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="internal_memo_action" model="ir.actions.act_window">
+        <field name="name">Internal memo</field>
+        <field name="res_model">internal.memo</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!--  Menu  -->
+    <menuitem
+            action="internal_memo_action"
+            id="menu_internal_memo"
+            parent="hr_holidays.menu_hr_holidays_root"
+            name="Internal memo"
+            sequence="1"/>
+
+</odoo>
