@@ -39,6 +39,40 @@
             <xpath expr="//button[@name='action_confirm']" position="before">
                 <button name="action_review_send" string="Review &amp; Send Email" type="object" class="btn-primary"/>
             </xpath>
+             <xpath expr="//div[@name='description']" position="before">
+                <!-- per day -->
+                 <div class="row" attrs="{'invisible': ['|', ('request_unit_half', '=', True), ('request_unit_hours', '=', True),('leave_type_request_unit', '!=', 'days')]}">
+                     <label for="basic_balance" class="col-2 mr-0" string="Basic Balance"/>
+                     <field name="basic_balance"  class="oe_inline" />
+                     <span class="ml8">Days</span>
+                </div> 
+                 <div class="row" attrs="{'invisible': ['|', ('request_unit_half', '=', True), ('request_unit_hours', '=', True),('leave_type_request_unit', '!=', 'days')]}">
+                     <label for="current_balance" class="col-2 mr-0" string="Current Balance" />
+                     <field name="current_balance"  class="oe_inline" />
+                     <span class="ml8">Days</span>
+                </div>
+                <div class="row" attrs="{'invisible': ['|', ('request_unit_half', '=', True), ('request_unit_hours', '=', True),('leave_type_request_unit', '!=', 'days')]}">
+                     <label for="balance_consumed" class="col-2 mr-0" string="Balance Consumed"/>
+                     <field name="balance_consumed"  class="oe_inline" />
+                     <span class="ml8">Days</span>
+                </div> <br/>
+               <!--  per hour -->
+                 <div class="row" attrs="{'invisible': [('leave_type_request_unit', '!=', 'hour')]}">
+                     <label for="basic_balance" class="col-2 mr-0" string="Basic Balance" />
+                     <field name="basic_balance"  class="oe_inline" />
+                     <span class="ml8">Hours</span>
+                 </div>
+                 <div class="row" attrs="{'invisible': [('leave_type_request_unit', '!=', 'hour')]}">
+                     <label for="current_balance" class="col-2 mr-0" string="Current Balance" />
+                     <field name="current_balance"  class="oe_inline" />
+                     <span class="ml8">Hours</span>
+                 </div>
+                 <div class="row" attrs="{'invisible': [('leave_type_request_unit', '!=', 'hour')]}">
+                     <label for="balance_consumed" class="col-2 mr-0" string="Balance Consumed"/>
+                     <field name="balance_consumed"  class="oe_inline" />
+                     <span class="ml8">Hours</span>
+                 </div>
+             </xpath>
         </field>
     </record>
 

@@ -55,9 +55,27 @@ class Holidays(models.Model):
     _inherit = "hr.leave"
 
 
+    basic_balance = fields.Char(compute='_compute_basic_balance',stored=True)
+    current_balance = fields.Char(compute='_compute_current_balance',stored=True)
+    balance_consumed = fields.Char(compute='_compute_balance_consumed',stored=True)
+
+    @api.depends('holiday_status_id.max_leaves')
+    def _compute_basic_balance(self):
+        for rec in self:
+            rec.basic_balance = self.holiday_status_id.max_leaves
+
+    @api.depends('basic_balance')
+    def _compute_current_balance(self):
+        for rec in self:
+            rec.current_balance = self.holiday_status_id.virtual_remaining_leaves
+
+    @api.depends('basic_balance','current_balance')
+    def _compute_balance_consumed(self):
+        for rec in self:
+            rec.balance_consumed =  ( self.holiday_status_id.max_leaves - self.holiday_status_id.virtual_remaining_leaves)
 
     review_status = fields.Selection([
-        ('draft', 'Draft'),
+        ('draft', 'Not Reviewed'),
         ('reviewed', 'Reviewed'),
         ], string='Review Status', store=True, readonly=True)
 
@@ -78,6 +96,7 @@ class Holidays(models.Model):
             'proforma': self.env.context.get('proforma', False),
             'force_email': True,
         }
+        self.write({'review_status': 'reviewed'})
         return {
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
@@ -151,7 +170,7 @@ class Holidays(models.Model):
             """ Returns a float equals to the timedelta between two dates given as string."""
             if employee_id:
                 employee = self.env['hr.employee'].browse(employee_id)
-                return employee._get_work_days_data(date_from, date_to)
+                return employee._get_work_days_data(date_from, date_to, False)
 
             today_hours = self.env.company.resource_calendar_id.get_work_hours_count(
                 datetime.combine(date_from.date(), time.min),
@@ -180,10 +199,9 @@ class Holidays(models.Model):
             """ Returns a float equals to the timedelta between two dates given as string."""
             today_hours = self.env.company.resource_calendar_id.get_work_hours_count(
                 datetime.combine(date_from, time.min),
-                datetime.combine(date_from, time.max),
-                False)
+                datetime.combine(date_from, time.max), False)
 
-            hours = self.env.company.resource_calendar_id.get_work_hours_count(date_from, date_to)
+            hours = self.env.company.resource_calendar_id.get_work_hours_count(date_from, date_to, False)
 
             return {'days': hours / (today_hours or HOURS_PER_DAY), 'hours': hours}
         if titype == 'in' :

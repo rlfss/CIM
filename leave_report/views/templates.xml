@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="style_leave_report">
+        <style>
+            @font-face {
+              font-family: din;
+              src: url(/leave_report/static/fonts/din-next-lt-arabic-light.ttf); }
+            body {
+              color: #0e0e0e;
+              font-family: din, 'sans-serif' !important;
+              font-size:20px;
+              direction: rtl; }
+            @font-face {
+            font-family: 'Cairo';
+            src: url('/leave_report/static/fonts/Cairo/cairo-regular-webfont.woff2') format('woff2'),
+            url('/leave_report/static/fonts/Cairo/cairo-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+            }
+            .page{
+            direction: rtl;
+            text-align:right;
+            font-family:din, 'sans-serif'!important;
+            font-size: 12px;
+            margin:0!important;
+            padding:0!important;
+            }
+            .blue-border {
+            border: 2px solid #18A6FE !important;
+            }
+            .blue-bg {
+            background-color: #0020F3;
+            }
+            .blue-light-bg {
+            background-color: #18A6FE !important;
+            }
+            .fw-600 {
+            font-weight: 600 !important;
+            }
+            .table-bordered td, .table-bordered th {
+            border-width:1px !important;
+            border-style: solid!important;
+            border-color: #18A6FE !important;
+            padding-top: 0.50rem;
+            }
+            .table{
+            margin:5px!important;
+            font-family: din, 'sans-serif'!important;
+            }
+            .table-bordered{
+            border-width:1px !important;
+            border-style: solid !important;
+            border-color: #18A6FE !important;
+            }
+            .br-l{
+            border-left-width: 2px;
+            }
+            .br-r{
+            border-right-width: 2px;
+            }
+            .br-t{
+            border-top-width: 2px;
+            }
+            .br-b{
+            border-bottom-width: 2px;
+            }
+            .text-white{
+            color:white;
+            }
+            table.sans-border,table.sans-border td{
+            border:0 !important;
+            }
+
+
+        </style>
+    </template>
+
+    <template id="print_leave_report">
+        <t t-foreach="docs" t-as="doc">
+                <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
+                    <img src='/leave_report/static/src/img/header.png' class="img-fluid" alt=""/>
+                </div>
+
+
+         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-call="leave_report.style_leave_report"/>
+                <div class="page">
+                    <br/>
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                القسم الأول
+                            </td>
+                            <td class="fw-600">
+                                بيانات الموظف طالب الإجازة
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0" style="width:99%;">
+                        <tr>
+                            <td colspan="2">
+                                <span class="fw-600">الإسم بالكامل:</span>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الوظيفة:</span>
+                                <span t-field="doc.employee_id.job_id"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">الرقم الوظيفي:</span>
+                                <span t-field="doc.employee_id.employee_num"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الإدارة:</span>
+                                <span t-field="doc.employee_id.parent_id"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">مدة الإجازة المطلوبة:</span>
+                                <t t-if="doc.number_of_days">
+                                    <span t-field="doc.number_of_days"/> يوم/أيام
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">تاريخ بدء الإجازة:</span>
+                                <span t-field="doc.request_date_from"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">تاريخ انتهاء الإجازة:</span>
+                                <span t-field="doc.request_date_to"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                القسم الثاني
+                            </td>
+                            <td class="fw-600">
+                                الموظف المختص بالإجازات
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الإجازه المتسحقة:</span>
+                                <span t-field="doc.basic_balance"/> يوم/ايام
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">حتى:</span>
+                                <span t-field="doc.request_date_to"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span class="fw-600">الإجازة المطلوبة:</span>
+                                <span t-field="doc.number_of_days"/> يوم/ايام
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الإجازة المتبقية:</span>
+                                <span t-field="doc.current_balance"/> يوم/ايام
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">اسم الموظف:</span>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">التاريخ:</span>
+                                <span t-field="doc.request_date_from"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">التوقيع:</span>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                القسم الثالث
+                            </td>
+                            <td class="fw-600">
+                                رأي الرئيس المباشر للموظف
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td width="45%">
+                                <table class="sans-border fw-600">
+                                    <tr>
+                                        <td>
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck1"/>
+                                            <label class="form-check-label" for="inlineFormCheck1">
+                                                أوصي
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck2"/>
+                                            <label class="form-check-label" for="inlineFormCheck2">
+                                                لا أوصي
+                                            </label>
+                                        </td>
+                                        <td>&amp;nbsp;&amp;nbsp;
+                                            بمنحه إجازة نظراً لــــــ
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="55%" rowspan="3">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%">
+                                <span class="fw-600">التاريخ:</span>
+                                06/28/2020
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td width="40%">
+                                <span class="fw-600">التوقيع:</span>
+                                التوقيع
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                القسم الرابع
+                            </td>
+                            <td class="fw-600">
+                                رأي الرئيس الأعلى للموظف
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td width="45%">
+                                <table class="sans-border fw-600">
+                                    <tr>
+                                <t t-if="doc.leave_signature">
+                                        <td>
+
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck1" checked=""/>
+                                            <label class="form-check-label" for="inlineFormCheck1">
+                                                أوصي
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck2"/>
+                                            <label class="form-check-label" for="inlineFormCheck2">
+                                                لا أوصي
+                                            </label>
+                                        </td>
+                                </t>
+
+                                <t t-if="doc.r_leave_signature">
+                                        <td>
+
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck1" />
+                                            <label class="form-check-label" for="inlineFormCheck1">
+                                                أوصي
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck2"  checked=""/>
+                                            <label class="form-check-label" for="inlineFormCheck2">
+                                                لا أوصي
+                                            </label>
+                                        </td>
+                                </t>
+
+                                        <td>&amp;nbsp;&amp;nbsp;
+                                            بمنحه إجازة نظراً لــــــ
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td width="55%" rowspan="3">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%">
+                                <span class="fw-600">التاريخ:</span>
+                                06/28/2020
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td width="40%">
+                                <span class="fw-600">التوقيع:</span>
+                                <t t-if="doc.leave_signature">
+                                <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                                </t>
+                                <t t-if="doc.r_leave_signature">
+                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
+                    <img src='/leave_report/static/src/img/footer.png' class="img-fluid" alt=""/>
+                </div>
+                <t t-if="doc.state == 'validate'">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <t t-call="leave_report.print_official_vacation_report"/>
+                </t>
+            </t>
+            </t>
+        </t>
+
+    </template>
+
+    <template id="print_official_vacation_report">
+
+                <div class="page">
+                    <div style="padding:0 60px;">
+                        <h2 style="text-align:center;font-size:34px">إلى من يهمّه الأمر</h2>
+                        <br/>
+
+                        <p style="font-size:24px">
+                            نشهد نحن الهيئة العامة لإلتصاالت والمعلوماتية أن الموظف
+                            <b>
+                                <span t-field="doc.employee_id.name"/>
+                            </b>
+                            ، في اجازة رسمية
+                            من تاريخ
+                            <b>
+                                <span t-field="doc.request_date_from"/>
+                            </b>
+                            إلى
+                            <b>
+                                <span t-field="doc.request_date_to"/>
+                            </b>
+                            .
+                        </p>
+                    </div>
+                </div>
+                <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
+                    <img src='/leave_report/static/src/img/footer-2.png' class="img-fluid" alt=""/>
+                </div>
+
+    </template>
+
+    
+    
+    
+    <template id="print_permission_report">
+        <t t-foreach="docs" t-as="doc">
+                <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
+                    <img src='/leave_report/static/src/img/header-2.png' class="img-fluid" alt=""/>
+                </div>
+
+
+         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-call="leave_report.style_leave_report"/>
+                <div class="page">
+                    <br/>
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                المرجع
+                            </td>
+                            <td class="fw-600">
+                                <span t-field="doc.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0" style="width:99%;">
+                        <tr>
+                            <td colspan="2">
+                                <span class="fw-600">الموظف :</span>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الوظيفة:</span>
+                                <span t-field="doc.employee_id.job_id"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">الرقم الوظيفي:</span>
+                                <span t-field="doc.employee_id.employee_num"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الإدارة:</span>
+                                <span t-field="doc.employee_id.parent_id"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">السبب  :</span>
+                                <t t-if="doc.reason">
+                                    <span t-field="doc.reason"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">تاريخ ووقت الطلب :</span>
+                                <span t-field="doc.date_time"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">نوع الطلب:</span>
+                                <span t-field="doc.req_type"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
+                    <img src='/leave_report/static/src/img/footer-2.png' class="img-fluid" alt=""/>
+                </div>
+
+            </t>
+            </t>
+        </t>
+    </template>
+    
+</odoo>

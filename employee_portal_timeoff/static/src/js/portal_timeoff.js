@@ -261,9 +261,14 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
             timeoff_type: $('.new_timeoff_form .holiday_status_id').val(),
         }],
         }).then(function(response){
-            self.$("input.timeoff_address").val(response.id);                
-            self.$("input.request_date_to").val(response.date_to);                
-            self.$("input.number_of_days").prop('disabled', false);                
+            if (response.errors) {
+                $('#new-opp-dialog-1 .alert').remove();
+                $('#new-opp-dialog-1 div:first').prepend('<div class="alert alert-danger">' + response.errors + '</div>');
+                self.$("input.number_of_days").val('');                
+                return Promise.reject(response);
+            } else {
+                self.$("input.request_date_to").val(response.date_to);                
+            }
         })
         
     },

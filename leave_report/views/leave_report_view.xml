@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_leave_report" model="report.paperformat">
+            <field name="name">European A4 leave report</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">60</field>
+            <field name="margin_bottom">22</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">60</field>
+            <field name="dpi">90</field>
+    </record>
+
+    <report id="leave_report"
+            model="hr.leave"
+            string="Leave Report"
+            report_type="qweb-pdf"
+            name="leave_report.print_leave_report"
+            paperformat="leave_report.paperformat_leave_report"
+            file="print_leave_report"/>
+
+    <report id="hr_permission_report"
+        model="hr.permission"
+        string="Permission Report"
+        report_type="qweb-pdf"
+        name="leave_report.print_permission_report"
+        paperformat="leave_report.paperformat_leave_report"
+        file="print_permission_report"/>
+
+    
+</odoo>

@@ -135,6 +135,11 @@ class EmpPortalTimeOff(models.Model):
                     'id': str(data['days']),
                     'date_to': dt_to
                 }
+            
+        else:
+            return {
+                'errors': _('Enter Start Date !')
+            }
     def team_action_validate(self, values):
         random_code = random.randint(9, 50000)
         timenow = datetime.now() + timedelta(minutes=2)
