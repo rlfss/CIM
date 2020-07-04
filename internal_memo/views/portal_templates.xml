@@ -13,116 +13,138 @@
     <template id="portal_my_internal_memo" name="My Internal memo">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
-                <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <ul class="list-inline d-flex align-items-center">
-                                        <li class="list-inline-item">
-                                            <a href="index.html" class="fs-20">
-                                                <i class="fa fa-home"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item fs-20">
-                                            <i class="fal fa-angle-right"></i>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <p class="m-0">
-                                                Internal Memo
-                                            </p>
-                                        </li>
-                                    </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-inline d-flex align-items-center">
+                            <li class="list-inline-item">
+                                <a href="index.html" class="fs-20">
+                                    <i class="fa fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item fs-20">
+                                <i class="fal fa-angle-right"></i>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="m-0">
+                                    Internal Memo
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="nav horizontal-tab  nav-pills" id="v-pills-tab" role="tablist"
+                             aria-orientation="vertical">
+                            <a class="nav-link active" id="my_memos-tab" data-toggle="pill" href="#my_memos" role="tab"
+                               aria-controls="my_memos" aria-selected="true">My Memos
+                            </a>
+                            <a class="nav-link" id="new_memos-tab" data-toggle="pill" href="#new_memos" role="tab"
+                               aria-controls="new_memos" aria-selected="false">New Memos
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-9 pl-lg-0">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="my_memos" role="tabpanel"
+                                 aria-labelledby="my_memos-tab">
+                                <div class="table-responsive my-table-container">
+
+                                    <table class="table my-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Memo #</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Manager</th>
+                                                <th scope="col">Message</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="internal_memo" t-as="memo">
+                                                <tr>
+                                                    <td>
+                                                        <a t-attf-href="/my/memo/#{memo.id}#{memo.get_portal_url()}"
+                                                           t-att-title="memo.name">
+                                                            <t t-esc="memo.name"/>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="memo.date"/>
+                                                    </td>
+
+                                                    <td t-if="not memo.manager_id">
+                                                        <p>.</p>
+                                                    </td>
+
+                                                    <td t-if="memo.manager_id">
+                                                        <span t-field="memo.manager_id"/>
+                                                    </td>
+
+                                                    <td class="ellipsis mw-200">
+                                                        <span t-field="memo.message"/>
+                                                    </td>
+
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="nav horizontal-tab  nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                        <a class="nav-link active" id="my_memos-tab" data-toggle="pill" href="#my_memos" role="tab" aria-controls="my_memos" aria-selected="true">My Memos</a>
-                                        <a class="nav-link" id="new_memos-tab" data-toggle="pill" href="#new_memos" role="tab" aria-controls="new_memos" aria-selected="false">New Memos</a>
 
-                                    </div>
-                                </div>
-                                <div class="col-lg-9 pl-lg-0">
-                                    <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="my_memos" role="tabpanel" aria-labelledby="my_memos-tab">
-                                            <div class="table-responsive my-table-container">
 
-                                                <table class="table my-table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">Memo #</th>
-                                                        <th scope="col">Last Modified on</th>
-                                                        <th scope="col">Manager </th>
-                                                        <th scope="col">Message</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <t t-foreach="internal_memo" t-as="memo">
-                                                            <tr>
-                                                                <td>
-                                                                    <a t-attf-href="/my/memo/#{memo.id}#{memo.get_portal_url()}" t-att-title="memo.name">
-                                                                        <t t-esc="memo.name"/>
-                                                                    </a>
-                                                                </td>
-                                                                <td>
-                                                                    <span t-field="memo.write_date"/>
-                                                                </td>
+                            <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
+                                <div class="my-card p-3">
+                                    <form action="/memo_form/internal.memo" method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>To :</label>
+                                                    <input type="text" name="to"
+                                                           t-att-value="request.params.get('to', '')"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Via :</label>
+                                                    <input type="text" name="via"
+                                                           t-att-value="request.params.get('via', '')"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
 
-                                                                <td t-if="not memo.manager_id">
-                                                                    <p>.</p>
-                                                                </td>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Subject :</label>
+                                                    <input type="text" name="subject"
+                                                           t-att-value="request.params.get('subject', '')"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
 
-                                                                <td t-if="memo.manager_id">
-                                                                    <span t-field="memo.manager_id"/>
-                                                                </td>
-
-                                                                <td class="ellipsis mw-200">
-                                                                    <span t-field="memo.message"/>
-                                                                </td>
-
-                                                            </tr>
-                                                        </t>
-                                                    </tbody>
-                                                </table>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Memo :</label>
+                                                    <textarea placeholder="Memo" rows="4" class="form-control"
+                                                              name="message">
+                                                        <t t-esc="request.params.get('message', '')"/>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-lg-right text-center">
+                                                <input class="btn btn-primary px-4" type="Submit" value="send"/>
                                             </div>
                                         </div>
-
-
-
-
-                                        <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
-                                            <div class="my-card p-3">
-                                                    <div class="row">
-
-                                                    <form action="/memo_form/internal.memo" method="post">
-                                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Subject:</label>
-                                                                    <input type="text" class="form-control o_website_form_input" name="subject"
-                                                                           t-att-value="request.params.get('subject', '')" required=""/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <label>Memo:</label>
-                                                                    <textarea class="form-control o_website_form_input" name="message" required="">
-                                                                        <t t-esc="request.params.get('message', '')"/>
-                                                                    </textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 text-lg-right text-center">
-                                                            <input class="btn btn-primary px-4" type="Submit" value="send"/>
-                                                        </div>
-                                                    </form>
-
-
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
         </t>
     </template>
@@ -138,21 +160,71 @@
             </t>
 
 
-
             <div class="row mt16 o_portal_memo_sidebar">
-                <div id="memo_content" class="col-12 col-lg card-body">
-                    <div id="memo_communication" class="mt-4">
-                        <strong>Subject : </strong> <strong t-esc="memo.name"/>
-                        <br/>
-                        <br/>
-                        <strong>Memo :</strong>
-                        <br/>
-                        <p t-esc="memo.message"/>
-                        <br/>
-
-                        <t t-call="portal.message_thread">
-                            <t t-set="object" t-value="memo"/>
-                        </t>
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li class="list-group-item flex-grow-1">
+                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_download_btn"
+                                           t-attf-href="/my/memo/#{memo.id}#{memo.get_portal_url(report_type='pdf', download=True).split('#')[1]}"
+                                           title="Download">
+                                            <i class="fa fa-download"/>
+                                            Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+                <div id="memo_content" class="col-12 col-lg justify-content-end">
+                    <div class="card pb-5">
+                        <div id="introduction" class="pb-2 pt-3 card-header bg-white">
+                            <h2 class="my-0" id="quote_header_2">
+                                Memo
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="memo_communication">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <strong>Date :</strong>
+                                            <strong t-esc="memo.date"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <strong>To :</strong>
+                                            <strong t-esc="memo.to"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <strong>Via :</strong>
+                                            <strong t-esc="memo.via"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <strong>Subject :</strong>
+                                <strong t-esc="memo.name"/>
+                                <br/>
+                                <br/>
+                                <strong>Memo :</strong>
+                                <br/>
+                                <p t-esc="memo.message"/>
+                                <br/>
+                                <t t-call="portal.message_thread">
+                                    <t t-set="object" t-value="memo"/>
+                                </t>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,9 @@
                         <group>
                             <field name="employee_id"/>
                             <field name="manager_id"/>
+                            <field name="date"/>
+                            <field name="to"/>
+                            <field name="via"/>
                             <field name="message"/>
                         </group>
                     </group>

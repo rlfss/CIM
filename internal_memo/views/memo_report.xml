@@ -1,0 +1,162 @@
+<odoo>
+    <data>
+        <report
+                id="action_report_internal_memo"
+                string="Internal Memo"
+                model="internal.memo"
+                report_type="qweb-pdf"
+                paperformat="leave_report.paperformat_leave_report"
+                file="internal_memo.report_internal_memo"
+                name="internal_memo.report_internal_memo"
+                print_report_name="'Memo - %s' % (object.name)"
+        />
+    </data>
+    <template id="report_internal_memo">
+            <t t-foreach="docs" t-as="doc">
+                <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
+                    <img src='/leave_report/static/src/img/header.png' class="img-fluid" alt=""/>
+                </div>
+
+
+         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+
+                
+        <style>
+            @font-face {
+              font-family: din;
+              src: url(/leave_report/static/fonts/din-next-lt-arabic-light.ttf); }
+            body {
+              color: #0e0e0e;
+              font-family: din, 'sans-serif' !important;
+              direction: rtl; }
+            @font-face {
+            font-family: 'Cairo';
+            src: url('/leave_report/static/fonts/Cairo/cairo-regular-webfont.woff2') format('woff2'),
+            url('/leave_report/static/fonts/Cairo/cairo-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+            }
+            .page{
+            direction: rtl;
+            text-align:right;
+            font-family:din, 'sans-serif'!important;
+            font-size: 12px;
+            margin:0!important;
+            padding:0!important;
+            }
+            .blue-border {
+            border: 2px solid #18A6FE !important;
+            }
+            .blue-bg {
+            background-color: #0020F3;
+            }
+            .blue-light-bg {
+            background-color: #18A6FE !important;
+            }
+            .fw-600 {
+            font-weight: 600 !important;
+            }
+            .table-bordered td, .table-bordered th {
+            border-width:1px !important;
+            border-style: solid!important;
+            border-color: #18A6FE !important;
+            padding-top: 0.50rem;
+            }
+            .table{
+            margin:5px!important;
+            font-family: din, 'sans-serif'!important;
+            }
+            .table-bordered{
+            border-width:1px !important;
+            border-style: solid !important;
+            border-color: #18A6FE !important;
+            }
+            .br-l{
+            border-left-width: 2px;
+            }
+            .br-r{
+            border-right-width: 2px;
+            }
+            .br-t{
+            border-top-width: 2px;
+            }
+            .br-b{
+            border-bottom-width: 2px;
+            }
+            .text-white{
+            color:white;
+            }
+            table.sans-border,table.sans-border td{
+            border:0 !important;
+            }
+
+
+        </style>
+                <div class="page">
+                    <br/>
+                    <br/>
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                العنوان
+                            </td>
+                            <td class="fw-600">
+                                <t t-esc="doc.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">الموظف :</span>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">التاريخ :</span>
+                                <t t-if="doc.date">
+                                    <span t-field="doc.date"/>
+                                </t>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td width="50%">
+                                <span class="fw-600">من :</span>
+                                <span t-field="doc.to"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">عبر :</span>
+                                <span t-field="doc.via"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                الرسالة
+                            </td>
+                            <td class="fw-600">
+                                <br/>
+                                <span t-field="doc.message"/>
+                                <br/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    
+                </div>
+                <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
+                    <img src='/leave_report/static/src/img/footer-2.png' class="img-fluid" alt=""/>
+                </div>
+
+            </t>
+            </t>
+        </t>
+        
+
+    </template>
+</odoo>

@@ -6,6 +6,7 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+
 class PortalInternalMemo(CustomerPortal):
 
     def _prepare_portal_layout_values(self):
@@ -71,11 +72,15 @@ class PortalInternalMemo(CustomerPortal):
         return request.render("internal_memo.portal_my_internal_memo", values)
 
     @http.route(['/my/memo/<int:memo_id>'], type='http', auth="public", website=True)
-    def portal_my_internal_memo_detail(self, memo_id, access_token=None, **kw):
+    def portal_my_internal_memo_detail(self, memo_id, report_type=None, access_token=None, download=False, **kw):
         try:
             memo_sudo = self._document_check_access('internal.memo', memo_id, access_token)
         except (AccessError, MissingError):
             return request.redirect('/my')
+        if report_type in ('html', 'pdf', 'text'):
+            return self._show_report(model=memo_sudo, report_type=report_type,
+                                     report_ref='internal_memo.action_report_internal_memo', download=download)
+
         values = self._memo_get_page_view_values(memo_sudo, access_token, **kw)
         return request.render("internal_memo.portal_internal_memo_page", values)
 
@@ -83,19 +88,18 @@ class PortalInternalMemo(CustomerPortal):
     def memo_form(self, model_name, **kwargs):
         vals = {}
         vals['name'] = kwargs['subject']
+        via = kwargs['via']
         vals['message'] = kwargs['message']
+        vals['via'] = kwargs['via']
+        vals['to'] = kwargs['to']
         employee_id = request.env['hr.employee'].search([('user_id', '=', request.uid)])
-        vals['employee_id'] = employee_id.id
+        vals['employee_id'] = employee_id
         if employee_id.parent_id:
-            vals['manager_id'] = employee_id.parent_id.id
+            vals['manager_id'] = employee_id.parent_id
         recid = request.env['internal.memo'].sudo().create_memo_portal(vals)
-        # template = request.env.ref('internal_memo.mail_memo_receipt', raise_if_not_found=False)
-        # if employee_id.parent_id:
-            # template.sudo().with_context(lang=employee_id.parent_id.user_id.lang,user=employee_id.parent_id.user_id).send_mail(employee_id.parent_id.user_id.id, force_send=True, raise_exception=True)
-            # template.sudo().with_context(lang=request.env.user.employee_id.parent_id.user_id.lang).send_mail(
-            #     self.env.user.employee_id.parent_id.user_id.id, force_send=True, raise_exception=True)
-        _logger.warning(recid)
-        _logger.warning(recid)
-        _logger.warning(recid)
-        url = '/my/memo/'+str(recid)
+        if employee_id.parent_id:
+            template = request.env.ref('internal_memo.mail_memo_receipt', raise_if_not_found=False)
+            template.sudo().with_context(lang=employee_id.parent_id.user_id.lang, via=via).send_mail(recid,
+                                                                                                     force_send=True)
+        url = '/my/memo/' + str(recid)
         return request.redirect(url)
