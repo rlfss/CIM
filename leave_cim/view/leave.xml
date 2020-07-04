@@ -39,7 +39,11 @@
             <xpath expr="//button[@name='action_confirm']" position="before">
                 <button name="action_review_send" string="Review &amp; Send Email" type="object" class="btn-primary"/>
             </xpath>
+                
              <xpath expr="//div[@name='description']" position="before">
+                     <label for="review_status" class="col-2 mr-0" string="Review Status"/>
+                     <field name="review_status"  class="oe_inline" />
+
                 <!-- per day -->
                  <div class="row" attrs="{'invisible': ['|', ('request_unit_half', '=', True), ('request_unit_hours', '=', True),('leave_type_request_unit', '!=', 'days')]}">
                      <label for="basic_balance" class="col-2 mr-0" string="Basic Balance"/>
