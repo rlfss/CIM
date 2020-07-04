@@ -81,7 +81,7 @@ class Holidays(models.Model):
     review_status = fields.Selection([
         ('draft', 'Not Reviewed'),
         ('reviewed', 'Reviewed'),
-        ], string='Review Status', store=True, readonly=True)
+        ], string='Review Status', store=True, readonly=True, default='draft')
 
     def action_review_send(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
