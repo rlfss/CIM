@@ -37,7 +37,7 @@
         <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_confirm']" position="before">
-                <button name="action_review_send" string="Review &amp; Send Email" type="object" class="btn-primary" attrs="{'invisible': [('review_status', '!=', 'draft')]}/>
+                <button name="action_review_send" string="Review &amp; Send Email" type="object" class="btn-primary" attrs="{'invisible': [('review_status', '!=', 'draft')]}"/>
             </xpath>
                 
              <xpath expr="//div[@name='description']" position="before">
