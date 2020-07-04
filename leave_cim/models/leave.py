@@ -53,8 +53,12 @@ class Employee(models.Model):
 class Holidays(models.Model):
     _name = "hr.leave"
     _inherit = "hr.leave"
+    
+    
+    def _get_share_url(self, redirect=False, signup_partner=False, pid=None):
+        return False
 
-
+    
     basic_balance = fields.Char(compute='_compute_basic_balance',stored=True)
     current_balance = fields.Char(compute='_compute_current_balance',stored=True)
     balance_consumed = fields.Char(compute='_compute_balance_consumed',stored=True)
