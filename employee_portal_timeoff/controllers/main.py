@@ -111,7 +111,7 @@ class WebsiteAccount(CustomerPortal):
                                                 limit=1)
 
         return [
-            ('manager_id', '=', emp and emp.id or False),
+            '|', ('manager_id', '=', emp and emp.id or False), ('manager_id.parent_id', '=', emp and emp.id or False),
         ]
 
     def _prepare_portal_layout_values(self):
@@ -401,6 +401,36 @@ class WebsiteAccount(CustomerPortal):
             'redirect_url': url,
         }
 
+    @http.route(['/my/team/leaves/<int:task_id>/super_aprove_sign'], type='json', auth="public", website=True)
+    def super_portal_sign(self, task_id, access_token=None, source=False, name=None, signature=None):
+        # get from query string if not on json param
+        access_token = access_token or request.httprequest.args.get('access_token')
+        try:
+            task_sudo = self._document_check_access('hr.leave', task_id, access_token=access_token)
+        except (AccessError, MissingError):
+            return {'error': _('Invalid .')}
+
+        if not task_sudo.s_has_to_be_signed():
+            return {'error': _('The  is not in a state requiring customer signature.')}
+        if not signature:
+            return {'error': _('Signature is missing.')}
+
+        try:
+            task_sudo.write({
+                's_leave_signature': signature,
+                's_leave_signed_by': name,
+            })
+            task_sudo.super_team_action_approveandsign(task_id)
+
+        except (TypeError, binascii.Error):
+            return {'error': _('Invalid signature data.')}
+
+        query_string = '?&message=sign_ok'
+        url = '/my/team/leaves/'+str(task_id)+'?&message=sign_ok&aprove'
+        return {
+            'force_refresh': True,
+            'redirect_url': url,
+        }
 
     @http.route(['/my/team/leaves/<int:task_id>/refuse_sign'], type='json', auth="public", website=True)
     def portal_sign_r(self, task_id, access_token=None, source=False, name=None, signature=None):

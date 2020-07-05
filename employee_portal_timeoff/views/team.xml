@@ -172,6 +172,25 @@
 
                                 </div>
                                 <div t-if="timeoff.holiday_status_id.use_2fa == False">
+                                <div t-if="timeoff.holiday_status_id.validation_type != 'supermanager'">
+                                <div t-if="timeoff.state == 'confirm'">
+
+                                <a role="button" class="btn btn-primary btn-block mb8 modalaccept2" data-toggle="modal" data-target="#modalaccept2" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Approve
+                                </a>
+                                <a srole="button" class="btn btn-primary btn-block mb8 modalsignrefuse" data-toggle="modal" data-target="#modalsignrefuse" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Refuse
+                                </a>
+                                </div>
+                                </div>
+                                </div>
+
+
+
+
+                                <div t-if="timeoff.holiday_status_id.use_2fa == False">
+                                <div t-if="timeoff.holiday_status_id.validation_type == 'supermanager'">
+                                <div t-if="timeoff.state == 'confirm'">
 
                                 <a role="button" class="btn btn-primary btn-block mb8 modalaccept" data-toggle="modal" data-target="#modalaccept" href="#">
                                     <i class="fa fa-check mr-1"/>Sign &amp; Approve
@@ -179,9 +198,27 @@
                                 <a srole="button" class="btn btn-primary btn-block mb8 modalsignrefuse" data-toggle="modal" data-target="#modalsignrefuse" href="#">
                                     <i class="fa fa-check mr-1"/>Sign &amp; Refuse
                                 </a>
-
-
                                 </div>
+                                </div>
+                                </div>
+
+
+
+                                <div t-if="timeoff.holiday_status_id.use_2fa == False">
+                                <div t-if="timeoff.holiday_status_id.validation_type == 'supermanager'">
+                                <div t-if="timeoff.state == 'validate1'">
+
+                                <a role="button" class="btn btn-primary btn-block mb8 modalaccept2" data-toggle="modal" data-target="#modalaccept2" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Approve
+                                </a>
+                                <a srole="button" class="btn btn-primary btn-block mb8 modalsignrefuse" data-toggle="modal" data-target="#modalsignrefuse2" href="#">
+                                    <i class="fa fa-check mr-1"/>Sign &amp; Refuse
+                                </a>
+                                </div>
+                                </div>
+                                </div>
+
+
 
 
 
@@ -389,6 +426,28 @@
                         </div>
                     </div>
 
+
+                    <!-- modal relative to the sign action -->
+                    <div role="dialog" class="modal fade" id="modalaccept2">
+                        <div class="modal-dialog" t-if="timeoff.s_has_to_be_signed()">
+                            <form id="accept" method="POST" t-att-data-task-id="timeoff.id" t-att-data-token="timeoff.access_token" class="js_accept_json modal-content js_website_submit_form">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <header class="modal-header">
+                                    <h4 class="modal-title">Sign Leave</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                                </header>
+                                <main class="modal-body" id="sign-dialog">
+                                    <t t-call="portal.signature_form">
+                                        <t t-set="call_url" t-value="str(timeoff.id) + '/super_aprove_sign'"/>
+                                        <t t-set="default_name" t-value="request.env.user.employee_id.name"/>
+                                        <t t-set="send_label" t-value="'Sign'"/>
+                                    </t>
+                                </main>
+                            </form>
+                        </div>
+                    </div>
+
+
                     <!-- modal relative to the sign action -->
                     <div role="dialog" class="modal fade" id="modalsignrefuse">
                         <div class="modal-dialog" t-if="timeoff.has_to_be_signed2()">
@@ -493,14 +552,56 @@
                                 Signed
                             </span>
                         </div>
+                        <div t-if="timeoff.holiday_status_id.validation_type == 'supermanager'">
+                        <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
+                            <h5>Second Aprove Signature</h5>
+                            <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 6rem; max-width: 100%;"/>
+                            <span t-field="doc.leave_signed_by"/> - <span t-field="doc.leave_signed_date"/>
+                        </div>
+                        </div>
 
+                        <div t-if="timeoff.holiday_status_id.validation_type != 'supermanager'">
                         <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
                             <h5>Aprove Signature</h5>
                             <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 6rem; max-width: 100%;"/>
-                            <span t-field="doc.leave_signed_by"/>
+                            <span t-field="doc.leave_signed_by"/> - <span t-field="doc.leave_signed_date"/>
                         </div>
+                        </div>
+
                     </div>
 
+                    <div t-if="doc.s_leave_signature">
+
+                        <div t-if="report_type == html" class="ribbon" style="
+                            position: absolute;
+                            right: 0px; top: 0px;
+                            z-index: 1;
+                            overflow: hidden;
+                            width: 75px; height: 75px;
+                            text-align: right;">
+                            <span style="
+                                font-size: 10px;
+                                color: #fff;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-weight: bold; line-height: 20px;
+                                transform: rotate(45deg);
+                                width: 100px; display: block;
+                                background: green;
+                                position: absolute;
+                                top: 19px; right: -21px;">
+                                Signed
+                            </span>
+                        </div>
+
+                        <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
+                            <h5>Aprove Signature</h5>
+                            <img t-att-src="image_data_uri(doc.s_leave_signature)" style="max-height: 6rem; max-width: 100%;"/>
+                            <span t-field="doc.s_leave_signed_by"/> - <span t-field="doc.s_leave_signed_date"/>
+
+                        </div>
+
+                    </div>
                     <div t-if="doc.r_leave_signature">
 
                         <div t-if="report_type == html" class="ribbon" style="
