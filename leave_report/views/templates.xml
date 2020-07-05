@@ -196,7 +196,7 @@
                                 القسم الثالث
                             </td>
                             <td class="fw-600">
-                                رأي الرئيس المباشر للموظف
+                                رأي الرئيس المباشر للموظف - <span t-field="doc.leave_signed_by"/>
                             </td>
                         </tr>
                     </table>
@@ -206,9 +206,11 @@
                             <td width="45%">
                                 <table class="sans-border fw-600">
                                     <tr>
+                                <t t-if="doc.leave_signature">
                                         <td>
+
                                             <input class="form-check-input mt-2" type="checkbox"
-                                                   id="inlineFormCheck1"/>
+                                                   id="inlineFormCheck1" checked=""/>
                                             <label class="form-check-label" for="inlineFormCheck1">
                                                 أوصي
                                             </label>
@@ -220,6 +222,26 @@
                                                 لا أوصي
                                             </label>
                                         </td>
+                                </t>
+
+                                <t t-if="doc.r_leave_signature">
+                                        <td>
+
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck1" />
+                                            <label class="form-check-label" for="inlineFormCheck1">
+                                                أوصي
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input class="form-check-input mt-2" type="checkbox"
+                                                   id="inlineFormCheck2"  checked=""/>
+                                            <label class="form-check-label" for="inlineFormCheck2">
+                                                لا أوصي
+                                            </label>
+                                        </td>
+                                </t>
+                                        
                                         <td>&amp;nbsp;&amp;nbsp;
                                             بمنحه إجازة نظراً لــــــ
                                         </td>
@@ -232,14 +254,19 @@
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التاريخ:</span>
-                                06/28/2020
+                                <span t-field="doc.leave_signed_date"/>
                             </td>
 
                         </tr>
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التوقيع:</span>
-                                التوقيع
+                                <t t-if="doc.leave_signature">
+                                <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
+                                </t>
+                                <t t-if="doc.r_leave_signature">
+                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
+                                </t>
                             </td>
                         </tr>
                     </table>
@@ -250,7 +277,7 @@
                                 القسم الرابع
                             </td>
                             <td class="fw-600">
-                                رأي الرئيس الأعلى للموظف
+                                رأي الرئيس الأعلى للموظف - <span t-field="doc.s_leave_signed_by"/>
                             </td>
                         </tr>
                     </table>
@@ -260,7 +287,7 @@
                             <td width="45%">
                                 <table class="sans-border fw-600">
                                     <tr>
-                                <t t-if="doc.leave_signature">
+                                <t t-if="doc.s_leave_signature">
                                         <td>
 
                                             <input class="form-check-input mt-2" type="checkbox"
@@ -308,18 +335,18 @@
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التاريخ:</span>
-                                06/28/2020
+                                 <span t-field="doc.s_leave_signed_date"/>
                             </td>
 
                         </tr>
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التوقيع:</span>
-                                <t t-if="doc.leave_signature">
-                                <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                                <t t-if="doc.s_leave_signature">
+                                <img t-att-src="image_data_uri(doc.s_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
                                 </t>
                                 <t t-if="doc.r_leave_signature">
-                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 4cm; max-width: 8cm;"/>
+                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
                                 </t>
                             </td>
                         </tr>
