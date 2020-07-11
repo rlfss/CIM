@@ -5,7 +5,7 @@ import math
 
 from collections import namedtuple
 
-from datetime import datetime, time
+import datetime
 from pytz import timezone, UTC
 
 from odoo import api, fields, models, SUPERUSER_ID, tools
@@ -41,7 +41,12 @@ class HolidaysRequest(models.Model):
             if leave_type.validation_type == 'both':
                 self._check_double_validation_rules(employee_id, values.get('state', False))
         if values.get('reference', _('New')) == _('New'):
-            values['reference'] = self.env['ir.sequence'].next_by_code('hr.leave') or _('New')                
+            datetoday = datetime.date.today()
+            monthstr = str('%02d' % datetoday.month)
+            yearstr = str(datetoday.year)
+            yearstr = yearstr[-2:]
+            sequencenew = 'TMF-' + monthstr + yearstr + str(self.env['ir.sequence'].next_by_code('hr.leave'))
+            values['reference'] = sequencenew or _('New')                
 
         holiday = super(HolidaysRequest, self.with_context(mail_create_nosubscribe=True)).create(values)
         if self._context.get('import_file'):

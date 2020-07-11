@@ -5,8 +5,8 @@
         <record id="leave_sequence" model="ir.sequence">
             <field name="name">hr.leave</field>
             <field name="code">hr.leave</field>
-            <field name="prefix">TMF-</field>
-            <field name="padding">6</field>
+            <field name="prefix">/</field>
+            <field name="padding">5</field>
         </record>
 
     </data>
