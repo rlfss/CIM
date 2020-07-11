@@ -14,6 +14,18 @@ import uuid
 
 class EmpPortalTimeOff(models.Model):
     _inherit = "hr.leave"
+    state = fields.Selection([
+        ('draft', 'To Submit'),
+        ('cancel', 'Cancelled'),
+        ('confirm', 'To Approve'),
+        ('refuse', 'Refused'),
+        ('validate1', 'First Approval'),
+        ('validate', 'Approved')
+        ], string='Status', readonly=True, tracking=True, copy=False, default='draft',
+        help="The status is set to 'To Submit', when a time off request is created." +
+        "\nThe status is 'To Approve', when time off request is confirmed by user." +
+        "\nThe status is 'Refused', when time off request is refused by manager." +
+        "\nThe status is 'Approved', when time off request is approved by manager.")
 
 
     conf_code = fields.Char('2FA Code')
