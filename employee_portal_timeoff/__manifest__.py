@@ -24,6 +24,7 @@
         'views/assets.xml',
         'views/templates.xml',
         'views/team.xml',
+        'views/leave.xml',
         'views/team_permission.xml',
         'data/mail.xml',
     ],

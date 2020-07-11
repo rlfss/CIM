@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_leave_view_form" model="ir.ui.view">
+        <field name="name">hr.leave.view.form</field>
+        <field name="model">hr.leave</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//div[@name='description']" position="after">
+                 <div class="row">
+                     <label for="s_leave_signature" class="col-3" string="First Approve Signature"/>
+                     <field name="s_leave_signature" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;s_leave_signature&quot;}"/>
+                </div> 
+                 <div class="row">
+                     <label for="s_leave_signed_by" class="col-3" string="First Approve Signed By"/>
+                     <field name="s_leave_signed_by"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="s_leave_signed_date" class="col-3" string="First Approve Signature Date"/>
+                     <field name="s_leave_signed_date"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="s_leave_signed_hash" class="col-3" string="First Approve Signature Hash"/>
+                     <field name="s_leave_signed_hash"  class="oe_inline" />
+                </div> 
+
+
+                 <div class="row">
+                     <label for="leave_signature" class="col-3" string="Approve Signature"/>
+                     <field name="leave_signature" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;leave_signature&quot;}"/>
+                </div> 
+                 <div class="row">
+                     <label for="leave_signed_by" class="col-3" string="Approve Signed By"/>
+                     <field name="leave_signed_by"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="leave_signed_date" class="col-3" string="Approve Signature Date"/>
+                     <field name="leave_signed_date"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="leave_signed_hash" class="col-3" string="Approve Signature Hash"/>
+                     <field name="leave_signed_hash"  class="oe_inline" />
+                </div> 
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

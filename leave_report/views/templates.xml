@@ -77,9 +77,31 @@
     </template>
 
     <template id="print_leave_report">
+        <t t-call="leave_report.print_leave_report_full"/>
+        <t t-call="leave_report.print_leave_report_emp"/>
+        <t t-call="leave_report.print_official_vacation_report"/>
+    </template>
+    <template id="print_leave_report_emp">
         <t t-foreach="docs" t-as="doc">
                 <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
                     <img src='/leave_report/static/src/img/header.png' class="img-fluid" alt=""/>
+                </div>
+         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-call="leave_report.style_leave_report"/>
+                <div class="page">
+                </div>
+                <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
+                    <img src='/leave_report/static/src/img/footer.png' class="img-fluid" alt=""/>
+                </div>
+                </t></t></t>
+    </template>
+
+
+    <template id="print_leave_report_full">
+        <t t-foreach="docs" t-as="doc">
+                <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
+                    <img src='/leave_report/static/src/img/header-1d.png' class="img-fluid" alt=""/>
                 </div>
 
 
@@ -88,6 +110,21 @@
                 <t t-call="leave_report.style_leave_report"/>
                 <div class="page">
                     <br/>
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                <center><h2><span t-field="doc.reference"/></h2></center>
+                            </td>
+                            <td class="fw-600">
+                                <center>
+                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=150&amp;height=40' % ('Code128', doc.reference)" alt=""/>
+                                </center>
+
+                            </td>
+                        </tr>
+                    </table>
+
+
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
                             <td class="blue-light-bg text-white fw-600">
@@ -101,9 +138,13 @@
 
                     <table class="table table-bordered" cellpadding="10" cellspacing="0" style="width:99%;">
                         <tr>
-                            <td colspan="2">
+                            <td width="50%">
                                 <span class="fw-600">الإسم بالكامل:</span>
                                 <span t-field="doc.employee_id.name"/>
+                            </td>
+                            <td width="50%">
+                                <span class="fw-600">الرقم الوظيفي:</span>
+                                <span t-field="doc.employee_id.employee_num"/>
                             </td>
                         </tr>
                         <tr>
@@ -112,8 +153,8 @@
                                 <span t-field="doc.employee_id.job_id"/>
                             </td>
                             <td width="50%">
-                                <span class="fw-600">الرقم الوظيفي:</span>
-                                <span t-field="doc.employee_id.employee_num"/>
+                                <span class="fw-600">نوع الإجازة:</span>
+                                <span t-field="doc.holiday_status_id.name"/>
                             </td>
                         </tr>
                         <tr>
@@ -146,7 +187,7 @@
                                 القسم الثاني
                             </td>
                             <td class="fw-600">
-                                الموظف المختص بالإجازات
+                                حسب منظومة الاجازات
                             </td>
                         </tr>
                     </table>
@@ -163,29 +204,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td width="50%">
                                 <span class="fw-600">الإجازة المطلوبة:</span>
                                 <span t-field="doc.number_of_days"/> يوم/ايام
                             </td>
-                        </tr>
-                        <tr>
                             <td width="50%">
                                 <span class="fw-600">الإجازة المتبقية:</span>
                                 <span t-field="doc.current_balance"/> يوم/ايام
-                            </td>
-                            <td width="50%">
-                                <span class="fw-600">اسم الموظف:</span>
-                                <span t-field="doc.employee_id.name"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="50%">
-                                <span class="fw-600">التاريخ:</span>
-                                <span t-field="doc.request_date_from"/>
-                            </td>
-                            <td width="50%">
-                                <span class="fw-600">التوقيع:</span>
-                                <span t-field="doc.employee_id.name"/>
                             </td>
                         </tr>
                     </table>
@@ -249,6 +274,9 @@
                                 </table>
                             </td>
                             <td width="55%" rowspan="3">
+                                <center>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=150&amp;height=150' % ('QR', doc.leave_signed_hash)" alt=""/>
+                                </center>
                             </td>
                         </tr>
                         <tr>
@@ -330,6 +358,9 @@
                                 </table>
                             </td>
                             <td width="55%" rowspan="3">
+                                <center>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=150&amp;height=150' % ('QR', doc.s_leave_signed_hash)" alt=""/>
+                                </center>
                             </td>
                         </tr>
                         <tr>
@@ -356,24 +387,50 @@
                 <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
                     <img src='/leave_report/static/src/img/footer.png' class="img-fluid" alt=""/>
                 </div>
-                <t t-if="doc.state == 'validate'">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <t t-call="leave_report.print_official_vacation_report"/>
-                </t>
             </t>
             </t>
         </t>
 
     </template>
 
+
+
     <template id="print_official_vacation_report">
+        <t t-foreach="docs" t-as="doc">
+                <div class="header" style="margin-left:-15px !important;margin-right:-15px !important;">
+                    <img src='/leave_report/static/src/img/header.png' class="img-fluid" alt=""/>
+                </div>
+
+
+         <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <t t-call="leave_report.style_leave_report"/>
 
                 <div class="page">
+                    <div style="width:100%">
+                    <br/>
+                    <br/>
+                    <div style="width:250px;height:130px;float: left; border: 2px solid #18A6FE !important; padding:10px;">
+                        <center><h2><span t-field="doc.reference"/></h2></center>
+                        <center>
+                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=170&amp;height=60' % ('Code128', doc.reference)" alt=""/>
+                        </center>
+
+                    </div>
+
+                    <h2 style="font-size:24px">طرابلس بتاريخ : <span t-field="doc.leave_signed_date"/></h2>
+
+
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <div style="padding:0 60px;">
+
+                        <br/>
                         <h2 style="text-align:center;font-size:34px">إلى من يهمّه الأمر</h2>
                         <br/>
 
@@ -398,7 +455,7 @@
                 <div class="footer" style="margin-left:-15px !important;margin-right:-15px !important">
                     <img src='/leave_report/static/src/img/footer-2.png' class="img-fluid" alt=""/>
                 </div>
-
+            </t></t></t>
     </template>
 
     
@@ -415,6 +472,12 @@
             <t t-call="web.internal_layout">
                 <t t-call="leave_report.style_leave_report"/>
                 <div class="page">
+
+                    <br/>
+                    <h2 style="text-align:center;font-size:34px">إذن خروج</h2>
+                    <br/>
+
+
                     <br/>
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
@@ -463,7 +526,12 @@
                             </td>
                             <td width="50%">
                                 <span class="fw-600">نوع الطلب:</span>
-                                <span t-field="doc.req_type"/>
+                                 <t t-if="doc.req_type  == 'in'">
+                                <span>إذن دخول متأخر</span>
+                                </t>
+                                 <t t-if="doc.req_type  == 'out'">
+                                <span>إذن  خروج مبكر</span>
+                                </t>
                             </td>
                         </tr>
                     </table>

@@ -97,12 +97,15 @@
                 <div class="page">
                     <br/>
                     <br/>
+                        <br/>
+                        <h2 style="text-align:center;font-size:34px"> مذكرة داخلية </h2>
+                        <br/>
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
-                            <td class="blue-light-bg text-white fw-600">
-                                العنوان
+                            <td class="blue-light-bg text-white" width="20%">
+                                الموضوع
                             </td>
-                            <td class="fw-600">
+                            <td width="80%">
                                 <t t-esc="doc.name"/>
                             </td>
                         </tr>
@@ -111,7 +114,7 @@
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
                             <td width="50%">
-                                <span class="fw-600">الموظف :</span>
+                                <span class="fw-600">المرسل :</span>
                                 <span t-field="doc.employee_id.name"/>
                             </td>
                             <td width="50%">
@@ -124,11 +127,11 @@
                         </tr>
                         <tr>
                             <td width="50%">
-                                <span class="fw-600">من :</span>
+                                <span class="fw-600">الى  :</span>
                                 <span t-field="doc.to"/>
                             </td>
                             <td width="50%">
-                                <span class="fw-600">عبر :</span>
+                                <span class="fw-600">عن طريق :</span>
                                 <span t-field="doc.via"/>
                             </td>
                         </tr>
@@ -136,10 +139,10 @@
 
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
-                            <td class="blue-light-bg text-white fw-600">
-                                الرسالة
+                            <td class="blue-light-bg text-white" width="20%">
+                                نص المذكرة
                             </td>
-                            <td class="fw-600">
+                            <td width="80%">
                                 <br/>
                                 <span t-field="doc.message"/>
                                 <br/>

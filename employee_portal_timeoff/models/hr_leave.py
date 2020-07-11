@@ -37,16 +37,18 @@ class EmpPortalTimeOff(models.Model):
         ('Validate', 'Validate')
     ], string='Type')
 
-    leave_signature = fields.Binary('Approve Signature', help='Signature received through the portal.', copy=False, attachment=True)
-    leave_signed_by = fields.Char('Approve Signed By', help='Name of the person that signed the task.', copy=False)
+    leave_signature = fields.Binary('Approve Signature', help='Signature received through the portal.', copy=False, attachment=True, readonly=True)
+    leave_signed_by = fields.Char('Approve Signed By', help='Name of the person that signed the task.', copy=False, readonly=True)
     leave_signed_date = fields.Date(string="Approve Signature Date", readonly=True)
+    leave_signed_hash = fields.Char(string="Approve Signature Hash", readonly=True)
 
-    s_leave_signature = fields.Binary('Second Approve Signature', help='Signature received through the portal.', copy=False, attachment=True)
-    s_leave_signed_by = fields.Char('Second Approve Signed By', help='Name of the person that signed the task.', copy=False)
-    s_leave_signed_date = fields.Date(string="Second Approve Signature Date", readonly=True)
+    s_leave_signature = fields.Binary('First Approve Signature', help='Signature received through the portal.', copy=False, attachment=True, readonly=True)
+    s_leave_signed_by = fields.Char('First Approve Signed By', help='Name of the person that signed the task.', copy=False, readonly=True)
+    s_leave_signed_date = fields.Date(string="First Approve Signature Date", readonly=True)
+    s_leave_signed_hash = fields.Char(string="First Approve Signature Hash", readonly=True)
 
-    r_leave_signature = fields.Binary('Refuse Signature', help='Signature received through the portal.', copy=False, attachment=True)
-    r_leave_signed_by = fields.Char('Refuse Signed By', help='Name of the person that signed the task.', copy=False)
+    r_leave_signature = fields.Binary('Refuse Signature', help='Signature received through the portal.', copy=False, attachment=True, readonly=True)
+    r_leave_signed_by = fields.Char('Refuse Signed By', help='Name of the person that signed the task.', copy=False, readonly=True)
     r_leave_signed_date = fields.Date(string="Refuse Signature Date", readonly=True)
 
     def _default_access_token(self):
@@ -357,19 +359,27 @@ class EmpPortalTimeOff(models.Model):
                         'errors': _('Invalid Or Expired Code !')
                     }
     def team_action_approveandsign(self, task_id):
+        shash = random.getrandbits(128)
+
+        newhash = str("%032x" % shash)
         team = self.env['hr.leave'].sudo().browse(task_id)
         team.sudo().write({'state': 'validate1'})
         temp_id = self.env.ref('leave_cim.aprove_email_email_template_id')
         today = datetime.today()
         team.sudo().write({'leave_signed_date': today})
         team.sudo().write({'s_leave_signed_date': today})
+        team.sudo().write({'leave_signed_hash': newhash})
         temp_id.send_mail(task_id, force_send=True)
 
     def super_team_action_approveandsign(self, task_id):
+        shash = random.getrandbits(128)
+
+        newhash = str("%032x" % shash)
         team = self.env['hr.leave'].sudo().browse(task_id)
         team.sudo().action_validate()
         today = datetime.today()
         team.sudo().write({'s_leave_signed_date': today})
+        team.sudo().write({'s_leave_signed_hash': newhash})
         temp_id = self.env.ref('leave_cim.aprove_email_email_template_id')
         temp_id.send_mail(task_id, force_send=True)
 
