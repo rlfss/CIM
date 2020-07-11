@@ -554,7 +554,7 @@
                         </div>
                         <div t-if="timeoff.holiday_status_id.validation_type == 'supermanager'">
                         <div t-attf-class="#{'col-12 col-lg-3' if report_type != 'html' else 'col-sm-7 col-md-4'} ml-auto text-center">
-                            <h5>Second Aprove Signature</h5>
+                            <h5>First Aprove Signature</h5>
                             <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 6rem; max-width: 100%;"/>
                             <span t-field="doc.leave_signed_by"/> - <span t-field="doc.leave_signed_date"/>
                         </div>
