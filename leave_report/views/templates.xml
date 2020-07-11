@@ -77,9 +77,17 @@
     </template>
 
     <template id="print_leave_report">
-        <t t-call="leave_report.print_leave_report_full"/>
-        <t t-call="leave_report.print_leave_report_emp"/>
-        <t t-call="leave_report.print_official_vacation_report"/>
+        <t t-foreach="docs" t-as="doc">
+            <t t-if="doc.state  == 'validate'">
+                <t t-call="leave_report.print_leave_report_full"/>
+                <t t-call="leave_report.print_leave_report_emp"/>
+                <t t-call="leave_report.print_official_vacation_report"/>
+            </t>
+            <t t-if="doc.state != 'validate'">
+                <t t-call="leave_report.print_leave_report_full"/>
+            </t>
+
+        </t>
     </template>
     <template id="print_leave_report_emp">
         <t t-foreach="docs" t-as="doc">
