@@ -67,15 +67,18 @@ class EmpPortalTimeOff(models.Model):
         return not self.r_leave_signature
 
 
+
     def update_timeoff_portal(self, values):
-        duration = 0.0
         dt_from = values['from']
+        dt_from = values['to']
+        dt_to = values['to']
         duration = values['number_of_days']
-        duration = duration - 1
         if dt_from:
-            dt_from = datetime.strptime(dt_from, DF).date()
+            dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+        if dt_to:
+            dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
         if duration:
-            dt_to = datetime.strptime(dt_from, DF).date()  + timedelta(days=duration)
+            dt_to = datetime.strptime(dt_from, '%Y-%m-%d').date()  + timedelta(days=duration)
         for timeoff in self:
             timeoff_values = {
                 'holiday_status_id': int(values['timeoff_type']),
