@@ -10,24 +10,16 @@
 
                      <group>
                          <group>
-                             <group>
-                                 <field name="type" class="oe_inline" widget="radio"/>
-                             </group>
-
-                            <group >
-                                <field name="employee_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
-                            </group>
-                           <group>
-                               <field name="department_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
-                           </group>
+                            <field name="type" widget="radio"/>
+                            <field name="employee_name" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
+                            <field name="department_name" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
                        </group>
 
                         <group >
-                            <field name="date" class="oe_inline"/>
+                            <field name="date"/>
                         </group>
 
                     </group>
-
 
 
                     <footer>
