@@ -50,7 +50,7 @@
                                                 <tbody>
                                                 <t t-foreach="leave" t-as="leave">
                                                     <tr>
-                                                        <td><span t-field="leave.reference"/></td>
+                                                        <td><a t-attf-href="/my/timeoff/#{leave.id}"><span t-field="leave.reference"/></a></td>
                                                         <td><span t-field="leave.request_date_from"/></td>
                                                         <td><span t-field="leave.request_date_to"/></td>
                                                         <td><span t-field="leave.number_of_days"/></td>
