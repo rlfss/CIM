@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="accrued_bonuses_form_wizard" model="ir.ui.view">
+            <field name="name">Accrued Bonuses wizard</field>
+            <field name="model">accrued.bonuses</field>
+            <field name="arch" type="xml">
+                <form string="Accrued Bonuses Report">
+                     <group>
+                         <field name="type" class="oe_inline"/>
+                     </group>
+
+                        <group >
+                            <field name="employee_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
+                        </group>
+                       <group>
+                           <field name="department_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
+                       </group>
+
+
+                        <group >
+                            <field name="date" class="oe_inline"/>
+                        </group>
+
+
+
+                    <footer>
+                        <button name="print_report_excel" type="object" string="Print" class="oe_highlight"/>
+                        <button  type="object" string="Cancel" special="cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="accrued_bonuses_action_wizard" model="ir.actions.act_window">
+            <field name="name">Accrued Bonuses</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">accrued.bonuses</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="accrued_bonuses_form_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="create_accrued_bonuses" name="Accrued Bonuses Report" parent="hr_holidays.menu_hr_holidays_my_leaves" action="accrued_bonuses_action_wizard" sequence="3"/>
+
+
+
+    </data>
+</odoo>

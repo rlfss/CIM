@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <report
+           id="report_accrued_bounses_xls"
+           model="accrued.bonuses"
+           string="Accrued bonuses Report"
+           report_type="xlsx"
+           name="accrued_bonuses_report.report_accrued_bounses_xls"
+           file="accrued_bonuses_report.report_accrued_bounses_xls"
+
+      />
+
+    </data>
+</odoo>
