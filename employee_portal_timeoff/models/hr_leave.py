@@ -70,7 +70,6 @@ class EmpPortalTimeOff(models.Model):
 
     def update_timeoff_portal(self, values):
         dt_from = values['from']
-        dt_from = values['to']
         dt_to = values['to']
         duration = values['number_of_days']
         if dt_from:
