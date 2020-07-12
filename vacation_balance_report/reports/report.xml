@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <report
+           id="report_vacation_balance_xls"
+           model="vacation.balance"
+           string="Vacation Balance Report"
+           report_type="xlsx"
+           name="vacation_balance_report.report_vacation_balance_xls"
+           file="vacation_balance_report.report_vacation_balance_xls"
+
+      />
+
+    </data>
+</odoo>
