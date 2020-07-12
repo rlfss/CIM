@@ -11,8 +11,6 @@
                      <group>
                          <group>
                             <field name="type" widget="radio"/>
-                            <field name="employee_name" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
-                            <field name="department_name" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
                        </group>
 
                         <group >
@@ -20,7 +18,10 @@
                         </group>
 
                     </group>
-
+                    <group>
+                        <field name="employee_name" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
+                        <field name="department_name" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
+                    </group>
 
                     <footer>
                         <button name="print_report_excel" type="object" string="Print" class="oe_highlight"/>
