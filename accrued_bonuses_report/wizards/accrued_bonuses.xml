@@ -7,21 +7,26 @@
             <field name="model">accrued.bonuses</field>
             <field name="arch" type="xml">
                 <form string="Accrued Bonuses Report">
+
                      <group>
-                         <field name="type" class="oe_inline"/>
-                     </group>
+                         <group>
+                             <group>
+                                 <field name="type" class="oe_inline" widget="radio"/>
+                             </group>
 
-                        <group >
-                            <field name="employee_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
-                        </group>
-                       <group>
-                           <field name="department_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
+                            <group >
+                                <field name="employee_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'employee')]}" widget="many2many_tags"/>
+                            </group>
+                           <group>
+                               <field name="department_name" class="oe_inline" attrs="{'invisible': [('type', '!=', 'department')]}" widget="many2many_tags"/>
+                           </group>
                        </group>
-
 
                         <group >
                             <field name="date" class="oe_inline"/>
                         </group>
+
+                    </group>
 
 
 
