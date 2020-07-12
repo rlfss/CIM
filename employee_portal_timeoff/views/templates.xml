@@ -361,8 +361,8 @@
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="timeoff.name"/>
                                 </h5>
-<!--                                 <button t-if="timeoff.state == 'confirm'" type="button" data-toggle="modal" data-target=".modal_edit_timeoff" class="btn btn-link btn-sm"><i class="fa fa-pencil mr-1"/>Edit</button>
- -->                            </div>
+                                <button t-if="timeoff.state == 'confirm'" type="button" data-toggle="modal" data-target=".modal_edit_timeoff" class="btn btn-link btn-sm"><i class="fa fa-pencil mr-1"/>Edit</button>
+                            </div>
                             <div class="row mb-2">
                                 <strong class="col-12 col-sm-4">Start Date</strong>
                                 <div class="col">
@@ -434,7 +434,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+<!--                                             <div class="row">
                                                 <div class="form-group col-md-3 mt16 half_day_option">
                                                     <label class="control-label"></label>
                                                     <input type="checkbox" name="request_unit_half" id="half_day_input_id" t-att-checked="timeoff.request_unit_half" class="request_unit_half">
@@ -608,7 +608,7 @@
                                                         <option value="pm">Afternoon</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </main>
                                         <footer class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
