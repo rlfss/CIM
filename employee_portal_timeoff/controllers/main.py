@@ -72,9 +72,9 @@ class OAuthController(http.Controller):
                 if redirect:
                     url = '/my/home'
                 elif action:
-                    url = '/web#action=%s' % action
+                    url = '/my/home'
                 elif menu:
-                    url = '/web#menu_id=%s' % menu
+                    url = '/my/home'
                 resp = login_and_redirect(*credentials, redirect_url=url)
                 # Since /web is hardcoded, verify user has right to land on it
                 if werkzeug.urls.url_parse(resp.location).path == '/web' and not request.env.user.has_group('base.group_user'):
