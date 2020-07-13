@@ -70,7 +70,7 @@ class OAuthController(http.Controller):
                 redirect = werkzeug.url_unquote_plus(state['r']) if state.get('r') else False
                 url = '/my/home'
                 if redirect:
-                    url = redirect
+                    url = '/my/home'
                 elif action:
                     url = '/web#action=%s' % action
                 elif menu:
