@@ -7,10 +7,11 @@ class CreateWizard(models.TransientModel):
     _name = 'accrued.bonuses'
     _description = 'Accrued Bonuses'
 
-    type = fields.Selection([(
-        'employee','Employee'),
-        ('department','Department'),
-        ('all_employees','All Employees')],string="Type")
+    type = fields.Selection([
+        ('all_employees', 'All Employees'),
+        ('employee', 'Employee'),
+        ('department', 'Department')
+    ], string="For", default='all_employees')
     employee_name = fields.Many2many('hr.employee',string="Employee Name")
     department_name = fields.Many2many('hr.department',string="Department Name")
     date = fields.Date("Date",default=fields.Date.today(),required=True)

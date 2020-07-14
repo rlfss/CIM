@@ -11,9 +11,10 @@ class PatientCardXlsx(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, lines):
-        format1 = workbook.add_format({'font_size':13,'align':'center','bold':True,'bg_color':'#c1bebe'})
-        format2 = workbook.add_format({'font_size': 9, 'align': 'center'})
-        header_format = workbook.add_format({'font_size': 17, 'align': 'center','bold':True,'valign': 'vcenter','font_color':'blue'})
+        format1 = workbook.add_format({'font_size':13,'align':'center','bold':True,'bg_color':'#c1bebe','border':1})
+        format2 = workbook.add_format({'font_size': 9, 'align': 'center','border':1})
+        header_format = workbook.add_format({'font_size': 17, 'align': 'left','bold':True,'valign': 'vcenter','font_color':'blue'})
+        date_format2 = workbook.add_format({'font_size':12,'align': 'center','bold':True,'font_color':'green','num_format': 'dd/mm/yyyy','valign': 'vcenter'})
         sheet = workbook.add_worksheet('تقرير العلاوات المستحقة')
         sheet.right_to_left()
         sheet.set_column(0,0,5)
@@ -23,7 +24,8 @@ class PatientCardXlsx(models.AbstractModel):
         sheet.set_column(4,4, 18)
         sheet.set_column(5,5, 18)
         sheet.set_column(6, 6, 18)
-        sheet.merge_range('A1:G2','تقرير العلاوات المستحقة',header_format)
+        sheet.merge_range('A1:D2','تقرير العلاوات المستحقة الى غاية',header_format)
+        sheet.merge_range('E1:E2', lines.date, date_format2)
         row = 2
         col = 0
         sheet.write(row, col, 'م', format1)
@@ -46,3 +48,4 @@ class PatientCardXlsx(models.AbstractModel):
             row += 1
             no +=1
         # sheet.write(1, 6, lines.employee.name, format2)
+        workbook.close()
