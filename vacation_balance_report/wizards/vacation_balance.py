@@ -19,7 +19,7 @@ class CreateWizard(models.TransientModel):
         ('all_time_off', 'All Time Off'),
         ('s_time_off', 'Specific Time Off')
 
-    ], string="Leave Type", default='all_time_off')
+    ], string="Leave Type", default='all_time_off',readonly=False)
     date = fields.Date("Date", default=fields.Date.today(), required=True)
 
     def print_report_excel(self):
@@ -31,40 +31,36 @@ class CreateWizard(models.TransientModel):
             exist_employee = self.env['hr.employee'].search([('department_id', 'in', self.department_name.ids)])
         elif self.type == 'all_employees':
             exist_employee = self.env['hr.employee'].search([])
-        # if self.leave_type == 's_time_off':
-        #     leaves_ids = self.env['hr.leave.type'].search([('id','in' ,self.leave_name.ids)])
 
         data = {'employee': []}
         for empl in exist_employee:
-            leave_report = self.env['hr.leave.allocation'].with_context({'default_employee_id':empl.id}).search([('employee_id', '=', empl.id)])
-
-            if self.type == 's_time_off' :
-                leaves = leave_report.filtered(lambda l: l.holiday_status_id.id in self.leave_name.ids)
-            else :
-                leaves = leave_report.filtered(lambda l: l.holiday_status_id.id > 0)
-            # leaves = list(dict.fromkeys(leaves))
-            res = []
-            for i in leaves:
-                if i not in res:
-                    res.append(i)
-
-            data['employee'].append({
+            employees = {
                 'employee_num': empl.employee_num,
                 'name': empl.name,
                 'department_name': empl.department_id.name,
-                'leaves': [{
-                    'leave_name': leave.holiday_status_id.name,
-                    'remaining_days': leave.holiday_status_id.remaining_leaves,
-                    'unit' : leave.holiday_status_id.request_unit
-                } for leave in res]
+                'leaves': []
 
-            })
+            }
+            leaves_id = self.leave_name if self.leave_type == 's_time_off' else self.env['hr.leave.type'].search([])
+            for leave in leaves_id :
+                total_leave_days, total_time_off, remaining_days = self.get_leave_data(empl.id,leave)
+                employees['leaves'].append({
+                    'leave_name': leave.name,
+                    'basic_balance': total_time_off,
+                    'balance_consumed': total_leave_days,
+                    'remaining_days': remaining_days,
+                })
+            data['employee'].append(employees)
 
-        # leave_data = {'s_time_off' :[]}
-        # for leave in leaves_ids:
-        #     leave_data['s_time_off'].append({
-        #         'leave_n': leave.holiday_status_id.name
-        #
-        #     })
 
         return self.env.ref('vacation_balance_report.report_vacation_balance_xls').report_action(self, data=data)
+
+    def get_leave_data(self, employee_id, leave_type_id):
+
+        leaves_ids = self.env['hr.leave'].search(
+            [('employee_id', '=', employee_id), ('holiday_status_id', '=', leave_type_id.id)])
+        total_leave_days = sum(leaves_ids.mapped('number_of_days'))
+        total_time_off = leave_type_id.max_leaves
+        remaining_days = total_time_off - total_leave_days
+
+        return total_leave_days, total_time_off, remaining_days
