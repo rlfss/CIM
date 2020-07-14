@@ -89,7 +89,7 @@ class EmpPortalTimeOff(models.Model):
                 if timeoff_rec:
                     timeoff_rec.sudo().write(timeoff_values)
                     timeoff_rec._onchange_request_parameters()
-
+                    
     @api.model
     def create_timeoff_portal(self, values):
         if not (self.env.user.employee_id):
@@ -104,6 +104,7 @@ class EmpPortalTimeOff(models.Model):
         dt_from = values['from']
         duration = values['number_of_days']
         duration = int(duration)
+        duration = duration - 1
         date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
         dateto = date_object + timedelta(days=duration)
         values = {
@@ -135,6 +136,7 @@ class EmpPortalTimeOff(models.Model):
         if (values['start'] and values['duration']):
             dt_from = values['start']
             duration = int(values['duration'])
+            duration = duration - 1
             dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
             dt_to = dt_from  + timedelta(days=duration)
             titype = int(values['timeoff_type'])
