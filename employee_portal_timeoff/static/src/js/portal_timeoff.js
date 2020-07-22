@@ -268,6 +268,9 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 return Promise.reject(response);
             } else {
                 self.$("input.number_of_days").val(response.date_to);                
+                self.$("input.current").val(response.current);                
+                self.$("input.requested").val(response.requested);                
+                self.$("input.remaining").val(response.remaining);                
             }
         })
         

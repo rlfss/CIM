@@ -96,6 +96,8 @@ class EmpPortalTimeOff(models.Model):
             raise AccessDenied()
         user = self.env.user
         self = self.sudo()
+        emp = self.env['hr.employee'].search([('user_id', '=', user.id)],
+                                                limit=1)
         if not (values['timeoff_type'] and values['from'] and values['to']):
             return {
                 'errors': _('All fields are required !')
@@ -105,6 +107,19 @@ class EmpPortalTimeOff(models.Model):
                                                 limit=1)
         lead_time = tftype.lead_time
         timeoff_submission = tftype.submission
+        max_con_duration = tftype.max_con_duration
+        dt_from = values['from']
+        dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+        dt_to = values['to']
+        dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+        dura_days = self._get_number_of_days(dt_from, dt_to, emp)['days']
+
+
+        if max_con_duration > 0 and max_con_duration <= dura_days :
+            return {
+                'errors': _('You Can Not Create Leave Continuous ' + str(dura_days) + ' Days')
+            }
+
         if timeoff_submission == 'back':
             dt_from = values['from']
             date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
@@ -141,7 +156,7 @@ class EmpPortalTimeOff(models.Model):
                         }
                     else:
                         return {
-                            'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                            'errors': _('You Can Not Create Leave Before ' + str(lead_tdate))
                         }
 
                 else:
@@ -211,7 +226,7 @@ class EmpPortalTimeOff(models.Model):
                         }
                     else:
                         return {
-                            'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                            'errors': _('You Can Not Create Leave Before ' + str(lead_tdate))
                         }
 
                 else:
@@ -275,7 +290,7 @@ class EmpPortalTimeOff(models.Model):
                     }
                 else:
                     return {
-                        'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                        'errors': _('You Can Not Create Leave Before ' + str(lead_tdate))
                     }
 
             else:
@@ -315,14 +330,24 @@ class EmpPortalTimeOff(models.Model):
         if (values['start'] and values['end']):
             dt_from = values['start']
             end = values['end']
+            timeoff_type = values['timeoff_type']
             dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
             dt_to =  datetime.strptime(end, '%Y-%m-%d').date()
-            
+            leaves_ids = self.env['hr.leave'].search([('employee_id', '=', emp.id), ('holiday_status_id', '=', timeoff_type)])
+            type_ids = self.env['hr.leave.type'].search([('id', '=', timeoff_type)])
+           
+            basic_balance =  type_ids.max_leaves
+            remaining_balance =  type_ids.virtual_remaining_leaves
+
             number_of_days = self._get_number_of_days(dt_from, dt_to, emp)['days']
+            remaining = remaining_balance - number_of_days
             if number_of_days:
                 return {
                     'id': number_of_days,
-                    'date_to': number_of_days
+                    'date_to': number_of_days,
+                    'current': remaining_balance,
+                    'requested': number_of_days,
+                    'remaining': remaining,
                 }
             else:
                 return {

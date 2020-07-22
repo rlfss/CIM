@@ -218,20 +218,20 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Due Leave:</label>
-                                                            <input type="text" disabled="" class="form-control" placeholder="Due Leave"/>
+                                                            <label>Current Balance:</label>
+                                                            <input type="text" disabled="" class="current form-control" placeholder="Due Leave"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Requested Leave:</label>
-                                                            <input type="text" disabled="" class="form-control" placeholder="Requested Leave"/>
+                                                            <input type="text" disabled="" class="requested form-control" placeholder="Requested Leave"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Remaining Leave:</label>
-                                                            <input type="text" disabled="" class="form-control" placeholder="Remaining Leave"/>
+                                                            <input type="text" disabled="" class="remaining form-control" placeholder="Remaining Leave"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-12 text-lg-right text-center">
