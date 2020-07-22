@@ -19,7 +19,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         'click .new_permission_confirm': '_onNewpermissionConfirm',
         'click .new_return_confirm': '_onNewreturnConfirm',
         'click .edit_timeoff_confirm': '_onEditTimeOffConfirm',
-        'change .number_of_days': '_onchange',
+        'change .request_date_to': '_onchange',
     },
 
 
@@ -257,7 +257,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
             method: 'number_of_days_portal',
             args: [{
             start: $('.new_timeoff_form .request_date_from').val(),
-            duration: $('.new_timeoff_form .number_of_days').val(),
+            end: $('.new_timeoff_form .request_date_to').val(),
             timeoff_type: $('.new_timeoff_form .holiday_status_id').val(),
         }],
         }).then(function(response){
@@ -267,7 +267,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 self.$("input.number_of_days").val('');                
                 return Promise.reject(response);
             } else {
-                self.$("input.request_date_to").val(response.date_to);                
+                self.$("input.number_of_days").val(response.allocation_count);                
             }
         })
         

@@ -192,14 +192,14 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Duration:</label>
-                                                             <input type="number" class="form-control number_of_days" name="number_of_days" id="" placeholder=""/>
+                                                             <input disabled="" type="number" class="form-control number_of_days" name="number_of_days" id="" placeholder=""/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>End Date:</label>
                                                             <div class="input-group date">
-                                                                <input disabled="" type="date" name="request_date_to" class="form-control date_from request_date_to" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
+                                                                <input type="date" name="request_date_to" class="form-control date_from request_date_to" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
                                                                 <div class="input-group-append">
                                                                     <span class="input-group-text">
                                                                         <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>

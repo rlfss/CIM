@@ -15,6 +15,7 @@
                     <field name="lead_time"/>
                     <field name="use_2fa"/>
                     <field name="exclude_weekends"/>
+                    <field name="submission" widget="radio"/>
                 </xpath>
             </field>
         </record>

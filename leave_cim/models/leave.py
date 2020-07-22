@@ -37,6 +37,11 @@ class HolidaysType(models.Model):
         ('supermanager', 'Team Leader and Upper Manager'),
         ('both', 'Team Leader and Time Off Officer')], default='hr', string='Validation')
 
+    submission = fields.Selection([
+        ('no', 'None'),
+        ('back', 'No Back Days'),
+        ('future', 'No Future Submission')], default='no', string='Submission')
+
 class Employee(models.Model):
     _inherit = 'hr.employee'
 

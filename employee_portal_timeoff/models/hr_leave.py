@@ -96,76 +96,238 @@ class EmpPortalTimeOff(models.Model):
             raise AccessDenied()
         user = self.env.user
         self = self.sudo()
-        if not (values['timeoff_type'] and values['from'] and values['number_of_days']):
+        if not (values['timeoff_type'] and values['from'] and values['to']):
             return {
                 'errors': _('All fields are required !')
             }
-        duration = 0    
-        dt_from = values['from']
-        duration = values['number_of_days']
-        duration = int(duration)
-        duration = duration - 1
-        date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
-        dateto = date_object + timedelta(days=duration)
-        values = {
-            'holiday_status_id': int(values['timeoff_type']),
-            'request_date_from': values['from'],
-            'request_date_to': dateto,
-            'timeoff_address':  values['timeoff_address'],
-        }
-        tmp_leave = self.env['hr.leave'].sudo().new(values)
-        tmp_leave._onchange_request_parameters()
-        values  = tmp_leave._convert_to_write(tmp_leave._cache)
-        mytimeoff = self.env['hr.leave'].sudo().create(values)
-        temp_id = self.env.ref('leave_cim.email_email_template_id')
-        temp_id.send_mail(mytimeoff.id, force_send=True)
-        return {
-            'id': mytimeoff.id
-        }
+        timeoff_type = values['timeoff_type']
+        tftype = self.env['hr.leave.type'].search([('id', '=', timeoff_type)],
+                                                limit=1)
+        lead_time = tftype.lead_time
+        timeoff_submission = tftype.submission
+        if timeoff_submission == 'back':
+            dt_from = values['from']
+            date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
+            today = datetime.today().strftime('%Y-%m-%d')
+            today = datetime.strptime(today, '%Y-%m-%d').date()
+            if date_object >= today :
+
+                dt_from = values['from']
+                date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                today = datetime.today().strftime('%Y-%m-%d')
+                today = datetime.strptime(today, '%Y-%m-%d').date()
+                lead_tdate = today + timedelta(days=lead_time)
+                if lead_time > 0 :
+                    if date_object > lead_tdate:
+                        dt_to = values['to']
+                        if dt_from:
+                            dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                        if dt_to:
+                            dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                        values = {
+                            'holiday_status_id': int(values['timeoff_type']),
+                            'request_date_from': values['from'],
+                            'request_date_to': dt_to,
+                            'timeoff_address':  values['timeoff_address'],
+                        }
+                        tmp_leave = self.env['hr.leave'].sudo().new(values)
+                        tmp_leave._onchange_request_parameters()
+                        values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                        mytimeoff = self.env['hr.leave'].sudo().create(values)
+                        temp_id = self.env.ref('leave_cim.email_email_template_id')
+                        temp_id.send_mail(mytimeoff.id, force_send=True)
+                        return {
+                            'id': mytimeoff.id
+                        }
+                    else:
+                        return {
+                            'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                        }
+
+                else:
+                    dt_to = values['to']
+                    if dt_from:
+                        dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                    if dt_to:
+                        dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address':  values['timeoff_address'],
+                    }
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+
+            else:
+                return {
+                    'errors': _('You Can Not Create Back Leave !')
+                }
+
+
+
+
+
+        if timeoff_submission == 'future':
+            dt_from = values['from']
+            date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
+            today = datetime.today().strftime('%Y-%m-%d')
+            today = datetime.strptime(today, '%Y-%m-%d').date()
+            if date_object <= today :
+
+                dt_from = values['from']
+                date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                today = datetime.today().strftime('%Y-%m-%d')
+                today = datetime.strptime(today, '%Y-%m-%d').date()
+                lead_tdate = today + timedelta(days=lead_time)
+                if lead_time > 0 :
+                    if date_object > lead_tdate:
+                        dt_to = values['to']
+                        if dt_from:
+                            dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                        if dt_to:
+                            dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                        values = {
+                            'holiday_status_id': int(values['timeoff_type']),
+                            'request_date_from': values['from'],
+                            'request_date_to': dt_to,
+                            'timeoff_address':  values['timeoff_address'],
+                        }
+                        tmp_leave = self.env['hr.leave'].sudo().new(values)
+                        tmp_leave._onchange_request_parameters()
+                        values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                        mytimeoff = self.env['hr.leave'].sudo().create(values)
+                        temp_id = self.env.ref('leave_cim.email_email_template_id')
+                        temp_id.send_mail(mytimeoff.id, force_send=True)
+                        return {
+                            'id': mytimeoff.id
+                        }
+                    else:
+                        return {
+                            'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                        }
+
+                else:
+                    dt_to = values['to']
+                    if dt_from:
+                        dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                    if dt_to:
+                        dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address':  values['timeoff_address'],
+                    }
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+
+            else:
+                return {
+                    'errors': _('You Can Not Create Future Leave !')
+                }
+
+
+
+
+        if timeoff_submission == 'no':
+
+            dt_from = values['from']
+            date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
+            today = datetime.today().strftime('%Y-%m-%d')
+            today = datetime.strptime(today, '%Y-%m-%d').date()
+            lead_tdate = today + timedelta(days=lead_time)
+            if lead_time > 0 :
+                if date_object > lead_tdate:
+                    dt_to = values['to']
+                    if dt_from:
+                        dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                    if dt_to:
+                        dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address':  values['timeoff_address'],
+                    }
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+                else:
+                    return {
+                        'errors': _('To Can Not Create Leave Before ' + str(lead_tdate))
+                    }
+
+            else:
+                dt_to = values['to']
+                if dt_from:
+                    dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
+                if dt_to:
+                    dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
+                values = {
+                    'holiday_status_id': int(values['timeoff_type']),
+                    'request_date_from': values['from'],
+                    'request_date_to': dt_to,
+                    'timeoff_address':  values['timeoff_address'],
+                }
+                tmp_leave = self.env['hr.leave'].sudo().new(values)
+                tmp_leave._onchange_request_parameters()
+                values  = tmp_leave._convert_to_write(tmp_leave._cache)
+                mytimeoff = self.env['hr.leave'].sudo().create(values)
+                temp_id = self.env.ref('leave_cim.email_email_template_id')
+                temp_id.send_mail(mytimeoff.id, force_send=True)
+                return {
+                    'id': mytimeoff.id
+                }
 
 
 
     @api.model
     def number_of_days_portal(self, values):
         user = self.env.user
+        emp = self.env['hr.employee'].search([('user_id', '=', user.id)],
+                                                limit=1)
         self = self.sudo()
         # timeoff_type = self.env['hr.leave.type'].sudo().browse(2)
         # if timeoff_type.exclude_weekends:
         #     data = self._get_number_of_days(values['start'], values['start'], None)
 
-        if (values['start'] and values['duration']):
+        if (values['start'] and values['end']):
             dt_from = values['start']
-            duration = int(values['duration'])
-            duration = duration - 1
+            end = values['end']
             dt_from = datetime.strptime(dt_from, '%Y-%m-%d').date()
-            dt_to = dt_from  + timedelta(days=duration)
-            titype = int(values['timeoff_type'])
-            timeoff_type = self.env['hr.leave.type'].sudo().browse(titype)
-            if timeoff_type.exclude_weekends:
-                my_time = datetime.min.time()
-                tz = self.env.user.tz if self.env.user.tz else 'UTC'  # custom -> already in UTC
-                date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
-                date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
-                data = self.portal_get_number_of_days(date_from, date_to, 'ex')
-                datadays = int(data['days'])
-                duration = int(duration)
-                delay = duration - datadays
-                newdateto = dt_to  + timedelta(days=delay)
+            dt_to =  datetime.strptime(end, '%Y-%m-%d').date()
+            
+            number_of_days = self._get_number_of_days(dt_from, dt_to, emp)['days']
+            if number_of_days:
                 return {
-                    'id': datadays,
-                    'date_to': newdateto
+                    'id': number_of_days,
+                    'date_to': number_of_days
                 }
             else:
-                data = self.portal_get_number_of_days(dt_from, dt_to, 'in')
                 return {
-                    'id': str(data['days']),
-                    'date_to': dt_to
+                    'errors': _('Enter Start Date !')
                 }
-            
-        else:
-            return {
-                'errors': _('Enter Start Date !')
-            }
     def team_action_validate(self, values):
         random_code = random.randint(9, 50000)
         timenow = datetime.now() + timedelta(minutes=2)
