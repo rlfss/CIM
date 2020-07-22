@@ -12,7 +12,7 @@ new Mmenu(document.querySelector('#menu'),
         },
         navbars: [
             {
-                content: ['<div><a class="d-block" href="/"><img src="/cim_theme/static/src/img/logo.png"></a></div>', 'close']
+                content: ['<div><a class="d-block" href="/my/home"><img src="/cim_theme/static/src/img/logo.png"></a></div>', 'close']
             }
         ]
     }
