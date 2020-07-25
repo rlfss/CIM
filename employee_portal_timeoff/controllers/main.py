@@ -130,7 +130,7 @@ class WebsiteAccount(CustomerPortal):
         Timeoff_sudo = request.env['hr.leave'].sudo()
         domain = self.get_domain_my_leaves(request.env.user)
 
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>', 0),
+        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
                         '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
                         '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
                         ])
@@ -204,6 +204,7 @@ class WebsiteAccount(CustomerPortal):
             'pager': pager,
             'searchbar_sortings': searchbar_sortings,
             'searchbar_filters': OrderedDict(sorted(searchbar_filters.items())),
+            'searchbar_groupby': searchbar_groupby,
             'sortby': sortby,
             'groupby': groupby,
             'filterby': filterby,
@@ -218,7 +219,7 @@ class WebsiteAccount(CustomerPortal):
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>', 0),
+        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
                         '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
                         '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
                         ])
@@ -270,7 +271,7 @@ class WebsiteAccount(CustomerPortal):
         Timeoff_sudo = request.env['hr.leave'].sudo()
         domain = self.get_domain_my_team_leaves(request.env.user)
 
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>', 0),
+        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
                         '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
                         '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
                         ])
@@ -342,6 +343,7 @@ class WebsiteAccount(CustomerPortal):
             'pager': pager,
             'searchbar_sortings': searchbar_sortings,
             'searchbar_filters': OrderedDict(sorted(searchbar_filters.items())),
+            'searchbar_groupby': searchbar_groupby,
             'sortby': sortby,
             'groupby': groupby,
             'filterby': filterby,
@@ -356,7 +358,7 @@ class WebsiteAccount(CustomerPortal):
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>', 0),
+        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
                         '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
                         '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
                         ])
