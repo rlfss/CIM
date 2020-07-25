@@ -118,7 +118,7 @@ class EmpPortalTimeOff(models.Model):
         date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
         date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
         dura_days = self.portal_get_number_of_days(date_from, date_to, 'ex')
-        dura_days = int(number_of_days['days'])
+        dura_days = int(dura_days['days'])
 
 
         if max_con_duration > 0 and max_con_duration <= dura_days :
