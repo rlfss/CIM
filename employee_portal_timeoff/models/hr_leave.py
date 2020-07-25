@@ -340,6 +340,12 @@ class EmpPortalTimeOff(models.Model):
             remaining_balance =  type_ids.virtual_remaining_leaves
 
             number_of_days = self._get_number_of_days(dt_from, dt_to, emp)['days']
+            my_time = datetime.min.time()
+            tz = self.env.user.tz if self.env.user.tz else 'UTC'  # custom -> already in UTC
+            date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
+            date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
+            number_of_days = self.portal_get_number_of_days(date_from, date_to, 'ex')
+            number_of_days = int(number_of_days['days'])
             remaining = remaining_balance - number_of_days
             if number_of_days:
                 return {
