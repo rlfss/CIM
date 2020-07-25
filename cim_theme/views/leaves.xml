@@ -45,6 +45,7 @@
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Status</th>
+                                                    <th scope="col">Edit</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -62,6 +63,13 @@
                                                                                'yellow-color' if leave.state=='draft' else ''
                                                                                'green-color' if leave.state=='validate1' else ''
                                                                                " t-field="leave.state"/></td>
+                                                        <td>
+
+                                                    <a t-attf-href="/my/timeoff/#{leave.id}"
+                                                   title="Edit">
+                                                        <i class="fas fa-pencil-square-o" style="font-size:18px;"></i>
+                                                    </a>
+                                                        </td>
                                                     </tr>
                                                 </t>
                                                 </tbody>
