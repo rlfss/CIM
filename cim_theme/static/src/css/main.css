@@ -301,7 +301,9 @@ hr {
 .top-nav .lang-container li {
   padding: 2px; }
   .top-nav .lang-container li.active a {
-    border: 1px solid #000; }
+    border: 1px solid #000; 
+    background: #107ba9;
+    color: #fff;}
   .top-nav .lang-container li a {
     color: #000;
     padding: 0 3px;
