@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="leave_hr_review_view" model="ir.ui.view">
+        <field name="name">Leave HR Review</field>
+        <field name="model">hr.review</field>
+        <field name="arch" type="xml">
+            <form string="HR Review">
+                <group>
+                    <field name="hr_leave_signature" widget="signature"/>
+                </group>
+                <footer>
+                    <button name="leave_signature" string="Ok" class="btn-primary" type="object" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+     <record id="action_leave_hr_review_wizard" model="ir.actions.act_window">
+        <field name="name">HR Review</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.review</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="leave_hr_review_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

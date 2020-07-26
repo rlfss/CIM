@@ -6,6 +6,7 @@
     "data" : [
         'data/mail.xml',
         'view/leave.xml',
+        'wizards/hr_review.xml',
     ],
     "installable": True
 }

@@ -88,7 +88,13 @@ class Holidays(models.Model):
         ('reviewed', 'Reviewed'),
         ], string='Review Status', store=True, readonly=True, default='draft')
 
+
     def action_review_send(self):
+        action = self.env.ref('leave_cim.action_leave_hr_review_wizard').read()[0]
+        action['create'] = 'false'
+        return action
+
+    def action_review_send2(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
         self.ensure_one()
         template_id = self.env['ir.model.data'].xmlid_to_res_id('leave_cim.mail_template_leave_review', raise_if_not_found=False)
@@ -105,7 +111,6 @@ class Holidays(models.Model):
             'proforma': self.env.context.get('proforma', False),
             'force_email': True,
         }
-        self.write({'review_status': 'reviewed'})
         return {
             'type': 'ir.actions.act_window',
             'view_mode': 'form',
