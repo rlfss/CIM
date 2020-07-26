@@ -53,7 +53,10 @@
             <xpath expr="//button[@name='action_confirm']" position="before">
                 <button name="action_review_send" string="Review &amp; Send Email" type="object" class="btn-primary" attrs="{'invisible': ['|', ('review_status', '=', 'reviewed'), ('state', '!=', 'validate')]}"/>
             </xpath>
-                
+            <xpath expr="//button[@name='action_confirm']" position="before">
+                <button name="action_review_send2" string="Send Email" type="object" class="btn-primary" attrs="{'invisible': ['|', ('review_status', '!=', 'reviewed'), ('state', '!=', 'validate')]}"/>
+            </xpath>
+
              <xpath expr="//div[@name='description']" position="before">
                  <div class="row">
                      <label for="review_status" class="col-2 mr-0" string="Review Status"/>
