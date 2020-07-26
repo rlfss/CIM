@@ -47,6 +47,11 @@ class EmpPortalTimeOff(models.Model):
     s_leave_signed_date = fields.Date(string="First Approve Signature Date", readonly=True)
     s_leave_signed_hash = fields.Char(string="First Approve Signature Hash", readonly=True)
 
+    hr_leave_signature = fields.Binary('HR Review Signature', help='Signature received through the portal.', copy=False, attachment=True, readonly=True)
+    hr_leave_signed_by = fields.Char('HR Review Signed By', help='Name of the person that signed the task.', copy=False, readonly=True)
+    hr_leave_signed_date = fields.Date(string="HR Review Signature Date", readonly=True)
+    hr_leave_signed_hash = fields.Char(string="HR Review Signature Hash", readonly=True)
+
     r_leave_signature = fields.Binary('Refuse Signature', help='Signature received through the portal.', copy=False, attachment=True, readonly=True)
     r_leave_signed_by = fields.Char('Refuse Signed By', help='Name of the person that signed the task.', copy=False, readonly=True)
     r_leave_signed_date = fields.Date(string="Refuse Signature Date", readonly=True)
