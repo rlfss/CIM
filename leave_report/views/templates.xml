@@ -283,27 +283,24 @@
                             </td>
                             <td width="55%" rowspan="3">
                                 <center>
-                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=150&amp;height=150' % ('QR', doc.leave_signed_hash)" alt=""/>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=70&amp;height=70' % ('QR', doc.leave_signed_hash)" alt=""/>
                                 </center>
                             </td>
                         </tr>
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التاريخ:</span>
-                                <span t-field="doc.leave_signed_date"/>
-                            </td>
+                                <span t-field="doc.leave_signed_date" style="width:100px; margin-left:5px; margin-right:5px;"/>
 
-                        </tr>
-                        <tr>
-                            <td width="40%">
                                 <span class="fw-600">التوقيع:</span>
                                 <t t-if="doc.leave_signature">
-                                <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
+                                <img t-att-src="image_data_uri(doc.leave_signature)" style="max-height: 1cm; max-width: 3cm;"/>
                                 </t>
                                 <t t-if="doc.r_leave_signature">
-                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
+                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 1cm; max-width: 3cm;"/>
                                 </t>
                             </td>
+
                         </tr>
                     </table>
 
@@ -367,27 +364,58 @@
                             </td>
                             <td width="55%" rowspan="3">
                                 <center>
-                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=150&amp;height=150' % ('QR', doc.s_leave_signed_hash)" alt=""/>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=70&amp;height=70' % ('QR', doc.s_leave_signed_hash)" alt=""/>
                                 </center>
                             </td>
                         </tr>
                         <tr>
                             <td width="40%">
                                 <span class="fw-600">التاريخ:</span>
-                                 <span t-field="doc.s_leave_signed_date"/>
+                                <span t-field="doc.s_leave_signed_date" style="width:100px; margin-left:5px; margin-right:5px;"/>
+
+                                <span class="fw-600">التوقيع:</span>
+                                <t t-if="doc.s_leave_signature">
+                                <img t-att-src="image_data_uri(doc.s_leave_signature)" style="max-height: 1cm; max-width: 3cm;"/>
+                                </t>
+                                <t t-if="doc.r_leave_signature">
+                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 1cm; max-width: 3cm;"/>
+                                </t>
                             </td>
 
                         </tr>
+                    </table>
+
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td class="blue-light-bg text-white fw-600">
+                                القسم الخامس
+                            </td>
+                            <td class="fw-600">
+                                مراجعة مدير الموارد البشرية - <span t-field="doc.hr_leave_signed_by"/>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+                    <table class="table table-bordered" cellpadding="10" cellspacing="0">
                         <tr>
                             <td width="40%">
+                                <span class="fw-600">التاريخ:</span>
+                                <span t-field="doc.hr_leave_signed_date" style="width:100px; margin-left:5px; margin-right:5px;"/>
+
                                 <span class="fw-600">التوقيع:</span>
-                                <t t-if="doc.s_leave_signature">
-                                <img t-att-src="image_data_uri(doc.s_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
-                                </t>
-                                <t t-if="doc.r_leave_signature">
-                                <img t-att-src="image_data_uri(doc.r_leave_signature)" style="max-height: 2cm; max-width: 6cm;"/>
+                                <t t-if="doc.hr_leave_signature">
+                                <img t-att-src="image_data_uri(doc.hr_leave_signature)" style="max-height: 1cm; max-width: 3cm;"/>
                                 </t>
                             </td>
+                            <td width="55%" rowspan="3">
+                                <center>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=70&amp;height=70' % ('QR', doc.hr_leave_signed_hash)" alt=""/>
+                                </center>
+                            </td>
+
                         </tr>
                     </table>
 
