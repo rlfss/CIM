@@ -22,7 +22,9 @@ class CreateWizard(models.TransientModel):
 
 
     def leave_signature(self):
-        hr_leave_signature = self.hr_leave_signature
+        hr_leave_signature = ''
+        for line in self:
+            hr_leave_signature = self.hr_leave_signature
         hr_leave_signed_by = self.env.user.name
         shash = random.getrandbits(128)
         ranshash = random.getrandbits(128)
