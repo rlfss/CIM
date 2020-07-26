@@ -41,6 +41,24 @@
                      <field name="leave_signed_hash"  class="oe_inline" />
                 </div> 
 
+
+                 <div class="row">
+                     <label for="hr_leave_signature" class="col-3" string="HR Review Signature"/>
+                     <field name="hr_leave_signature" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;leave_signature&quot;}"/>
+                </div> 
+                 <div class="row">
+                     <label for="hr_leave_signed_by" class="col-3" string="HR Review Signed By"/>
+                     <field name="hr_leave_signed_by"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="hr_leave_signed_date" class="col-3" string="HR Review Signature Date"/>
+                     <field name="hr_leave_signed_date"  class="oe_inline" />
+                </div> 
+                 <div class="row">
+                     <label for="hr_leave_signed_hash" class="col-3" string="HR Review Signature Hash"/>
+                     <field name="hr_leave_signed_hash"  class="oe_inline" />
+                </div> 
+
             </xpath>
         </field>
     </record>
