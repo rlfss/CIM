@@ -384,6 +384,16 @@
                                     <span t-else="" class="text-muted"> - </span>
                                 </div>
                             </div>
+                             <div t-if="timeoff.r_leave_signature">
+                                <div class="row mb-2">
+                                    <strong class="col-12 col-sm-4">Refuse By</strong>
+                                    <div class="col">
+                                        <span t-if="timeoff.r_leave_signed_by" t-field="timeoff.r_leave_signed_by"/>
+                                        <span t-else="" class="text-muted"> - </span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div>
                             <div role="dialog" class="modal fade modal_edit_timeoff">
