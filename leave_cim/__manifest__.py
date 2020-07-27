@@ -6,7 +6,11 @@
     "data" : [
         'data/mail.xml',
         'view/leave.xml',
+        'view/templates.xml',
         'wizards/hr_review.xml',
+    ],
+    'qweb': [
+        "static/src/xml/*.xml",
     ],
     "installable": True
 }
