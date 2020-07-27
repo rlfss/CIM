@@ -11,12 +11,7 @@ odoo.define('systray.systray_leave_cim', function (require) {
         },
 
         onclick_home_icon: function () {
-            var self = this;
-            this._rpc({
-                route: '/my/home'
-            }).then(function (result) {
-                window.open('/my/home', '_blank', 'noopener noreferrer');
-            });
+            window.open('/my/home', '_blank', 'noopener noreferrer');
         },
     });
     SystrayMenu.Items.push(ActionMenu);
