@@ -31,17 +31,12 @@ class InternalMemo(models.Model):
         if values['employee_id']:
             employee_id = values['employee_id']
             employee_id = int(employee_id.id)
-        manager_id = False
-        if values['manager_id']:
-            manager_id = values['manager_id']
-            manager_id = manager_id.id
         values = {
             'name': name,
             'to': to,
             'via': via,
             'message': message,
             'employee_id': employee_id,
-            'manager_id': manager_id,
         }
 
         memo = self.env['internal.memo'].sudo().create(values)
