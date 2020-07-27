@@ -10,7 +10,7 @@
         'wizards/hr_review.xml',
     ],
     'qweb': [
-        "static/src/xml/*.xml",
+        "static/src/xml/home.xml",
     ],
     "installable": True
 }
