@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+   <t t-name="leave_cim.home_icon">
+       <li class="home_icon o_mail_systray_item">
+           <a role="button" href="javascript:void(0)" class="home_icon" title="My Portal">
+             <i class="fa fa-home" aria-label="My Portal" />
+           </a>
+       </li>
+   </t>
+</templates>
