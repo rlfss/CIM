@@ -1,6 +1,7 @@
 odoo.define('systray.systray_odoo_referral', function (require) {
     "use strict";
     var localStorage = require('web.local_storage');
+    var SystrayMenu = require('web.SystrayMenu');
     var Widget = require('web.Widget');
 
     var ActionMenu = Widget.extend({
@@ -18,4 +19,7 @@ odoo.define('systray.systray_odoo_referral', function (require) {
             });
         },
     });
+    SystrayMenu.Items.push(ActionMenu);
+    return ActionMenu;
+
 });
