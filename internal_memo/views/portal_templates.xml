@@ -103,7 +103,7 @@
 
                             <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
                                 <div class="my-card p-3">
-                                    <form action="/memo_form/internal.memo" method="post" class="o_wprofile_editor_form js_website_submit_form row">
+                                    <form action="/memo_form/internal.memo" method="post" >
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                     <div class="card">
                                             <div class="card-body">
@@ -138,7 +138,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Memo :</label>
-                                                        <textarea placeholder="Memo"  style="min-height: 120px" class="form-control o_wysiwyg_loader" name="message" id="message">
+                                                        <textarea placeholder="Memo" style="min-height: 120px" class="form-control" name="message" id="message">
                                                         </textarea>
                                                     </div>
                                                 </div>
