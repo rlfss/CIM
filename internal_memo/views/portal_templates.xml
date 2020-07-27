@@ -103,48 +103,51 @@
 
                             <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
                                 <div class="my-card p-3">
-                                    <form action="/memo_form/internal.memo" method="post">
-                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>To :</label>
-                                                    <input type="text" name="to"
-                                                           t-att-value="request.params.get('to', '')"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Via :</label>
-                                                    <input type="text" name="via"
-                                                           t-att-value="request.params.get('via', '')"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
+                                    <form action="/memo_form/internal.memo" method="post" >
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="card">
+                                            <div class="card-body">
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Subject :</label>
-                                                    <input type="text" name="subject"
-                                                           t-att-value="request.params.get('subject', '')"
-                                                           class="form-control"/>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>To :</label>
+                                                        <input type="text" name="to"
+                                                               t-att-value="request.params.get('to', '')"
+                                                               class="form-control"/>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Via :</label>
+                                                        <input type="text" name="via"
+                                                               t-att-value="request.params.get('via', '')"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Memo :</label>
-                                                    <textarea placeholder="Memo" rows="4" class="form-control"
-                                                              name="message">
-                                                        <t t-esc="request.params.get('message', '')"/>
-                                                    </textarea>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Subject :</label>
+                                                        <input type="text" name="subject"
+                                                               t-att-value="request.params.get('subject', '')"
+                                                               class="form-control"/>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 text-lg-right text-center">
-                                                <input class="btn btn-primary px-4" type="Submit" value="send"/>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Memo :</label>
+                                                        <textarea placeholder="Memo" style="min-height: 120px" class="form-control" name="message" id="message">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 text-lg-right text-center">
+                                                    <input class="btn btn-primary px-4" type="Submit" value="send"/>
+                                                </div>
                                             </div>
                                         </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
