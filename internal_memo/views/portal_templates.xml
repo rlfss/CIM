@@ -135,7 +135,9 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Memo :</label>
-                                                    <textarea placeholder="Memo" rows="4" class="form-control o_wysiwyg_loader" name="message">
+                                                    <input type="hidden" name="karma" t-attf-value="#{user.karma}" id="karma"/>
+                                                    
+                                                    <textarea placeholder="Memo" rows="4" class="form-control o_wysiwyg_loader" name="message"  t-att-data-karma="forum.karma_editor">
                                                     </textarea>
                                                 </div>
                                             </div>
