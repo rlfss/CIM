@@ -1,4 +1,4 @@
-odoo.define('systray.systray_odoo_referral', function (require) {
+odoo.define('systray.systray_leave_cim', function (require) {
     "use strict";
     var localStorage = require('web.local_storage');
     var SystrayMenu = require('web.SystrayMenu');
