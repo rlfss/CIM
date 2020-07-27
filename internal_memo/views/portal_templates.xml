@@ -135,9 +135,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Memo :</label>
-                                                    <textarea placeholder="Memo" rows="4" class="form-control load_editor"
-                                                              name="message">
-                                                        <t t-esc="request.params.get('message', '')"/>
+                                                    <textarea placeholder="Memo" rows="4" class="form-control o_wysiwyg_loader" name="message">
                                                     </textarea>
                                                 </div>
                                             </div>
