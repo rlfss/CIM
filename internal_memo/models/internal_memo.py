@@ -22,8 +22,6 @@ class InternalMemo(models.Model):
 
     @api.model
     def create_memo_portal(self, values):
-        if not (self.env.user.employee_id):
-            raise AccessDenied()
         self = self.sudo()
         name = values['name']
         to = values['to']
