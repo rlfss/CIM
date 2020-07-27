@@ -13,7 +13,8 @@ class InternalMemo(models.Model):
     manager_id = fields.Many2one('hr.employee', 'Manager')
     to = fields.Char(string='To')
     via = fields.Char(string='Via')
-    message = fields..Html(string='Message')
+    message = fields.Html('Message')
+
     date = fields.Date(string="Date", readonly=True, default=fields.Date.context_today)
 
     @api.onchange('employee_id')
