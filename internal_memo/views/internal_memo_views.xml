@@ -33,9 +33,12 @@
                             <field name="date"/>
                             <field name="to"/>
                             <field name="via"/>
-                            <field name="message"/>
                         </group>
                     </group>
+                    <group>
+                        <field name="message" type="html" class="oe_memo"/>
+                    </group>
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
