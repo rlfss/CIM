@@ -110,6 +110,10 @@ class EmpPortalTimeOff(models.Model):
         timeoff_type = values['timeoff_type']
         tftype = self.env['hr.leave.type'].search([('id', '=', timeoff_type)],
                                                 limit=1)
+        
+        if tftype.custom_leave == True :
+            return self._check_custom_leave()
+
         lead_time = tftype.lead_time
         timeoff_submission = tftype.submission
         max_con_duration = tftype.max_con_duration
@@ -327,6 +331,97 @@ class EmpPortalTimeOff(models.Model):
                 }
 
 
+    def _check_custom_leave(self):
+        my_time = datetime.min.time()
+        tz = self.env.user.tz if self.env.user.tz else 'UTC'  # custom -> already in UTC
+        date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
+        date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
+        dura_days = self.portal_get_number_of_days(date_from, date_to, 'ex')
+        dura_days = int(dura_days['days'])
+
+        # حالات الوفاة من الدرجة الاولى والثانية
+        if (tftype.custom_leave == True and tftype.applicable_for == 'both' and tftype.only_time_granted == False):
+            if emp.gender == 'male' or emp.gender == 'female':
+                if dura_days > tftype.fixed_period:
+                    return {
+                        'errors': _('Duration must be ' + str(tftype.fixed_period))
+                    }
+                else:
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address': values['timeoff_address'],
+                    }
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+
+
+        # حالات الزواج والحج
+        elif (tftype.custom_leave == True and tftype.applicable_for == 'both' and tftype.only_time_granted == True):
+            if emp.gender == 'male' or emp.gender == 'female':
+                if emp.employee_time_granted == True:
+                    return {
+                        'errors': _('This type only time granted ' )
+                    }
+                elif dura_days > tftype.fixed_period:
+                    return {
+                        'errors': _('Duration must be ' + str(tftype.fixed_period))
+                    }
+                else:
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address': values['timeoff_address'],
+                    }
+                    # make field emp.employee_time_granted = True
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+
+
+        # خاصة بالسيدات فقط
+        elif tftype.custom_leave == True and tftype.applicable_for == 'female':
+            if emp.gender == 'female':
+                if dura_days > tftype.fixed_period:
+                    return {
+                        'errors': _('Duration must be '+ str(tftype.fixed_period))
+                    }
+                else:
+                    values = {
+                        'holiday_status_id': int(values['timeoff_type']),
+                        'request_date_from': values['from'],
+                        'request_date_to': dt_to,
+                        'timeoff_address': values['timeoff_address'],
+                    }
+                    tmp_leave = self.env['hr.leave'].sudo().new(values)
+                    tmp_leave._onchange_request_parameters()
+                    values = tmp_leave._convert_to_write(tmp_leave._cache)
+                    mytimeoff = self.env['hr.leave'].sudo().create(values)
+                    temp_id = self.env.ref('leave_cim.email_email_template_id')
+                    temp_id.send_mail(mytimeoff.id, force_send=True)
+                    return {
+                        'id': mytimeoff.id
+                    }
+            else:
+                return {
+                    'errors': _('This leave Applicable for only Female ')
+                }
+                
 
     @api.model
     def number_of_days_portal(self, values):
