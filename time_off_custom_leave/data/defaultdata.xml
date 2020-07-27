@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="1_leave_custom" model="hr.leave.type">
+            <field name="name">سنوية</field>
+            <field name="request_unit">day</field>
+            <field name="allocated_method">auto</field>
+            <field name="automated_allocation">based</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="True"/>
+            <field name="exclude_public_holidays" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="2_leave_custom" model="hr.leave.type">
+            <field name="name">طارئة</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="lead_time">12</field>
+            <field name="max_con_duration">3</field>
+            <field name="max_int_duration">12</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="True"/>
+            <field name="exclude_public_holidays" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="3_leave_custom" model="hr.leave.type">
+            <field name="name">مرضية</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">fixed</field>
+            <field name="validation_type">both</field>
+            <field name="lead_time">60</field>
+            <field name="max_con_duration">45</field>
+            <field name="max_int_duration">60</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="4_leave_custom" model="hr.leave.type">
+            <field name="name">وفاة من الدرجة الاولى</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">7</field>
+            <field name="applicable_for">both</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="5_leave_custom" model="hr.leave.type">
+            <field name="name">وفاة من الدرجة الثانية</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">3</field>
+            <field name="applicable_for">both</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="6_leave_custom" model="hr.leave.type">
+            <field name="name">زواج</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">14</field>
+            <field name="only_time_granted" eval="True"/>
+            <field name="applicable_for">both</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="7_leave_custom" model="hr.leave.type">
+            <field name="name">حج</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">20</field>
+            <field name="only_time_granted" eval="True"/>
+            <field name="applicable_for">both</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="8_leave_custom" model="hr.leave.type">
+            <field name="name">أمومة ( طفل )</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">98</field>
+            <field name="applicable_for">female</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="9_leave_custom" model="hr.leave.type">
+            <field name="name">أمومة ( توأم )</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">112</field>
+            <field name="applicable_for">female</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="10_leave_custom" model="hr.leave.type">
+            <field name="name">وفاة الزوج ( العدة )</field>
+            <field name="request_unit">day</field>
+            <field name="custom_leave" eval="True"/>
+            <field name="fixed_period">130</field>
+            <field name="applicable_for">female</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="False"/>
+            <field name="exclude_public_holidays" eval="False"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">red</field>
+        </record>
+
+        <record id="11_leave_custom" model="hr.leave.type">
+            <field name="name">أجازة بدون مرتب</field>
+            <field name="request_unit">day</field>
+            <field name="allocation_type">no</field>
+            <field name="validation_type">both</field>
+            <field name="responsible_id" ref="base.user_admin"/>
+            <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
+            <field name="exclude_weekends" eval="True"/>
+            <field name="exclude_public_holidays" eval="True"/>
+            <field name="create_calendar_meeting" eval="True"/>
+            <field name="leave_notif_subtype_id" eval="ref('mt_leave_unpaid')"/>
+            <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
+            <field name="color_name">brown</field>
+        </record>
+
+    </data>
+</odoo>

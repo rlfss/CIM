@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+
+        <record id="custom_leave_form" model="ir.ui.view">
+            <field name="name">Custom.Leave</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='request_unit']" position="after">
+                    <field name="custom_leave"/> <br/>
+                    <field name="fixed_period" attrs="{'invisible': [('custom_leave', '=', False)]}"/>
+                    <field name="only_time_granted" attrs="{'invisible': [('custom_leave', '=', False)]}"/>
+                    <field name="applicable_for" attrs="{'invisible': [('custom_leave', '=', False)]}"/><br/>
+                    <field name="allocated_method" widget="radio"/> <br/>
+                    <field name="automated_allocation" widget="radio"
+                           attrs="{'invisible': [('allocated_method', '!=', 'auto')]}"/>
+                    <br/>
+
+                    <div attrs="{'invisible': [('automated_allocation', '!=', 'custom')]}">
+                        <div class="o_row">
+                            <label for="number_per_interval" class="ml8" string="No of days"/>
+                            <field name="number_per_interval" class="oe_inline"
+                                   attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>
+                            <field name="unit_per_interval" class="oe_inline"
+                                   attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>
+                        </div>
+
+                        <div class="o_row">
+                            <label for="interval_number" class="ml8" string="of time off every"/>
+                            <field name="interval_number" class="oe_inline"
+                                   attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>
+                            <field name="interval_unit" class="oe_inline"
+                                   attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>
+                        </div>
+                    </div>
+
+                </xpath>
+            </field>
+            <!-- <span>Add</span>-->
+            <!-- <field name="number_per_interval" class="ml8" attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>-->
+            <!-- <field name="unit_per_interval" attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>-->
+            <!-- <span class="ml8">each</span>-->
+            <!-- <field name="interval_number" class="ml8" attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>-->
+            <!-- <field name="interval_unit" attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>-->
+
+        </record>
+        <record id="attachment_form" model="ir.ui.view">
+            <field name="name">attachment.form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@name='description']" position="before">
+                    <field name="cus_level" invisible="1"/>
+                    <!-- per day -->
+                    <div class="row" attrs="{'invisible': [('cus_level', '=', False)]}">
+                        <label for="attachment" class="col-2 mr-0" string="Attachment"/>
+                        <field name="attachment" class="oe_inline" widget="many2many_binary"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
