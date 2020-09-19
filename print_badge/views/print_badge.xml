@@ -1,0 +1,76 @@
+<odoo>
+    <data>
+        <template id="report_employee_card_inherit" inherit_id="hr.print_employee_badge">
+
+            <xpath expr="//t[@t-call='web.basic_layout']" position="replace">
+
+                <t t-call="web.basic_layout">
+
+                    <div class="page">
+                        <t t-foreach="docs" t-as="employee">
+
+                            <div class="container">
+                                <div class="card-container">
+                                    <div class="text-center">
+                                        <img src="print_badge/static/src/image/logo1.png" class="logo1" alt=""/>
+                                    </div>
+                                    <div class="info-details">
+                                        <span>
+                                            تستخدم فقط في الاغراض التي يخولها القانون
+                                        </span>
+                                    </div>
+                                    <div class="info-card">
+                                        <span>
+                                            تعليمات
+                                        </span>
+                                    </div>
+                                    <ul class="info-list">
+                                        <li>
+                                            الـمحافظـــة عـلــى الـبطاقــة وإبـرازهـــا فـــي محيـــط العـمـــل
+                                        </li>
+                                        <li>
+                                            إبـلاغ الـجـهـات ذات الاخـتـصـاص فـي حـال ضــيـاع الـبـطـاقــة
+                                        </li>
+                                        <li>
+                                            تسليم البطاقة عند انتهاء الخدمة أو تغيير التبعية الإدارية
+                                        </li>
+                                    </ul>
+                                    <div class="text-center">
+                                        <img src="print_badge/static/src/image/b.jpg" class="bar-code" alt=""/>
+                                    </div>
+                                </div>
+                                <div class="card-container2 card-2">
+
+                                    <img src="print_badge/static/src/image/logo2.png" class="logo2" alt=""/>
+                                    <!--                                    <img src="print_badge/static/src/image/person.jpg" class="user-img" alt=""/>-->
+                                    <div style="position: absolute; top: 23%; left: 35px; height: 136px;width:136px;border-radius:50%; border:3px solid #3D73BA;">
+                                    <img t-if="employee.image_1920" t-att-src="image_data_uri(employee.image_1920)"
+                                         style="height: 130px;width:130px;border-radius:50%;position: relative; top:0; left:0; "/></div>
+                                    <div class="text-container">
+                                        <div style="color:white;position:relative;bottom:1px;font-size:16px;">
+                                            <t t-esc="employee.employee_num"/></div>
+                                        <div style=" color: #1D3160;font-size:16.49px;position:relative;bottom:4px;right:2px;">
+                                           <t t-esc="employee.name"/>
+                                        </div>
+                                        <div style="color: white;font-size:12px;font-weight:500;position:relative;bottom:2px;">
+                                            <t t-esc="employee.department_id.name"/>
+                                        </div>
+                                        <div style="color: white;font-size:12px;font-weight:500;position:relative;bottom:5px;">
+                                            <t t-esc="employee.job_id.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </t>
+                    </div>
+
+                </t>
+
+            </xpath>
+
+        </template>
+
+    </data>
+</odoo>

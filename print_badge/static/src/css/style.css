@@ -1,0 +1,141 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(font/DINNextLTArabic-Regular.ttf); }
+body {
+  font-family: 'myFirstFont', sans-serif;
+  direction: rtl; }
+
+.card-container {
+  width: 377px;
+  height: 236px;
+  position: relative;
+  left:28px;
+  top:17px;
+  color: #1D3160; }
+
+.card-container2 {
+  width: 377px;
+  height: 236px;
+  position: relative;
+  left:28px;
+  top:1px;
+  color: #1D3160; }
+
+.logo1 {
+  max-width: 70%; }
+
+.text-center {
+  text-align: center;
+   width:100%;}
+
+.info-details {
+  position:relative;
+  top:10px;
+  right:18px;
+  width:90%;
+  padding-bottom:1px;
+  padding-top:1px;
+  border: 1px solid #1D3160;
+  font-size: 10px;
+  text-align: center;
+  border-radius: 30px; }
+  .info-details span {
+    color: #1D3160;
+    position: relative;
+    top: -2px}
+
+.info-card {
+  position: relative;
+  top:18px;
+  right:18px;
+  padding-bottom:1px;
+  padding-top:1px;
+  width:90%;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 30px;
+
+  background-color: #1D3160;
+  color: #fff; }
+  .info-card span {
+    position: relative;
+    top: -2px; }
+
+.info-list {
+  width: 80%;
+  position:relative;
+  right:20px;
+  top:18px;
+  list-style: none; }
+  .info-list li {
+    font-size: 12px;
+    position: relative;
+    right:35px;
+     }
+    .info-list li:before {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      border-radius: 50%;
+      background-color: #1D3160;
+      height: 4px;
+      width: 4px; }
+
+.bar-code {
+  max-width: 90%;
+  max-height: 35px;
+  position:relative;
+  top:10px;
+  height:30px;
+   width:75%;}
+
+
+.card-2 {
+  background: url(../image/bg.png) center;
+  background-size: 100% 100%;
+  position: relative; }
+  .card-2 .user-img {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 23%;
+    left: 35px;
+    height: 130px;
+    width: 130px;
+    border-radius:50%;
+    display: inline-block;
+    overflow: hidden;
+
+
+    }
+
+.logo2 {
+  max-width: 70%;
+   position:relative;
+   top:10px;
+   left:90px;}
+
+.text-container {
+  text-align: center;
+  position: absolute;
+  bottom: 6px;
+  right: 15px; }
+  .text-container p {
+    color: white;
+    position:relative;
+    left:40%;
+    top:50%;
+    font-size: 13px;
+    margin: 0 0 2px 0; }
+  .text-container h4 {
+    color: white;
+    font-size: 10px;
+    font-weight: 500; }
+  .text-container h3 {
+    color: #1D3160;
+    font-size: 13px;
+    margin: 0 0 2px 0;
+    font-weight: 500; }
+
+/*# sourceMappingURL=style.css.map */
