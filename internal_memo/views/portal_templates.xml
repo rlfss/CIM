@@ -138,7 +138,7 @@
                                                     <label>Template:</label>
                                                     <select name="template_id" class="form-control link-style">
                                                         <t t-foreach="template_id" t-as="o">
-                                                            <option t-esc="o.template" t-att-value="o.id"/>
+                                                            <option t-esc="o.template" t-att-value="request.params.get('template_id', '')"/>
                                                         </t>
                                                     </select>
 
