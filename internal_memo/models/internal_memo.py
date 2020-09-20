@@ -46,7 +46,7 @@ class InternalMemo(models.Model):
             'message': message,
             'employee_id': int(employee_id.id),
             # 'manager_id': int(manager_id.id),
-            'template_id': template_id.template
+            'template_id': template_id
         }
 
         memo = self.env['internal.memo'].sudo().create(values)
