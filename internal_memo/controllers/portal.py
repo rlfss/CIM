@@ -58,10 +58,12 @@ class PortalInternalMemo(CustomerPortal):
         # content according to pager and archive selected
         internal_memo = InternalMemo.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
         request.session['my_memo_history'] = internal_memo.ids[:100]
+        template_id = request.env['memo.template'].sudo().search([])
 
         values.update({
             # 'date': date_begin,
             'internal_memo': internal_memo,
+            'template_id' : template_id,
             'page_name': 'internal memo',
             'pager': pager,
             'archive_groups': archive_groups,
@@ -92,6 +94,7 @@ class PortalInternalMemo(CustomerPortal):
         vals['message'] = kwargs['message']
         vals['via'] = kwargs['via']
         vals['to'] = kwargs['to']
+        vals['template_id'] = kwargs['template_id']
         employee_id = request.env['hr.employee'].search([('user_id', '=', request.uid)])
         vals['employee_id'] = employee_id
         if employee_id.parent_id:

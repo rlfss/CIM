@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="memo_template_view_form" model="ir.ui.view">
+        <field name="name">memo_template_view_form</field>
+        <field name="model">memo.template</field>
+        <field name="arch" type="xml">
+            <form string="Memo Template">
+                <sheet>
+                    <group>
+                        <field name="template"/>
+                        <field name="description"/>
+
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="memo_tree_view_tree" model="ir.ui.view">
+        <field name="name">memo_tree_view_tree</field>
+        <field name="model">memo.template</field>
+        <field name="arch" type="xml">
+            <tree string="Memo Template">
+                <field name="template"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="memo_template_action" model="ir.actions.act_window">
+        <field name="name">Memo Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">memo.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+        <menuitem name="Memo Template" id="memo_template_menu" parent="hr_holidays.menu_hr_holidays_configuration" action="memo_template_action"/>
+
+
+</odoo>

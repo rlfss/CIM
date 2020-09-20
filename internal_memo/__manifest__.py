@@ -7,6 +7,7 @@
         'security/ir.model.access.csv',
         'views/internal_memo_views.xml',
         'views/portal_templates.xml',
-        'views/memo_report.xml'
+        'views/memo_report.xml',
+        'views/memo_template.xml'
     ],
 }

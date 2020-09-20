@@ -18,7 +18,7 @@
                     <div class="col-12">
                         <ul class="list-inline d-flex align-items-center">
                             <li class="list-inline-item">
-                                <a href="index.html" class="fs-20">
+                                <a href="/my/home" class="fs-20">
                                     <i class="fa fa-home"></i>
                                 </a>
                             </li>
@@ -58,6 +58,7 @@
                                                 <th scope="col">Memo #</th>
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Manager</th>
+                                                <th scope="col">Template</th>
                                                 <th scope="col">Message</th>
                                                 <th scope="col">Print</th>
                                             </tr>
@@ -82,15 +83,25 @@
                                                     <td t-if="memo.manager_id">
                                                         <span t-field="memo.manager_id"/>
                                                     </td>
-
+                                                    <div class="form-group row form-field">
+                                                        <div class="col-lg-7 col-md-8">
+                                                            <select name="template_id" class="form-control link-style">
+                                                                <t t-foreach="template_id" t-as="o">
+                                                                    <option t-esc="o.template" t-att-value="o.id"/>
+                                                                </t>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                     <td class="ellipsis mw-200">
                                                         <span t-field="memo.message"/>
                                                     </td>
+
+
                                                     <td class="ellipsis mw-200">
                                                         <a t-attf-href="/my/memo/#{memo.id}#{memo.get_portal_url(report_type='pdf', download=True).split('#')[1]}"
-                                           title="Download">
-                                                        <i class="fas fa-print" style="font-size:18px;"></i>
-                                                    </a>
+                                                           title="Download">
+                                                            <i class="fas fa-print" style="font-size:18px;"></i>
+                                                        </a>
                                                     </td>
 
                                                 </tr>
@@ -103,51 +114,59 @@
 
                             <div class="tab-pane fade " id="new_memos" role="tabpanel" aria-labelledby="new_memos-tab">
                                 <div class="my-card p-3">
-                                    <form action="/memo_form/internal.memo" method="post" >
-                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                    <div class="card">
-                                            <div class="card-body">
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>To :</label>
-                                                        <input type="text" name="to"
-                                                               t-att-value="request.params.get('to', '')"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Via :</label>
-                                                        <input type="text" name="via"
-                                                               t-att-value="request.params.get('via', '')"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Subject :</label>
-                                                        <input type="text" name="subject"
-                                                               t-att-value="request.params.get('subject', '')"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Memo :</label>
-                                                        <textarea placeholder="Memo" style="min-height: 120px" class="form-control" name="message" id="message">
-                                                        </textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 text-lg-right text-center">
-                                                    <input class="btn btn-primary px-4" type="Submit" value="send"/>
+                                    <form action="/memo_form/internal.memo" method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>To :</label>
+                                                    <input type="text" name="to"
+                                                           t-att-value="request.params.get('to', '')"
+                                                           class="form-control"/>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Via :</label>
+                                                    <input type="text" name="via"
+                                                           t-att-value="request.params.get('via', '')"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Template:</label>
+                                                    <select name="template_id" class="form-control link-style">
+                                                        <t t-foreach="template_id" t-as="o">
+                                                            <option t-esc="o.template" t-att-value="o.id"/>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Subject :</label>
+                                                    <input type="text" name="subject"
+                                                           t-att-value="request.params.get('subject', '')"
+                                                           class="form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Memo :</label>
+                                                    <textarea placeholder="Memo" rows="4" class="form-control"
+                                                              name="message">
+                                                        <t t-esc="request.params.get('message', '')"/>
+                                                    </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-lg-right text-center">
+                                                <input class="btn btn-primary px-4" type="Submit" value="send"/>
+                                            </div>
                                         </div>
-                                    </div>
                                     </form>
                                 </div>
                             </div>
