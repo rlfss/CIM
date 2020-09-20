@@ -58,7 +58,6 @@
                                                 <th scope="col">Memo #</th>
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Manager</th>
-                                                <th scope="col">Template</th>
                                                 <th scope="col">Message</th>
                                                 <th scope="col">Print</th>
                                             </tr>
@@ -83,15 +82,6 @@
                                                     <td t-if="memo.manager_id">
                                                         <span t-field="memo.manager_id"/>
                                                     </td>
-                                                    <div class="form-group row form-field">
-                                                        <div class="col-lg-7 col-md-8">
-                                                            <select name="template_id" class="form-control link-style">
-                                                                <t t-foreach="template_id" t-as="o">
-                                                                    <option t-esc="o.template" t-att-value="o.id"/>
-                                                                </t>
-                                                            </select>
-                                                        </div>
-                                                    </div>
                                                     <td class="ellipsis mw-200">
                                                         <span t-field="memo.message"/>
                                                     </td>
@@ -138,7 +128,7 @@
                                                     <label>Template:</label>
                                                     <select name="template_id" class="form-control link-style">
                                                         <t t-foreach="template_id" t-as="o">
-                                                            <option t-esc="o.template" t-att-value="request.params.get('template_id', '')"/>
+                                                            <option t-esc="o.template" t-att-value="o.id"/>
                                                         </t>
                                                     </select>
 
