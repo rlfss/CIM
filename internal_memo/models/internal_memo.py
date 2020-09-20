@@ -36,7 +36,7 @@ class InternalMemo(models.Model):
         via = values['via']
         message = values['message']
         employee_id = values['employee_id']
-        manager_id = values['manager_id']
+        # manager_id = values['manager_id']
         template_id = values['template_id']
 
         values = {
@@ -45,7 +45,7 @@ class InternalMemo(models.Model):
             'via': via,
             'message': message,
             'employee_id': int(employee_id.id),
-            'manager_id': int(manager_id.id),
+            # 'manager_id': int(manager_id.id),
             'template_id' : template_id
         }
 
