@@ -384,16 +384,6 @@
                                     <span t-else="" class="text-muted"> - </span>
                                 </div>
                             </div>
-                             <div t-if="timeoff.r_leave_signature">
-                                <div class="row mb-2">
-                                    <strong class="col-12 col-sm-4">Refuse By</strong>
-                                    <div class="col">
-                                        <span t-if="timeoff.r_leave_signed_by" t-field="timeoff.r_leave_signed_by"/>
-                                        <span t-else="" class="text-muted"> - </span>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                         <div>
                             <div role="dialog" class="modal fade modal_edit_timeoff">
@@ -682,6 +672,11 @@
                 <t t-set="card_body">
                     <div class="row">
                         <div class="col-lg-5 mb-4 mb-lg-0">
+                            <!-- test edit button-->
+                            <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
+                                <button  type="button" data-toggle="modal" data-target="#newPermissionModal" class="btn btn-link btn-sm"><i class="fa fa-pencil mr-1"/>Edit</button>
+                            </div>
+
                             <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="permission_req.name"/>

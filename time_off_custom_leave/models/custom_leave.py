@@ -40,24 +40,32 @@ class AddAttachment(models.Model):
     attachment = fields.Many2many('ir.attachment', string="Attachment", copy=False)
     cus_level = fields.Boolean(string="cus level", related='holiday_status_id.custom_leave')
 
+    @api.onchange('holiday_status_id')
+    def _get_fixed_period(self):
+        if self.holiday_status_id:
+            if self.holiday_status_id.custom_leave == True:
+                self.number_of_days = self.holiday_status_id.fixed_period
 
+    # to make employee can't request this type again
     def action_approve(self):
         res = super(AddAttachment, self).action_approve()
         if self.holiday_status_id.custom_leave == True and self.holiday_status_id.applicable_for == 'both' and self.holiday_status_id.only_time_granted == True:
             if self.employee_id.employee_time_granted == False:
                 self.employee_id.employee_time_granted = True
         return res
-    
+
     @api.constrains('holiday_status_id')
     def _check_holiday_custom(self):
         for rec in self:
             # for leaves die only
-            if (rec.holiday_status_id.custom_leave == True and rec.holiday_status_id.applicable_for == 'both' and rec.holiday_status_id.only_time_granted == False):
+            if (
+                    rec.holiday_status_id.custom_leave == True and rec.holiday_status_id.applicable_for == 'both' and rec.holiday_status_id.only_time_granted == False):
                 if rec.employee_id.gender == 'male' or rec.employee_id.gender == 'female':
                     if rec.number_of_days > rec.holiday_status_id.fixed_period:
                         raise ValidationError(_("Duration must be ") + str(rec.holiday_status_id.fixed_period))
             # for wedding and hej
-            elif ( rec.holiday_status_id.custom_leave == True and rec.holiday_status_id.applicable_for == 'both' and rec.holiday_status_id.only_time_granted == True ) :
+            elif (
+                    rec.holiday_status_id.custom_leave == True and rec.holiday_status_id.applicable_for == 'both' and rec.holiday_status_id.only_time_granted == True):
                 if rec.employee_id.gender == 'male' or rec.employee_id.gender == 'female':
                     if rec.employee_id.employee_time_granted == True:
                         raise ValidationError(_("This type only time granted "))
@@ -83,14 +91,12 @@ class HrAllocation(models.Model):
             [('allocated_method', '=', 'auto'), ('automated_allocation', '=', 'based')], limit=1)
         today = datetime.datetime.today()
         t_today = today.day
-        t_month = today.month
         for employee in Employees:
             if employee.contract_id.state == 'open':
                 started_date = datetime.datetime.strptime(
                     employee.started_date.strftime('%Y-%m-%d'), '%Y-%m-%d')
                 s_today = started_date.day
-                s_month = started_date.month
-                if t_today == s_today and t_month == s_month:
+                if t_today == s_today:
                     allocation_vals = {
                         'name': _('Annual Leave for ') + employee.name,
                         'holiday_status_id': Timeeofftyp.id,
@@ -101,3 +107,24 @@ class HrAllocation(models.Model):
                     }
                     self.env['hr.leave.allocation'].create(allocation_vals)
 
+    @api.model
+    def create_holiday_custom_allocation(self):
+        Employees = self.env['hr.employee'].search([])
+        Timeeofftyp = self.env['hr.leave.type'].search(
+            [('allocated_method', '=', 'auto'), ('automated_allocation', '=', 'custom'),
+             ('unit_per_interval', '=', 'days'),('interval_unit','=','years')])
+        today = datetime.datetime.today()
+        t_today = today.day
+        t_month = today.month
+        for employee in Employees:
+            if employee.contract_id.state == 'open':
+                if t_today == 1 and t_month == 1:
+                    allocation_vals = {
+                        'name': _('Custom Leave for ') + employee.name,
+                        'holiday_status_id': Timeeofftyp.id,
+                        'allocation_type': 'regular',
+                        'holiday_type': 'employee',
+                        'number_of_days': Timeeofftyp.number_per_interval,
+                        'employee_id': employee.id
+                    }
+                    self.env['hr.leave.allocation'].create(allocation_vals)

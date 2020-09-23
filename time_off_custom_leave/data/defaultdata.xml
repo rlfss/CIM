@@ -3,7 +3,7 @@
     <data noupdate="1">
 
         <record id="1_leave_custom" model="hr.leave.type">
-            <field name="name">سنوية</field>
+            <field name="name">Annual Leave</field>
             <field name="request_unit">day</field>
             <field name="allocated_method">auto</field>
             <field name="automated_allocation">based</field>
@@ -20,7 +20,7 @@
         </record>
 
         <record id="2_leave_custom" model="hr.leave.type">
-            <field name="name">طارئة</field>
+            <field name="name">Sick Leave</field>
             <field name="request_unit">day</field>
             <field name="allocation_type">fixed</field>
             <field name="validation_type">both</field>
@@ -38,7 +38,7 @@
         </record>
 
         <record id="3_leave_custom" model="hr.leave.type">
-            <field name="name">مرضية</field>
+            <field name="name">Emergency Leave</field>
             <field name="request_unit">day</field>
             <field name="allocation_type">fixed</field>
             <field name="validation_type">both</field>

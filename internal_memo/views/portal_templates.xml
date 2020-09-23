@@ -123,17 +123,7 @@
                                                            class="form-control"/>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Template:</label>
-                                                    <select name="template_id" class="form-control link-style">
-                                                        <t t-foreach="template_id" t-as="o">
-                                                            <option t-esc="o.template" t-att-value="o.id"/>
-                                                        </t>
-                                                    </select>
 
-                                                </div>
-                                            </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -143,16 +133,498 @@
                                                            class="form-control"/>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Memo :</label>
-                                                    <textarea placeholder="Memo" rows="4" class="form-control"
-                                                              name="message">
+                                                    <label>Template:</label>
+                                                    <select name="template_id" id="mySelect"
+                                                            class="form-control link-style">
+                                                        <t t-foreach="template_id" t-as="o">
+                                                            <option t-esc="o.template" t-att-value="o.id"/>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Memo :</label>
+                                                <div class="position-relative o_wysiwyg_wrapper"><odoo-wysiwyg-container>
+                                                <div class="note-editor panel panel-default"><div
+                                                        class="note-dialog"><div class="note-image-dialog modal"
+                                                                                 role="dialog" aria-hidden="false"><div
+                                                        class="modal-dialog"><div class="modal-content"><header
+                                                        class="modal-header"><h4 class="modal-title">Insert
+                                                    Image</h4><button type="button" class="close" aria-hidden="true"
+                                                                      tabindex="-1">×</button></header><main
+                                                        class="modal-body"><div
+                                                        class="form-group row note-group-select-from-files"><label>
+                                                    Select from files</label><input
+                                                        class="note-image-input form-control" type="file" name="files"
+                                                        accept="image/*" multiple="multiple"/></div><div
+                                                        class="form-group row"><label>Image URL</label><input
+                                                        class="note-image-url form-control col-md-12"
+                                                        type="text"/></div></main><header class="modal-footer"><button
+                                                        href="#" class="btn btn-primary note-image-btn disabled"
+                                                        disabled="">Insert Image</button></header></div></div></div><div
+                                                        class="note-link-dialog modal" role="dialog"
+                                                        aria-hidden="false"><div class="modal-dialog"><div
+                                                        class="modal-content"><header class="modal-header"><h4
+                                                        class="modal-title">Insert Link</h4><button type="button"
+                                                                                                    class="close"
+                                                                                                    aria-hidden="true"
+                                                                                                    tabindex="-1">
+                                                    ×</button></header><main class="modal-body"><div
+                                                        class="form-group row"><label>Text to display</label><input
+                                                        class="note-link-text form-control col-md-12"
+                                                        type="text"/></div><div class="form-group row"><label>To what URL
+                                                    should this link go?</label><input
+                                                        class="note-link-url form-control col-md-12" type="text"
+                                                        value="http://"/></div><div class="checkbox"><label><input
+                                                        type="checkbox" checked=""/> Open in new
+                                                    window</label></div></main><header class="modal-footer"><button
+                                                        href="#" class="btn btn-primary note-link-btn disabled"
+                                                        disabled="">Insert Link</button></header></div></div></div><div
+                                                        class="note-help-dialog modal" role="dialog"
+                                                        aria-hidden="false"><div class="modal-dialog"><div
+                                                        class="modal-content"><main class="modal-body"><a
+                                                        class="modal-close float-right" aria-hidden="true"
+                                                        tabindex="-1">Close</a><div class="title">Keyboard
+                                                    shortcuts</div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut note-shortcut-col col-md-6 col-12"><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-title offset-6">
+                                                    Action</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    Z</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Undo</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    Z</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Redo</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    ]</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Indent</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    [</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Outdent</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    ENTER</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Insert Horizontal Rule</div></div></div><div
+                                                        class="note-shortcut note-shortcut-col col-md-6 col-12"><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-title offset-6">
+                                                    Text formatting</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    B</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Bold</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    I</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Italic</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    U</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Underline</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    \</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Remove Font Style</div></div></div></div><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut note-shortcut-col col-md-6 col-12"><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-title offset-6">
+                                                    Document Style</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM0</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Normal</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM1</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 1</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM2</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 2</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM3</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 3</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM4</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 4</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM5</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 5</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl +
+                                                    NUM6</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Header 6</div></div></div><div
+                                                        class="note-shortcut note-shortcut-col col-md-6 col-12"><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-title offset-6">
+                                                    Paragraph formatting</div></div><div
+                                                        class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    L</div><div class="note-shortcut-col col-6 note-shortcut-name">Align
+                                                    left</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    E</div><div class="note-shortcut-col col-6 note-shortcut-name">Align
+                                                    center</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    R</div><div class="note-shortcut-col col-6 note-shortcut-name">Align
+                                                    right</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    J</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Justify full</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    NUM7</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Ordered list</div></div><div class="note-shortcut-row row"><div
+                                                        class="note-shortcut-col col-6 note-shortcut-key">Ctrl + Shift +
+                                                    NUM8</div><div class="note-shortcut-col col-6 note-shortcut-name">
+                                                    Unordered list</div></div></div></div><p class="text-center"><a
+                                                        href="//summernote.org/" target="_blank">Summernote @VERSION</a>
+                                                    · <a href="//github.com/summernote/summernote" target="_blank">
+                                                        Project</a> · <a
+                                                            href="//github.com/summernote/summernote/issues"
+                                                            target="_blank">
+                                                        Issues</a></p></main></div></div></div></div><div
+                                                        class="note-dropzone"><div
+                                                        class="note-dropzone-message"></div></div><div
+                                                        class="note-toolbar panel-heading"><div
+                                                        class="note-style btn-group"><div class="btn-group"
+                                                                                          data-name="style"><button
+                                                        type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown" title="" tabindex="-1"
+                                                        data-original-title="Style"><i class="fa fa-magic"></i> <span
+                                                        class="caret"></span></button><ul class="dropdown-menu"><li><a
+                                                        class="dropdown-item" data-event="formatBlock" href="#"
+                                                        data-value="p">Normal</a></li><li><a class="dropdown-item"
+                                                                                             data-event="formatBlock"
+                                                                                             href="#" data-value="pre">
+                                                    Code</a></li><li><a class="dropdown-item" data-event="formatBlock"
+                                                                        href="#" data-value="small"><small>
+                                                    Small</small></a></li><li><a class="dropdown-item"
+                                                                                 data-event="formatBlock" href="#"
+                                                                                 data-value="h4"><h4>Header
+                                                    4</h4></a></li><li><a class="dropdown-item" data-event="formatBlock"
+                                                                          href="#" data-value="h5"><h5>Header
+                                                    5</h5></a></li><li><a class="dropdown-item" data-event="formatBlock"
+                                                                          href="#" data-value="h6"><h6>Header
+                                                    6</h6></a></li><li><a class="dropdown-item" data-event="formatBlock"
+                                                                          href="#" data-value="blockquote"><blockquote>
+                                                    Quote</blockquote></a></li></ul></div></div><div
+                                                        class="note-font btn-group"><button type="button"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            title="" data-event="bold"
+                                                                                            tabindex="-1"
+                                                                                            data-name="bold"
+                                                                                            data-original-title="Bold (CTRL+B)"><i
+                                                        class="fa fa-bold"></i></button><button type="button"
+                                                                                                class="btn btn-secondary btn-sm"
+                                                                                                title=""
+                                                                                                data-event="italic"
+                                                                                                tabindex="-1"
+                                                                                                data-name="italic"
+                                                                                                data-original-title="Italic (CTRL+I)"><i
+                                                        class="fa fa-italic"></i></button><button type="button"
+                                                                                                  class="btn btn-secondary btn-sm"
+                                                                                                  title=""
+                                                                                                  data-event="underline"
+                                                                                                  tabindex="-1"
+                                                                                                  data-name="underline"
+                                                                                                  data-original-title="Underline (CTRL+U)"><i
+                                                        class="fa fa-underline"></i></button><button type="button"
+                                                                                                     class="btn btn-secondary btn-sm"
+                                                                                                     title=""
+                                                                                                     data-event="removeFormat"
+                                                                                                     tabindex="-1"
+                                                                                                     data-name="clear"
+                                                                                                     data-original-title="Remove Font Style (CTRL+\)"><i
+                                                        class="fa fa-eraser"></i></button></div><div
+                                                        class="note-para btn-group"><button type="button"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            title=""
+                                                                                            data-event="insertUnorderedList"
+                                                                                            tabindex="-1" data-name="ul"
+                                                                                            data-original-title="Unordered list (CTRL+SHIFT+NUM7)"><i
+                                                        class="fa fa-list-ul"></i></button><button type="button"
+                                                                                                   class="btn btn-secondary btn-sm"
+                                                                                                   title=""
+                                                                                                   data-event="insertOrderedList"
+                                                                                                   tabindex="-1"
+                                                                                                   data-name="ol"
+                                                                                                   data-original-title="Ordered list (CTRL+SHIFT+NUM8)"><i
+                                                        class="fa fa-list-ol"></i></button><div class="btn-group"
+                                                                                                data-name="paragraph"><button
+                                                        type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown" title="" tabindex="-1"
+                                                        data-original-title="Paragraph"><i
+                                                        class="fa fa-align-left"></i> <span
+                                                        class="caret"></span></button><div class="dropdown-menu"><div
+                                                        class="note-align btn-group"><button type="button"
+                                                                                             class="btn btn-secondary btn-sm active"
+                                                                                             title=""
+                                                                                             data-event="justifyLeft"
+                                                                                             tabindex="-1"
+                                                                                             data-original-title="Align left (CTRL+SHIFT+L)"><i
+                                                        class="fa fa-align-left"></i></button><button type="button"
+                                                                                                      class="btn btn-secondary btn-sm"
+                                                                                                      title=""
+                                                                                                      data-event="justifyCenter"
+                                                                                                      tabindex="-1"
+                                                                                                      data-original-title="Align center (CTRL+SHIFT+E)"><i
+                                                        class="fa fa-align-center"></i></button><button type="button"
+                                                                                                        class="btn btn-secondary btn-sm"
+                                                                                                        title=""
+                                                                                                        data-event="justifyRight"
+                                                                                                        tabindex="-1"
+                                                                                                        data-original-title="Align right (CTRL+SHIFT+R)"><i
+                                                        class="fa fa-align-right"></i></button><button type="button"
+                                                                                                       class="btn btn-secondary btn-sm"
+                                                                                                       title=""
+                                                                                                       data-event="justifyFull"
+                                                                                                       tabindex="-1"
+                                                                                                       data-original-title="Justify full (CTRL+SHIFT+J)"><i
+                                                        class="fa fa-align-justify"></i></button></div><div
+                                                        class="note-list btn-group"><button type="button"
+                                                                                            class="btn btn-secondary btn-sm"
+                                                                                            title="" data-event="indent"
+                                                                                            tabindex="-1"
+                                                                                            data-original-title="Indent (CTRL+])"><i
+                                                        class="fa fa-indent"></i></button><button type="button"
+                                                                                                  class="btn btn-secondary btn-sm"
+                                                                                                  title=""
+                                                                                                  data-event="outdent"
+                                                                                                  tabindex="-1"
+                                                                                                  data-original-title="Outdent (CTRL+[)"><i
+                                                        class="fa fa-outdent"></i></button></div></div></div></div><div
+                                                        class="note-table btn-group"><div class="btn-group"
+                                                                                          data-name="table"><button
+                                                        type="button" class="btn btn-secondary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown" title="" tabindex="-1"
+                                                        data-original-title="Table"><i class="fa fa-table"></i> <span
+                                                        class="caret"></span></button><ul
+                                                        class="dropdown-menu note-table"><div
+                                                        class="note-dimension-picker"><div
+                                                        class="note-dimension-picker-mousecatcher"
+                                                        data-event="insertTable" data-value="1x1"
+                                                        style="width: 10em; height: 10em;"></div><div
+                                                        class="note-dimension-picker-highlighted"></div><div
+                                                        class="note-dimension-picker-unhighlighted"></div></div><div
+                                                        class="note-dimension-display"> 1 x
+                                                    1 </div></ul></div></div><div
+                                                        class="note-insert btn-group"></div><div
+                                                        class="note-history btn-group"><button type="button"
+                                                                                               class="btn btn-secondary btn-sm"
+                                                                                               title=""
+                                                                                               data-event="undo"
+                                                                                               tabindex="-1"
+                                                                                               data-name="undo"
+                                                                                               data-original-title="Undo (CTRL+Z)"
+                                                                                               disabled="disabled"><i
+                                                        class="fa fa-undo"></i></button><button type="button"
+                                                                                                class="btn btn-secondary btn-sm"
+                                                                                                title=""
+                                                                                                data-event="redo"
+                                                                                                tabindex="-1"
+                                                                                                data-name="redo"
+                                                                                                data-original-title="Redo (CTRL+Y)"
+                                                                                                disabled="disabled"><i
+                                                        class="fa fa-repeat"></i></button></div></div><div
+                                                        class="note-editing-area"><div class="note-handle"><div
+                                                        class="note-control-selection" style="display: none;"><div
+                                                        class="note-control-selection-bg"></div><div
+                                                        class="note-control-holder note-control-nw"></div><div
+                                                        class="note-control-holder note-control-ne"></div><div
+                                                        class="note-control-holder note-control-sw"></div><div
+                                                        class="note-control-sizing note-control-se"></div><div
+                                                        class="note-control-selection-info"></div></div></div><div
+                                                        class="note-popover"><div
+                                                        class="note-link-popover popover bottom in"
+                                                        style="display: none;"><div class="arrow"></div><div
+                                                        class="popover-body"><a href="http://www.google.com"
+                                                                                target="_blank">www.google.com</a><div
+                                                        class="note-insert btn-group"><button type="button"
+                                                                                              class="btn btn-secondary btn-sm"
+                                                                                              title=""
+                                                                                              data-event="showLinkDialog"
+                                                                                              data-hide="true"
+                                                                                              tabindex="-1"
+                                                                                              data-original-title="Edit"><i
+                                                        class="fa fa-link"></i></button><button type="button"
+                                                                                                class="btn btn-secondary btn-sm"
+                                                                                                title=""
+                                                                                                data-event="unlink"
+                                                                                                tabindex="-1"
+                                                                                                data-original-title="Unlink"><i
+                                                        class="fa fa-unlink"></i></button></div></div></div><div
+                                                        class="note-image-popover popover bottom in"
+                                                        style="display: none;"><div class="arrow"></div><div
+                                                        class="popover-body"><div class="btn-group"><div
+                                                        class="btn-group"><button type="button"
+                                                                                  class="btn btn-secondary btn-sm dropdown-toggle"
+                                                                                  data-toggle="dropdown" title=""
+                                                                                  tabindex="-1"
+                                                                                  data-original-title="Padding"><i
+                                                        class="fa fa-plus-square-o"></i> <span
+                                                        class="caret"></span></button><ul class="dropdown-menu"><li><a
+                                                        class="dropdown-item" data-event="padding" href="#"
+                                                        data-value="">None</a></li><li><a class="dropdown-item"
+                                                                                          data-event="padding" href="#"
+                                                                                          data-value="small">
+                                                    Small</a></li><li><a class="dropdown-item" data-event="padding"
+                                                                         href="#" data-value="medium">
+                                                    Medium</a></li><li><a class="dropdown-item" data-event="padding"
+                                                                          href="#" data-value="large">
+                                                    Large</a></li><li><a class="dropdown-item" data-event="padding"
+                                                                         href="#" data-value="xl">
+                                                    Xl</a></li></ul></div></div><div class="btn-group"><button
+                                                        type="button" class="btn btn-secondary btn-sm"
+                                                        data-event="resize" data-value="auto" tabindex="-1"
+                                                        data-original-title="" title=""><span class="note-fontsize-10">
+                                                    Auto</span></button><button type="button"
+                                                                                class="btn btn-secondary btn-sm"
+                                                                                title="" data-event="resize"
+                                                                                data-value="1" tabindex="-1"
+                                                                                data-original-title="Resize Full"><span
+                                                        class="note-fontsize-10">100%</span></button><button
+                                                        type="button" class="btn btn-secondary btn-sm" title=""
+                                                        data-event="resize" data-value="0.5" tabindex="-1"
+                                                        data-original-title="Resize Half"><span
+                                                        class="note-fontsize-10">50%</span></button><button
+                                                        type="button" class="btn btn-secondary btn-sm" title=""
+                                                        data-event="resize" data-value="0.25" tabindex="-1"
+                                                        data-original-title="Resize Quarter"><span
+                                                        class="note-fontsize-10">25%</span></button></div><div
+                                                        class="btn-group d-none only_fa"><button type="button"
+                                                                                                 class="btn btn-secondary btn-sm"
+                                                                                                 title=""
+                                                                                                 data-event="resizefa"
+                                                                                                 data-value="1"
+                                                                                                 tabindex="-1"
+                                                                                                 data-original-title="1x"><span
+                                                        class="note-fontsize-10">1x</span></button><button type="button"
+                                                                                                           class="btn btn-secondary btn-sm"
+                                                                                                           title=""
+                                                                                                           data-event="resizefa"
+                                                                                                           data-value="2"
+                                                                                                           tabindex="-1"
+                                                                                                           data-original-title="2x"><span
+                                                        class="note-fontsize-10">2x</span></button><button type="button"
+                                                                                                           class="btn btn-secondary btn-sm"
+                                                                                                           title=""
+                                                                                                           data-event="resizefa"
+                                                                                                           data-value="3"
+                                                                                                           tabindex="-1"
+                                                                                                           data-original-title="3x"><span
+                                                        class="note-fontsize-10">3x</span></button><button type="button"
+                                                                                                           class="btn btn-secondary btn-sm"
+                                                                                                           title=""
+                                                                                                           data-event="resizefa"
+                                                                                                           data-value="4"
+                                                                                                           tabindex="-1"
+                                                                                                           data-original-title="4x"><span
+                                                        class="note-fontsize-10">4x</span></button><button type="button"
+                                                                                                           class="btn btn-secondary btn-sm"
+                                                                                                           title=""
+                                                                                                           data-event="resizefa"
+                                                                                                           data-value="5"
+                                                                                                           tabindex="-1"
+                                                                                                           data-original-title="5x"><span
+                                                        class="note-fontsize-10">5x</span></button></div><div
+                                                        class="btn-group"><button type="button"
+                                                                                  class="btn btn-secondary btn-sm"
+                                                                                  title="" data-event="floatMe"
+                                                                                  data-value="left" tabindex="-1"
+                                                                                  data-original-title="Float Left"><i
+                                                        class="fa fa-align-left"></i></button><button type="button"
+                                                                                                      class="btn btn-secondary btn-sm"
+                                                                                                      title=""
+                                                                                                      data-event="floatMe"
+                                                                                                      data-value="center"
+                                                                                                      tabindex="-1"
+                                                                                                      data-original-title="Center"><i
+                                                        class="fa fa-align-center"></i></button><button type="button"
+                                                                                                        class="btn btn-secondary btn-sm"
+                                                                                                        title=""
+                                                                                                        data-event="floatMe"
+                                                                                                        data-value="right"
+                                                                                                        tabindex="-1"
+                                                                                                        data-original-title="Float Right"><i
+                                                        class="fa fa-align-right"></i></button></div><div
+                                                        class="btn-group"><button type="button"
+                                                                                  class="btn btn-secondary btn-sm"
+                                                                                  title="" data-event="imageShape"
+                                                                                  data-value="rounded" tabindex="-1"
+                                                                                  data-original-title="Shape: Rounded"><i
+                                                        class="fa fa-square"></i></button><button type="button"
+                                                                                                  class="btn btn-secondary btn-sm"
+                                                                                                  title=""
+                                                                                                  data-event="imageShape"
+                                                                                                  data-value="rounded-circle"
+                                                                                                  tabindex="-1"
+                                                                                                  data-original-title="Shape: Circle"><i
+                                                        class="fa fa-circle-o"></i></button><button type="button"
+                                                                                                    class="btn btn-secondary btn-sm"
+                                                                                                    title=""
+                                                                                                    data-event="imageShape"
+                                                                                                    data-value="shadow"
+                                                                                                    tabindex="-1"
+                                                                                                    data-original-title="Shadow"><i
+                                                        class="fa fa-sun-o"></i></button><button type="button"
+                                                                                                 class="btn btn-secondary btn-sm"
+                                                                                                 title=""
+                                                                                                 data-event="imageShape"
+                                                                                                 data-value="img-thumbnail"
+                                                                                                 tabindex="-1"
+                                                                                                 data-original-title="Shape: Thumbnail"><i
+                                                        class="fa fa-picture-o"></i></button><button type="button"
+                                                                                                     class="btn btn-secondary btn-sm"
+                                                                                                     title=""
+                                                                                                     data-event="cropImage"
+                                                                                                     tabindex="-1"
+                                                                                                     data-original-title="Crop Image"><i
+                                                        class="fa fa-crop"></i></button></div><div
+                                                        class="btn-group d-none only_fa"><button type="button"
+                                                                                                 class="btn btn-secondary btn-sm"
+                                                                                                 title=""
+                                                                                                 data-event="imageShape"
+                                                                                                 data-value="fa-spin"
+                                                                                                 tabindex="-1"
+                                                                                                 data-original-title="Spin"><i
+                                                        class="fa fa-refresh"></i></button></div><div
+                                                        class="btn-group"><button type="button"
+                                                                                  class="btn btn-secondary btn-sm"
+                                                                                  title="" data-event="showImageDialog"
+                                                                                  tabindex="-1"
+                                                                                  data-original-title="Edit"><i
+                                                        class="fa fa-file-image-o"></i></button><button type="button"
+                                                                                                        class="btn btn-secondary btn-sm"
+                                                                                                        title=""
+                                                                                                        data-event="delete"
+                                                                                                        tabindex="-1"
+                                                                                                        data-original-title="Remove"><i
+                                                        class="fa fa-trash-o"></i></button></div><div
+                                                        class="btn-group"><button class="btn btn-secondary"
+                                                                                  data-event="alt"
+                                                                                  data-original-title=""
+                                                                                  title=""><strong>
+                                                    Description: </strong><span
+                                                        class="o_image_alt"></span></button></div></div></div></div><textarea
+                                                        class="note-codable"></textarea>
+                                                    <textarea placeholder="Memo" rows="4" class="form-control load_editor"
+                                                              name="message" id="memo">
                                                         <t t-esc="request.params.get('message', '')"/>
                                                     </textarea>
                                                 </div>
+                                                    <div
+                                                        class="note-statusbar"><div class="note-resizebar"><div
+                                                        class="note-icon-bar"></div><div
+                                                        class="note-icon-bar"></div><div
+                                                        class="note-icon-bar"></div></div></div></div></odoo-wysiwyg-container></div>
                                             </div>
+                                            </div>
+<!--                                            <div class="col-md-12">-->
+<!--                                                <div class="form-group">-->
+<!--                                                    <label>Memo :</label>-->
+<!--                                                    <textarea placeholder="Memo" rows="4" class="form-control load_editor"-->
+<!--                                                              name="message" id="memo">-->
+<!--                                                        <t t-esc="request.params.get('message', '')"/>-->
+<!--                                                    </textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <div class="col-12 text-lg-right text-center">
                                                 <input class="btn btn-primary px-4" type="Submit" value="send"/>
                                             </div>

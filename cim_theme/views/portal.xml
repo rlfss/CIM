@@ -249,10 +249,13 @@
     <template id="custom_frontend_layout" name="Custom portal layout" inherit_id="portal.frontend_layout">
 
             
-           <xpath expr="//header" position="after">
+           <xpath expr="//header" position="before">
             <t t-if="page_name == 'home' or page_name == 'leaves' or leaves">
                 <nav id="menu" class="shadow-sm">
                     <div class="p-3">
+<!--                        <a class="navbar-brand" href="/">-->
+<!--                                  <img src="/cim_theme/static/src/img/logo.png" class="img-fluid"/>-->
+<!--                        </a>-->
                         <div class="media profile-media border-bottom pb-3">
                             <img class="mr-2 shadow-sm img-thumbnail" src="/cim_theme/static/src/img/profile.jpg"  alt="profile"/>
                             <div class="media-body">

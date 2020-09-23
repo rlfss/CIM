@@ -28,15 +28,15 @@ class InternalMemo(models.Model):
 
     @api.model
     def create_memo_portal(self, values):
-        # if not (self.env.user.employee_id):
-        #     raise AccessDenied()
+        if not (self.env.user.employee_id):
+            raise AccessDenied()
         self = self.sudo()
         name = values['name']
         to = values['to']
         via = values['via']
         message = values['message']
         employee_id = values['employee_id']
-        # manager_id = values['manager_id']
+        manager_id = values['manager_id']
         template_id = values['template_id']
 
         values = {
@@ -45,7 +45,7 @@ class InternalMemo(models.Model):
             'via': via,
             'message': message,
             'employee_id': int(employee_id.id),
-            # 'manager_id': int(manager_id.id),
+            'manager_id': int(manager_id.parent_id.id),
             'template_id': template_id
         }
 

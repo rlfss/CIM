@@ -9,7 +9,6 @@
                     <group>
                         <field name="template"/>
                         <field name="description"/>
-
                     </group>
                 </sheet>
             </form>

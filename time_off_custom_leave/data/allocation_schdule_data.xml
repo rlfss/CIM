@@ -10,5 +10,14 @@
             <field name="code">model.create_employee_allocation()</field>
             <field name="state">code</field>
         </record>
+        <record id="ir_cron_allocation_holiday_create" model="ir.cron">
+            <field name="name">Hr holiday: create new Custom Leave</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
+            <field name="code">model.create_holiday_custom_allocation()</field>
+            <field name="state">code</field>
+        </record>
     </data>
 </odoo>

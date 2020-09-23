@@ -185,7 +185,7 @@ class WebsiteAccount(CustomerPortal):
             order = "holiday_status_id, %s" % order
         # content according to pager and archive selected
         leaves = HrLeave.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
-        perms = HrPerm.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
+        #perms = HrPerm.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
         if groupby == 'none':
             grouped_timeoff = []
             if leaves:
@@ -195,7 +195,7 @@ class WebsiteAccount(CustomerPortal):
         values.update({
             'date': date_begin,
             'leaves': leaves,
-            'perms': perms,
+            # 'perms': perms,
             'grouped_timeoff': grouped_timeoff,
             'page_name': 'leave',
             'timeoffs':get_days_all_request,

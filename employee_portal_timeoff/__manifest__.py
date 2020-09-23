@@ -17,6 +17,7 @@
         'hr_holidays',
         'leave_sequence',
         'hr_permission',
+        'leave_cim'
     ],
     # Views
     'data': [
