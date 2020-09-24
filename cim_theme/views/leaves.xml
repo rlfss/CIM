@@ -135,11 +135,11 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <div class="balance-container">
-                                                        <div class="balance-card">
-                                                            <h3 class="green-color">
-                                                                <span t-esc="timeoff[1]['leaves_taken']"/>
+                                                <div class="col-lg-4" >
+                                                    <div class="balance-container" >
+                                                        <div class="balance-card" >
+                                                            <h3 class="green-color" >
+                                                                <span t-esc="timeoff[1]['virtual_remaining_leaves']"/>
                                                             </h3>
                                                         </div>
                                                         <p class="m-0 mt-1">
