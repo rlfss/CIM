@@ -45,10 +45,10 @@ class HolidaysType(models.Model):
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
+
     is_g_manager = fields.Boolean('Is Manager')
 
     supermanager_id = fields.Many2one('hr.employee', 'Upper Manager')
-
 
     @api.onchange('parent_id')
     def _onchange_parent_id(self):
@@ -67,7 +67,6 @@ class Holidays(models.Model):
     basic_balance = fields.Char(compute='_compute_basic_balance',stored=True)
     current_balance = fields.Char(compute='_compute_current_balance',stored=True)
     balance_consumed = fields.Char(compute='_compute_balance_consumed',stored=True)
-
 
     @api.depends('holiday_status_id.max_leaves')
     def _compute_basic_balance(self):
@@ -233,7 +232,4 @@ class Holidays(models.Model):
                 hour , m , s = total.split(':')
                 # raise ValidationError(_(str(days) + ' ' + str(hours)))
                 return {'days': float(1), 'hours': float(hour)}
-
-
-
 
