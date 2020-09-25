@@ -11,7 +11,7 @@
             <field name="state">code</field>
         </record>
         <record id="ir_cron_allocation_holiday_create" model="ir.cron">
-            <field name="name">Hr holiday: create new Custom Leave</field>
+            <field name="name">Hr holiday: create new Custom Leave For Sick and Emergency</field>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>

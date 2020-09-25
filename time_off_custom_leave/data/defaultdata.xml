@@ -22,11 +22,17 @@
         <record id="2_leave_custom" model="hr.leave.type">
             <field name="name">Sick Leave</field>
             <field name="request_unit">day</field>
+            <field name="allocated_method">auto</field>
+            <field name="automated_allocation">custom</field>
+            <field name="number_per_interval">60</field>
+            <field name="unit_per_interval">days</field>
+            <field name="interval_number">1</field>
+            <field name="interval_unit">years</field>
             <field name="allocation_type">fixed</field>
             <field name="validation_type">both</field>
-            <field name="lead_time">12</field>
-            <field name="max_con_duration">3</field>
-            <field name="max_int_duration">12</field>
+            <field name="lead_time">60</field>
+            <field name="max_con_duration">45</field>
+            <field name="max_int_duration">60</field>
             <field name="responsible_id" ref="base.user_admin"/>
             <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
             <field name="exclude_weekends" eval="True"/>
@@ -40,11 +46,17 @@
         <record id="3_leave_custom" model="hr.leave.type">
             <field name="name">Emergency Leave</field>
             <field name="request_unit">day</field>
+            <field name="allocated_method">auto</field>
+            <field name="automated_allocation">custom</field>
+            <field name="number_per_interval">12</field>
+            <field name="unit_per_interval">days</field>
+            <field name="interval_number">1</field>
+            <field name="interval_unit">years</field>
             <field name="allocation_type">fixed</field>
             <field name="validation_type">both</field>
-            <field name="lead_time">60</field>
-            <field name="max_con_duration">45</field>
-            <field name="max_int_duration">60</field>
+            <field name="lead_time">12</field>
+            <field name="max_con_duration">3</field>
+            <field name="max_int_duration">12</field>
             <field name="responsible_id" ref="base.user_admin"/>
             <field name="validity_start" eval="time.strftime('%Y-%m-01')"/>
             <field name="exclude_weekends" eval="False"/>

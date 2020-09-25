@@ -123,7 +123,7 @@ class HrAllocation(models.Model):
                         'name': _('Custom Leave for ') + employee.name,
                         'holiday_status_id': Timeeofftyp.id,
                         'allocation_type': 'regular',
-                        'holiday_type': 'employee',
+                        'holiday_type': 'company',
                         'number_of_days': Timeeofftyp.number_per_interval,
                         'employee_id': employee.id
                     }
