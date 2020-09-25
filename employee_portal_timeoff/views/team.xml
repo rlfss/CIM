@@ -508,7 +508,7 @@
                     <div class="d-flex flex-wrap justify-content-md-around">
                             <div class="row">
                                 <h2 class="mt-4 mb-4"> Employee : <span t-if="doc.employee_id.name" t-field="doc.employee_id.name"/></h2>
-                            </div>
+                            </div> <br/>
                             <div class="row">
                                 <h2 class="mt-4 mb-4"> Leve type : <span t-if="doc.holiday_status_id.name" t-field="doc.holiday_status_id.name"/></h2>
                             </div>
