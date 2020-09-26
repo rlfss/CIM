@@ -9,6 +9,7 @@
             <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
             <field name="code">model.create_employee_allocation()</field>
             <field name="state">code</field>
+            <field name="active" eval="True"/>
         </record>
         <record id="ir_cron_allocation_holiday_create" model="ir.cron">
             <field name="name">Hr holiday: create new Custom Leave For Sick and Emergency</field>
@@ -18,6 +19,7 @@
             <field name="model_id" ref="hr_holidays.model_hr_leave_allocation"/>
             <field name="code">model.create_holiday_custom_allocation()</field>
             <field name="state">code</field>
+            <field name="active" eval="True"/>
         </record>
     </data>
 </odoo>
