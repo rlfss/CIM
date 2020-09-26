@@ -86,7 +86,7 @@ class ResUsers(models.Model):
             Function for saving session details to corresponding user
         """
         # minutes=45 is the default number
-        exp_date = datetime.utcnow() + timedelta(minutes=60)
+        exp_date = datetime.utcnow() + timedelta(minutes=120)
         sid = request.httprequest.session.sid
         self.with_user(SUPERUSER_ID).write({'sid': sid, 'exp_date': exp_date,
                                             'logged_in': True,

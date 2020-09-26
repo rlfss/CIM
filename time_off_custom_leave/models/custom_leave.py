@@ -117,14 +117,15 @@ class HrAllocation(models.Model):
         t_today = today.day
         t_month = today.month
         for employee in Employees:
-            if employee.contract_id.state == 'open':
-                if t_today == 1 and t_month == 1:
-                    allocation_vals = {
-                        'name': _('Custom Leave for ') + employee.name,
-                        'holiday_status_id': Timeeofftyp.id,
-                        'allocation_type': 'regular',
-                        'holiday_type': 'company',
-                        'number_of_days': Timeeofftyp.number_per_interval,
-                        'employee_id': employee.id
-                    }
-                    self.env['hr.leave.allocation'].create(allocation_vals)
+            for tmf in Timeeofftyp:
+                if employee.contract_id.state == 'open':
+                    if t_today == 1 and t_month == 1:
+                        allocation_vals = {
+                            'name': _('Custom Leave for ') + employee.name,
+                            'holiday_status_id': tmf.id,
+                            'allocation_type': 'regular',
+                            'holiday_type': 'employee',
+                            'number_of_days': tmf.number_per_interval,
+                            'employee_id': employee.id
+                        }
+                        self.env['hr.leave.allocation'].create(allocation_vals)

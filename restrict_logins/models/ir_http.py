@@ -60,7 +60,7 @@ class IrHttp(models.AbstractModel):
                 sid = request.session.sid
                 last_update = user_pool.last_update
                 now = datetime.now()
-                exp_date = datetime.now() + timedelta(minutes=45)
+                exp_date = datetime.now() + timedelta(minutes=120)
                 # check that the authentication contains bus_inactivity
                 request_params = request.params.copy()
                 if 'options' in request_params and 'bus_inactivity' in \
