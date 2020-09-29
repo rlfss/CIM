@@ -12,5 +12,6 @@
         'views/login.xml',
         'views/portal.xml',
         'views/leaves.xml',
+        #'data/home_action.xml'
     ],
 }

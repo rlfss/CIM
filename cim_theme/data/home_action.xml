@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="action_open_website_my_account" model="ir.actions.act_url">
+            <field name="name">Website My Account</field>
+            <field name="target">self</field>
+            <field name="url">/my/home</field>
+        </record>
+
+    </data>
+</odoo>

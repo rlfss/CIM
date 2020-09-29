@@ -24,5 +24,5 @@ class EmployeeDate(models.Model):
 
     # current_date = fields.Date('Date current action', required=False, readonly=False, select=True
     #                             ,default=lambda self: fields.datetime.now())
-    current_time = fields.Datetime('Date current action', required=False, readonly=False, select=True
+    current_time = fields.Datetime('Date current action', required=False, readonly=False, index=True
                                 ,default=fields.Datetime.now)

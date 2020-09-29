@@ -243,6 +243,12 @@
                                                             <input type="text" disabled="" class="remaining form-control" placeholder="Remaining Leave"/>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Attachment(s)</label>
+                                                            <input type="file" name="attachments" class="form-control o_website_form_input attachments" multiple="true" accept="image/*,application/pdf,video/*"/>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12 text-lg-right text-center">
                                                     <button t-attf-class="btn btn-primary px-4 new_timeoff_confirm">
                                                         Submit
