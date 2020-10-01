@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="general_request_view_form" model="ir.ui.view">
+            <field name="name">general_request_view_form</field>
+            <field name="model">general.request</field>
+            <field name="arch" type="xml">
+                <form string="General Request">
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="request_type" widget="radio"/>
+                            <field name="description" attrs="{'invisible': [('request_type', '=', 'r_papers')]}"/>
+                        </group>
+                        <group>
+                        <group>
+                            <field name="type" attrs="{'invisible': [('request_type', '=', 'r_badge')]}"/>
+                        </group>
+                        <group>
+                            <field name="quantity" attrs="{'invisible': [('request_type', '=', 'r_badge')]}"/>
+                        </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="general_request_view_tree" model="ir.ui.view">
+            <field name="name">general_request_view_tree</field>
+            <field name="model">general.request</field>
+            <field name="arch" type="xml">
+                <tree string="General Request">
+                    <field name="employee_id"/>
+                    <field name="request_type"/>
+                    <field name="description"/>
+                    <field name="type"/>
+                    <field name="quantity"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="general_request_action" model="ir.actions.act_window">
+            <field name="name">General Request</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">general.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="general_request_menu" name="General Request" parent="hr.menu_hr_root"
+                  action="general_request_action" sequence="5"/>
+    </data>
+</odoo>
