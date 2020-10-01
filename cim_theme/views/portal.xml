@@ -222,7 +222,7 @@
                                 </a>
                             </div>
                             <div class="col-md-3 col-sm-6 col-12 col-lg-20 ">
-                                <a href="#" class="dashboard-link-container">
+                                <a href="/my/request" class="dashboard-link-container">
                                     <span class="d-link-text text-white">
                                         General Requests
                                     </span>
