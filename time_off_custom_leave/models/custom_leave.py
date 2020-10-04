@@ -39,6 +39,7 @@ class AddAttachment(models.Model):
 
     attachment = fields.Many2many('ir.attachment', string="Attachment", copy=False)
     cus_level = fields.Boolean(string="cus level", related='holiday_status_id.custom_leave')
+    notes = fields.Text("Notes")
 
     @api.onchange('holiday_status_id')
     def _get_fixed_period(self):

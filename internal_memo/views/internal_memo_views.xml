@@ -60,7 +60,7 @@
             action="internal_memo_action"
             id="menu_internal_memo"
             parent="hr_holidays.menu_hr_holidays_root"
-            name="Internal memo"
+            name="E-Correspondence"
             sequence="1"/>
 
 </odoo>

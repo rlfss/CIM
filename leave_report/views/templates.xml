@@ -187,6 +187,12 @@
                                 <span t-field="doc.request_date_to"/>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <span class="fw-600">ملاحظات:</span>
+                                <span t-field="doc.notes"/>
+                            </td>
+                        </tr>
                     </table>
 
                     <table class="table table-bordered" cellpadding="10" cellspacing="0">

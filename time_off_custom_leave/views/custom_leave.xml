@@ -54,10 +54,18 @@
                 <xpath expr="//div[@name='description']" position="before">
                     <field name="cus_level" invisible="1"/>
                     <!-- per day -->
-                    <div class="row" attrs="{'invisible': [('cus_level', '=', False)]}">
+                    <div class="row balance" attrs="{'invisible': [('cus_level', '=', False)]}">
                         <label for="attachment" class="col-2 mr-0" string="Attachment"/>
                         <field name="attachment" class="oe_inline" widget="many2many_binary"/>
                     </div>
+
+                </xpath>
+
+                <xpath expr="//div[@name='description']" position="after">
+                    <div class="row">
+                    <label for="notes" class="col-2 mr-0" string="Notes"/>
+                     <field name="notes" class="oe_inline"/>
+                    </div> <br/>
                 </xpath>
             </field>
         </record>
