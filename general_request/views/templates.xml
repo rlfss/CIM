@@ -1,18 +1,7 @@
 <odoo>
     <data>
-<!--        <template id="portal_my_home_general_request" name="Portal My Home : General Request" inherit_id="portal.portal_my_home"-->
-<!--              priority="40">-->
-<!--        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">-->
-<!--            <t t-if="general_request_count" t-call="portal.portal_docs_entry">-->
-<!--                <t t-set="title">General Request</t>-->
-<!--                <t t-set="url" t-value="'/my/request'"/>-->
-<!--                <t t-set="count" t-value="general_request_count"/>-->
-<!--            </t>-->
-<!--        </xpath>-->
-<!--    </template>-->
         <template id="tmp_request_form" name="General Request">
             <t t-call="portal.portal_layout">
-                <t t-set="breadcrumbs_searchbar" t-value="True"/>
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -63,26 +52,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <t t-foreach="request_type_id" t-as="request">
+                                                <t t-foreach="request_type_id" t-as="o">
                                                     <tr>
                                                         <td>
-                                                            <a t-attf-href="//my/request/#{request.id}}"
-                                                               t-att-title="request.request_type">
-                                                                <t t-esc="request.request_type"/>
-                                                            </a>
+                                                            <span t-field="o.request_type"/>
                                                         </td>
 
                                                         <td>
-                                                            <span t-field="request.description"/>
+                                                            <span t-field="o.description"/>
                                                         </td>
-                                                        <td t-if="request.description">
-                                                            <span t-field="request.description"/>
+                                                        <td>
+                                                            <span t-field="o.type"/>
                                                         </td>
-                                                        <td t-if="request.type">
-                                                            <span t-field="request.typ"/>
-                                                        </td>
-                                                        <td t-if="request.quantity">
-                                                            <span t-field="request.quantity"/>
+                                                        <td>
+                                                            <span t-field="o.quantity"/>
                                                         </td>
 
                                                     </tr>

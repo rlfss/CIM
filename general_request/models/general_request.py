@@ -13,3 +13,8 @@ class GeneralRequest(models.Model):
     type = fields.Char('Type')
     quantity = fields.Float('Quantity')
     employee_id = fields.Many2one('hr.employee',"Employee")
+
+# class HrEmployee(models.AbstractModel):
+#     _inherit = 'hr.employee.base'
+#
+#     name = fields.Char(string="Employee Name",translate=True)

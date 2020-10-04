@@ -15,45 +15,14 @@ class PartnerForm(CustomerPortal):
 
     @http.route(['/my/request','/my/request/page/<int:page>'], type='http', auth="public", website=True)
     def partner_form(self,page=1, sortby=None, **post):
-        # values = self._prepare_portal_layout_values()
+
         GeneralRequest = request.env['general.request']
-        #
         domain = [('employee_id.user_id', '=', request.env.user.id)]
-        #
-        # searchbar_sortings = {
-        #     'write_date': {'label': _('Last Modified on'), 'order': 'write_date desc'},
-        #     'employee_id': {'label': _('Employee'), 'order': 'employee_id desc'},
-        # }
-        # # default sort by order
-        # if not sortby:
-        #     sortby = 'write_date'
-        # order = searchbar_sortings[sortby]['order']
-        #
-        # #archive_groups = self._get_archive_groups('general.request', domain)
-        #
-        # # count for pager
-        # request_count = GeneralRequest.search_count(domain)
-        # # pager
-        # pager = portal_pager(
-        #     url="/my/request",
-        #     url_args={'sortby': sortby},
-        #     total=request_count,
-        #     page=page,
-        #     step=self._items_per_page
-        # )
-        # # content according to pager and archive selected
         request_type_id = GeneralRequest.search(domain)
-        # request.session['my_memo_history'] = request_type_id.ids[:100]
-        #
-        GeneralRequest.update({
-            # 'date': date_begin,
-            'request_type_id': request_type_id,
-            'page_name': 'General Request',
-            #'archive_groups': archive_groups,
-            'default_url': '/my/request',})
 
 
-        return request.render("general_request.tmp_request_form", GeneralRequest)
+
+        return request.render("general_request.tmp_request_form", {'request_type_id':request_type_id})
 
 
 
