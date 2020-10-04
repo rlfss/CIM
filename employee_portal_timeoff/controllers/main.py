@@ -139,7 +139,7 @@ class WebsiteAccount(CustomerPortal):
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
         values.update({
-            'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False}).name_get_only()})
+            'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only()})
         # fileter  By
         searchbar_filters = {
             'all': {'label': _('All'), 'domain': []},

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200625\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 14:18+0000\n"
-"PO-Revision-Date: 2020-07-26 14:18+0000\n"
+"POT-Creation-Date: 2020-10-03 23:08+0000\n"
+"PO-Revision-Date: 2020-10-03 23:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,12 +28,17 @@ msgstr "الطريقة المخصصة"
 #. module: time_off_custom_leave
 #: model:mail.message.subtype,name:time_off_custom_leave.mt_leave_allocation
 msgid "Allocation"
-msgstr ""
+msgstr "تخصيص رصيد إجازات"
 
 #. module: time_off_custom_leave
 #: model:mail.message.subtype,description:time_off_custom_leave.mt_leave_allocation
 msgid "Allocation Request"
 msgstr "طلب تخصيص"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.1_leave_custom
+msgid "Annual Leave"
+msgstr "اجازة سنوية "
 
 #. module: time_off_custom_leave
 #: code:addons/time_off_custom_leave/models/custom_leave.py:0
@@ -78,6 +83,12 @@ msgid "Custom Leave"
 msgstr "أجازة مخصصة"
 
 #. module: time_off_custom_leave
+#: code:addons/time_off_custom_leave/models/custom_leave.py:0
+#, python-format
+msgid "Custom Leave for "
+msgstr ""
+
+#. module: time_off_custom_leave
 #: model:ir.model,name:time_off_custom_leave.model_hr_leave_type
 msgid "Custom Leaves"
 msgstr "أجازات مخصصة"
@@ -106,14 +117,31 @@ msgid "Duration must be "
 msgstr "الفترة يجب ان تكون "
 
 #. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.3_leave_custom
+msgid "Emergency Leave"
+msgstr "أجازة طارئة
+
+#. module: time_off_custom_leave
 #: model:ir.model.fields.selection,name:time_off_custom_leave.selection__hr_leave_type__applicable_for__female
 msgid "Female"
 msgstr "انثى"
 
 #. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.4_leave_custom
+msgid "First degree death"
+msgstr "وفاة من الدرجة الأولى"
+
+#. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__fixed_period
 msgid "Fixed Period"
 msgstr "فترة ثابتة"
+
+#. module: time_off_custom_leave
+#: model:ir.actions.server,name:time_off_custom_leave.ir_cron_allocation_holiday_create_ir_actions_server
+#: model:ir.cron,cron_name:time_off_custom_leave.ir_cron_allocation_holiday_create
+#: model:ir.cron,name:time_off_custom_leave.ir_cron_allocation_holiday_create
+msgid "Hr holiday: create new Custom Leave For Sick and Emergency"
+msgstr ""
 
 #. module: time_off_custom_leave
 #: model:ir.actions.server,name:time_off_custom_leave.ir_cron_allocation_create_ir_actions_server
@@ -128,9 +156,24 @@ msgid "Manual"
 msgstr "يدوي"
 
 #. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.6_leave_custom
+msgid "Marriage"
+msgstr "زواج"
+
+#. module: time_off_custom_leave
 #: model:ir.model.fields.selection,name:time_off_custom_leave.selection__hr_leave_type__interval_unit__months
 msgid "Month"
 msgstr "شهر"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.8_leave_custom
+msgid "Motherhood (child)"
+msgstr "أمومة (طفل )"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.9_leave_custom
+msgid "Motherhood (twins)"
+msgstr "أمومة (تؤام )"
 
 #. module: time_off_custom_leave
 #: model_terms:ir.ui.view,arch_db:time_off_custom_leave.custom_leave_form
@@ -140,17 +183,37 @@ msgstr "عدد الايام"
 #. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__interval_number
 msgid "Number of unit between two intervals"
-msgstr ""
+msgstr "عدد الوحدات بين فترتين"
 
 #. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__number_per_interval
 msgid "Number of unit per interval"
-msgstr ""
+msgstr "عدد الوحدات في الفترة"
 
 #. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__only_time_granted
 msgid "Only time Granted"
 msgstr "تطلب مرة واحدة"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.7_leave_custom
+msgid "Pilgrimage"
+msgstr "حج"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.5_leave_custom
+msgid "Second degree death"
+msgstr "وفاة من الدرجة الثانية"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.2_leave_custom
+msgid "Sick Leave"
+msgstr "أجازة مرضية"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.10_leave_custom
+msgid "The death of the husband"
+msgstr "وفاة الزوج"
 
 #. module: time_off_custom_leave
 #: code:addons/time_off_custom_leave/models/custom_leave.py:0
@@ -182,18 +245,23 @@ msgstr "طلب أجازة"
 #. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__unit_per_interval
 msgid "Unit of time added at each interval"
-msgstr ""
+msgstr "الوحدة الزمنية المضافة لكل فترة"
 
 #. module: time_off_custom_leave
 #: model:ir.model.fields,field_description:time_off_custom_leave.field_hr_leave_type__interval_unit
 msgid "Unit of time between two intervals"
-msgstr ""
+msgstr "الوحدة الزمنية بين فترتين"
 
 #. module: time_off_custom_leave
 #: model:mail.message.subtype,description:time_off_custom_leave.mt_leave_unpaid
 #: model:mail.message.subtype,name:time_off_custom_leave.mt_leave_unpaid
 msgid "Unpaid Time Off"
 msgstr "أجازة بدون مرتب"
+
+#. module: time_off_custom_leave
+#: model:hr.leave.type,name:time_off_custom_leave.11_leave_custom
+msgid "Unpaid leave"
+msgstr "اجازة غير مدفوعة"
 
 #. module: time_off_custom_leave
 #: model:ir.model.fields.selection,name:time_off_custom_leave.selection__hr_leave_type__interval_unit__years
@@ -209,58 +277,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:time_off_custom_leave.custom_leave_form
 msgid "of time off every"
 msgstr "لكل أجازة كل"
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.11_leave_custom
-msgid "أجازة بدون مرتب"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.9_leave_custom
-msgid "أمومة ( توأم )"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.8_leave_custom
-msgid "أمومة ( طفل )"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.7_leave_custom
-msgid "حج"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.6_leave_custom
-msgid "زواج"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.1_leave_custom
-msgid "سنوية"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.2_leave_custom
-msgid "طارئة"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.3_leave_custom
-msgid "مرضية"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.10_leave_custom
-msgid "وفاة الزوج ( العدة )"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.4_leave_custom
-msgid "وفاة من الدرجة الاولى"
-msgstr ""
-
-#. module: time_off_custom_leave
-#: model:hr.leave.type,name:time_off_custom_leave.5_leave_custom
-msgid "وفاة من الدرجة الثانية"
-msgstr ""

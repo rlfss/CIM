@@ -68,7 +68,7 @@
         </record>
 
         <record id="4_leave_custom" model="hr.leave.type">
-            <field name="name">وفاة من الدرجة الاولى</field>
+            <field name="name">First degree death</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">7</field>
@@ -86,7 +86,7 @@
         </record>
 
         <record id="5_leave_custom" model="hr.leave.type">
-            <field name="name">وفاة من الدرجة الثانية</field>
+            <field name="name">Second degree death</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">3</field>
@@ -104,7 +104,7 @@
         </record>
 
         <record id="6_leave_custom" model="hr.leave.type">
-            <field name="name">زواج</field>
+            <field name="name">Marriage</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">14</field>
@@ -123,7 +123,7 @@
         </record>
 
         <record id="7_leave_custom" model="hr.leave.type">
-            <field name="name">حج</field>
+            <field name="name">Pilgrimage</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">20</field>
@@ -142,7 +142,7 @@
         </record>
 
         <record id="8_leave_custom" model="hr.leave.type">
-            <field name="name">أمومة ( طفل )</field>
+            <field name="name">Motherhood (child)</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">98</field>
@@ -160,7 +160,7 @@
         </record>
 
         <record id="9_leave_custom" model="hr.leave.type">
-            <field name="name">أمومة ( توأم )</field>
+            <field name="name">Motherhood (twins)</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">112</field>
@@ -178,7 +178,7 @@
         </record>
 
         <record id="10_leave_custom" model="hr.leave.type">
-            <field name="name">وفاة الزوج ( العدة )</field>
+            <field name="name">The death of the husband</field>
             <field name="request_unit">day</field>
             <field name="custom_leave" eval="True"/>
             <field name="fixed_period">130</field>
@@ -196,7 +196,7 @@
         </record>
 
         <record id="11_leave_custom" model="hr.leave.type">
-            <field name="name">أجازة بدون مرتب</field>
+            <field name="name">Unpaid leave</field>
             <field name="request_unit">day</field>
             <field name="allocation_type">no</field>
             <field name="validation_type">both</field>

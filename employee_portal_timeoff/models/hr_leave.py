@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 from odoo.exceptions import AccessError, UserError, ValidationError
 from pytz import timezone, UTC
 from datetime import datetime, timedelta
+from odoo.tools.translate import _
 
 import uuid
 
