@@ -9,6 +9,7 @@
             <header>
                 <button string="Confirm" name="action_confirm" states="draft" type="object" class="oe_highlight"/>
                 <button string="Approve" name="action_approve" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirm')]}"/>
+                <button string="Send Mail" name="action_return_send" type="object" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'confirm')]}"/>
                 <button string="Validate" name="action_validate" states="validate1" type="object" groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
                 <button string="Refuse" name="action_refuse"  type="object" attrs="{'invisible': [('state', 'not in', ('confirm','validate','validate1'))]}"/>
                 <button string="Reset to Draft" name="action_draft" type="object"
@@ -23,6 +24,7 @@
                     </div>
                     <group>
                         <group>
+                            <field name="employee_id" force_save="1"/>
                             <field name="leave_related"/>
                             <field name="holiday_status_id"/>
                         </group>
@@ -46,7 +48,9 @@
         <field name="name">Leave Return Declaration</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">hr.leavereturn</field>
+        <field name="view_mode">tree,form</field>
     </record>
+
 
         
     <menuitem

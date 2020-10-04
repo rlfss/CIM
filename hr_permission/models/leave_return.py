@@ -37,6 +37,7 @@ class LeaveReturnDeclaration(models.Model):
     holiday_status_id = fields.Many2one("hr.leave.type", string="Time Off Type", compute='_onchange_leave_related')
 
     date_time = fields.Date('Return Date', required=True)
+    user_id = fields.Many2one('res.users')
 
     @api.onchange('leave_related')
     def _onchange_leave_related(self):
@@ -93,3 +94,30 @@ class LeaveReturnDeclaration(models.Model):
     def action_draft(self):
         self.write({'state': 'draft'})
         return True
+
+    def action_return_send(self):
+        ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
+        self.ensure_one()
+        template_id = self.env['ir.model.data'].xmlid_to_res_id('hr_permission.mail_template_leave_return', raise_if_not_found=False)
+        lang = self.env.context.get('lang')
+        template = self.env['mail.template'].browse(template_id)
+        ctx = {
+            'default_model': 'hr.leavereturn',
+            'default_res_id': self.ids[0],
+            'default_use_template': bool(template_id),
+            'default_template_id': template_id,
+            'default_composition_mode': 'comment',
+            'mark_so_as_sent': True,
+            #'custom_layout': "mail.mail_notification_paynow",
+            'proforma': self.env.context.get('proforma', False),
+            'force_email': True,
+        }
+        return {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(False, 'form')],
+            'view_id': False,
+            'target': 'new',
+            'context': ctx,
+        }

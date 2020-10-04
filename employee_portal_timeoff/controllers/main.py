@@ -127,6 +127,7 @@ class WebsiteAccount(CustomerPortal):
         values = self._prepare_portal_layout_values()
         HrLeave = request.env['hr.leave']
         HrPerm = request.env['hr.permission']
+        HrReturn = request.env['hr.leavereturn']
         Timeoff_sudo = request.env['hr.leave'].sudo()
         domain = self.get_domain_my_leaves(request.env.user)
 
@@ -185,7 +186,10 @@ class WebsiteAccount(CustomerPortal):
             order = "holiday_status_id, %s" % order
         # content according to pager and archive selected
         leaves = HrLeave.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
-        #perms = HrPerm.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
+
+        domain = [('employee_id.user_id', '=', request.env.user.id)]
+        perms = HrPerm.search(domain)
+        returns = HrReturn.search(domain,order=order, limit=self._items_per_page, offset=pager['offset'])
         if groupby == 'none':
             grouped_timeoff = []
             if leaves:
@@ -195,7 +199,8 @@ class WebsiteAccount(CustomerPortal):
         values.update({
             'date': date_begin,
             'leaves': leaves,
-            # 'perms': perms,
+             'perms': perms,
+             'returns': returns,
             'grouped_timeoff': grouped_timeoff,
             'page_name': 'leave',
             'timeoffs':get_days_all_request,
@@ -253,6 +258,7 @@ class WebsiteAccount(CustomerPortal):
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
+
         return request.render(
             "employee_portal_timeoff.portal_my_return_req", {
                 'return_req': return_req,

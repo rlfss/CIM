@@ -2,8 +2,9 @@
 <odoo>
 
 
-    <template id="custom_portal_my_leaves_details" name="My Team Leaves" inherit_id="employee_portal_timeoff.portal_my_leaves_details">
-       <xpath expr="//t[@t-call='portal.portal_layout']" position="replace">
+    <template id="custom_portal_my_leaves_details" name="My Team Leaves"
+              inherit_id="employee_portal_timeoff.portal_my_leaves_details">
+        <xpath expr="//t[@t-call='portal.portal_layout']" position="replace">
             <t t-call="portal.portal_layout">
                 <section class="py-4">
                     <div class="container">
@@ -11,15 +12,23 @@
                             <div class="col-lg-3">
                                 <div class="nav horizontal-tab  nav-pills" id="v-pills-tab" role="tablist"
                                      aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill"
+                                       href="#v-pills-home"
                                        role="tab" aria-controls="v-pills-home" aria-selected="true">My Time Off</a>
-                                    <a class="nav-link" id="timeOffBalance-tab" data-toggle="pill" href="#timeOffBalance"
-                                       role="tab" aria-controls="v-pills-profile" aria-selected="false">Time Off Balance</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                                       role="tab" aria-controls="v-pills-profile" aria-selected="false">Time Off Requests</a>
-                                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                                       role="tab" aria-controls="v-pills-messages" aria-selected="false">Permission Requests</a>
-                                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+                                    <a class="nav-link" id="timeOffBalance-tab" data-toggle="pill"
+                                       href="#timeOffBalance"
+                                       role="tab" aria-controls="v-pills-profile" aria-selected="false">Time Off
+                                        Balance</a>
+                                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill"
+                                       href="#v-pills-profile"
+                                       role="tab" aria-controls="v-pills-profile" aria-selected="false">Time Off
+                                        Requests</a>
+                                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill"
+                                       href="#v-pills-messages"
+                                       role="tab" aria-controls="v-pills-messages" aria-selected="false">Permission
+                                        Requests</a>
+                                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill"
+                                       href="#v-pills-settings"
                                        role="tab" aria-controls="v-pills-settings" aria-selected="false">Leave Return
                                         Declaration</a>
                                 </div>
@@ -30,52 +39,55 @@
                                          aria-labelledby="v-pills-home-tab">
                                         <div class="row justify-content-end mb-1">
                                             <t t-call="portal.portal_searchbar">
-                                                <t t-set="title"> </t>
+                                                <t t-set="title"></t>
                                             </t>
                                         </div>
                                         <t t-if="grouped_timeoff">
-                                        <t t-foreach="grouped_timeoff" t-as="leave">
-                                        <div class="table-responsive my-table-container">
-                                            <table class="table my-table">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Reference</th>
-                                                    <th scope="col">Start Date</th>
-                                                    <th scope="col">End Date</th>
-                                                    <th scope="col">Duration</th>
-                                                    <th scope="col">Type</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Edit</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <t t-foreach="leave" t-as="leave">
-                                                    <tr>
-                                                        <td><a t-attf-href="/my/timeoff/#{leave.id}"><span t-field="leave.reference"/></a></td>
-                                                        <td><span t-field="leave.request_date_from"/></td>
-                                                        <td><span t-field="leave.request_date_to"/></td>
-                                                        <td><span t-field="leave.number_of_days"/></td>
-                                                        <td><span t-field="leave.holiday_status_id.name"/></td>
-                                                        <td><span t-att-class="'green-color' if leave.state=='validate' else '' 
+                                            <t t-foreach="grouped_timeoff" t-as="leave">
+                                                <div class="table-responsive my-table-container">
+                                                    <table class="table my-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Reference</th>
+                                                                <th scope="col">Start Date</th>
+                                                                <th scope="col">End Date</th>
+                                                                <th scope="col">Duration</th>
+                                                                <th scope="col">Type</th>
+                                                                <th scope="col">Status</th>
+                                                                <th scope="col">Edit</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <t t-foreach="leave" t-as="leave">
+                                                                <tr>
+                                                                    <td><a t-attf-href="/my/timeoff/#{leave.id}"><span
+                                                                            t-field="leave.reference"/></a></td>
+                                                                    <td><span t-field="leave.request_date_from"/></td>
+                                                                    <td><span t-field="leave.request_date_to"/></td>
+                                                                    <td><span t-field="leave.number_of_days"/></td>
+                                                                    <td><span
+                                                                            t-field="leave.holiday_status_id.name"/></td>
+                                                                    <td><span t-att-class="'green-color' if leave.state=='validate' else ''
                                                                                'yellow-color' if leave.state=='confirm' else ''
                                                                                'red-color' if leave.state=='cancel' else ''
                                                                                'red-color' if leave.state=='refuse' else ''
                                                                                'yellow-color' if leave.state=='draft' else ''
                                                                                'yellow-color' if leave.state=='validate1' else ''
                                                                                " t-field="leave.state"/></td>
-                                                        <td>
+                                                                    <td>
 
-                                                    <a t-attf-href="/my/timeoff/#{leave.id}"
-                                                   title="Edit">
-                                                        <i class="fas fa-pencil-square-o" style="font-size:18px;"></i>
-                                                    </a>
-                                                        </td>
-                                                    </tr>
-                                                </t>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        </t>
+                                                                        <a t-attf-href="/my/timeoff/#{leave.id}"
+                                                                           title="Edit">
+                                                                            <i class="fas fa-pencil-square-o"
+                                                                               style="font-size:18px;"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </t>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </t>
                                         </t>
                                     </div>
                                     <div class="tab-pane fade " id="timeOffBalance" role="tabpanel"
@@ -86,80 +98,81 @@
                                                     Time Off Balance
                                                 </h5>
                                             </center> <br/>
-                            <!--              <div class="row"  style="float:right;">
-                                            <form action="#">
-                                                <div class="row justify-content-sm-between justify-content-center text-sm-left text-center">
-                                                    <div class="col-sm-auto col-12">
-                                                        <div class="row align-items-center text-left justify-content-center mb-2 mb-sm-0">
-                                                            <div class="col-sm-auto pr-0">
-                                                                <p class="m-0">Leave Type:</p>
-                                                            </div>
-                                                            <div class="col-sm-auto pl-1">
-                                                            <select name="holiday_status_id" class="custom-select form-control time_off_type_select holiday_status_id" required="True">
-                                                                <t t-foreach="holiday_types or []" t-as="htype">
-                                                                    <option t-att-value="htype[0]">
-                                                                        <t t-esc="htype[1]" />
-                                                                    </option>
-                                                                </t>
-                                                            </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-auto col-12">
-                                                        <button class="btn btn-primary  px-5" type="submit">
-                                                            Refresh
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div> -->
-                                        <div t-foreach="timeoffs" t-as="timeoff" class="o_timeoff_card flex-grow-1 d-flex flex-column">
-                                            <t t-set="need_allocation" t-value="timeoff[2] != 'no'"/>
-                                            <t t-set="cl" t-value="'text-muted'"/>
+                                            <!--              <div class="row"  style="float:right;">
+                                                            <form action="#">
+                                                                <div class="row justify-content-sm-between justify-content-center text-sm-left text-center">
+                                                                    <div class="col-sm-auto col-12">
+                                                                        <div class="row align-items-center text-left justify-content-center mb-2 mb-sm-0">
+                                                                            <div class="col-sm-auto pr-0">
+                                                                                <p class="m-0">Leave Type:</p>
+                                                                            </div>
+                                                                            <div class="col-sm-auto pl-1">
+                                                                            <select name="holiday_status_id" class="custom-select form-control time_off_type_select holiday_status_id" required="True">
+                                                                                <t t-foreach="holiday_types or []" t-as="htype">
+                                                                                    <option t-att-value="htype[0]">
+                                                                                        <t t-esc="htype[1]" />
+                                                                                    </option>
+                                                                                </t>
+                                                                            </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-auto col-12">
+                                                                        <button class="btn btn-primary  px-5" type="submit">
+                                                                            Refresh
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div> -->
+                                            <div t-foreach="timeoffs" t-as="timeoff"
+                                                 class="o_timeoff_card flex-grow-1 d-flex flex-column">
+                                                <t t-set="need_allocation" t-value="timeoff[2] != 'no'"/>
+                                                <t t-set="cl" t-value="'text-muted'"/>
 
                                                 <h5 class="fw-500 main-color">
                                                     <span t-esc="timeoff[0]" class="o_timeoff_name"/>
                                                 </h5> <br/>
 
-                                           <div class="row">
+                                                <div class="row">
 
-                                                <div class="col-lg-4">
-                                                    <div class="balance-container">
-                                                        <div class="balance-card">
-                                                            <h3 class="blue-color">
-                                                                <span t-esc="timeoff[1]['remaining_leaves']"/>
-                                                            </h3>
+                                                    <div class="col-lg-4">
+                                                        <div class="balance-container">
+                                                            <div class="balance-card">
+                                                                <h3 class="blue-color">
+                                                                    <span t-esc="timeoff[1]['remaining_leaves']"/>
+                                                                </h3>
+                                                            </div>
+                                                            <p class="m-0 mt-1">
+                                                                Remaining Days
+                                                            </p>
                                                         </div>
-                                                        <p class="m-0 mt-1">
-                                                            Remaining Days
-                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="balance-container">
+                                                            <div class="balance-card">
+                                                                <h3 class="green-color">
+                                                                    <span t-esc="timeoff[1]['virtual_remaining_leaves']"/>
+                                                                </h3>
+                                                            </div>
+                                                            <p class="m-0 mt-1">
+                                                                Virtual Remaining Days
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="balance-container">
+                                                            <div class="balance-card">
+                                                                <h3 class="red-color">
+                                                                    <span t-esc="timeoff[1]['leaves_taken']"/>
+                                                                </h3>
+                                                            </div>
+                                                            <p class="m-0 mt-1">
+                                                                Used Days
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4" >
-                                                    <div class="balance-container" >
-                                                        <div class="balance-card" >
-                                                            <h3 class="green-color" >
-                                                                <span t-esc="timeoff[1]['virtual_remaining_leaves']"/>
-                                                            </h3>
-                                                        </div>
-                                                        <p class="m-0 mt-1">
-                                                            Virtual Remaining Days
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="balance-container">
-                                                        <div class="balance-card">
-                                                            <h3 class="red-color">
-                                                                <span t-esc="timeoff[1]['leaves_taken']"/>
-                                                            </h3>
-                                                        </div>
-                                                        <p class="m-0 mt-1">
-                                                            Used Days
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             </div>
                                         </div>
                                     </div>
@@ -170,99 +183,123 @@
                                                 Time Off Requests
                                             </h5>
                                             <div>
-                                            <form method="POST" class="js_website_submit_form new_timeoff_form">
-                                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Select leave:</label>
-                                                        <select name="holiday_status_id" class="custom-select form-control time_off_type_select holiday_status_id" required="True">
-                                                            <t t-foreach="holiday_types or []" t-as="htype">
-                                                                <option t-att-value="htype[0]">
-                                                                    <t t-esc="htype[1]" />
-                                                                </option>
-                                                            </t>
-                                                        </select>
+                                                <form method="POST" class="js_website_submit_form new_timeoff_form">
+                                                    <input type="hidden" name="csrf_token"
+                                                           t-att-value="request.csrf_token()"/>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Select leave:</label>
+                                                                <select name="holiday_status_id"
+                                                                        class="custom-select form-control time_off_type_select holiday_status_id"
+                                                                        required="True">
+                                                                    <t t-foreach="holiday_types or []" t-as="htype">
+                                                                        <option t-att-value="htype[0]">
+                                                                            <t t-esc="htype[1]"/>
+                                                                        </option>
+                                                                    </t>
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Start Date:</label>
-                                                            <div class="input-group date">
-                                                                <input type="date" name="request_date_from" class="form-control date_from request_date_from" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
-                                                                    </span>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Start Date:</label>
+                                                                <div class="input-group date">
+                                                                    <input type="date" name="request_date_from"
+                                                                           class="form-control date_from request_date_from"
+                                                                           data-date-format="YYYY-MM-DD"
+                                                                           placeholder="YYYY-MM-DD"/>
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">
+                                                                            <span class="fa fa-calendar" role="img"
+                                                                                  aria-label="Calendar"></span>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Duration:</label>
-                                                             <input disabled="" type="number" class="form-control number_of_days" name="number_of_days" id="" placeholder=""/>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Duration:</label>
+                                                                <input disabled="" type="number"
+                                                                       class="form-control number_of_days"
+                                                                       name="number_of_days" id="" placeholder=""/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>End Date:</label>
-                                                            <div class="input-group date">
-                                                                <input type="date" name="request_date_to" class="form-control date_from request_date_to" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
-                                                                    </span>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>End Date:</label>
+                                                                <div class="input-group date">
+                                                                    <input type="date" name="request_date_to"
+                                                                           class="form-control date_from request_date_to"
+                                                                           data-date-format="YYYY-MM-DD"
+                                                                           placeholder="YYYY-MM-DD"/>
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">
+                                                                            <span class="fa fa-calendar" role="img"
+                                                                                  aria-label="Calendar"></span>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Address During Time Off:</label>
-                                                            <input type="text" class="form-control timeoff_address" name="timeoff_address"
-                                                            placeholder="Building 1,Second Floor"/>
-                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Address During Time Off:</label>
+                                                                <input type="text" class="form-control timeoff_address"
+                                                                       name="timeoff_address"
+                                                                       placeholder="Building 1,Second Floor"/>
+                                                            </div>
 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Available Balance:</label>
-                                                            <input type="text" disabled="" class="current form-control" placeholder="Due Leave"/>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Available Balance:</label>
+                                                                <input type="text" disabled=""
+                                                                       class="current form-control"
+                                                                       placeholder="Due Leave"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Requested Leave:</label>
+                                                                <input type="text" disabled=""
+                                                                       class="requested form-control"
+                                                                       placeholder="Requested Leave"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Remaining Leave:</label>
+                                                                <input type="text" disabled=""
+                                                                       class="remaining form-control"
+                                                                       placeholder="Remaining Leave"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Attachment(s)</label>
+                                                                <input type="file" name="attachments"
+                                                                       class="form-control o_website_form_input attachments"
+                                                                       multiple="true"
+                                                                       accept="image/*,application/pdf,video/*"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Notes:</label>
+                                                                <input type="text" class="form-control notes"
+                                                                       name="notes"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 text-lg-right text-center">
+                                                            <button t-attf-class="btn btn-primary px-4 new_timeoff_confirm">
+                                                                Submit
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Requested Leave:</label>
-                                                            <input type="text" disabled="" class="requested form-control" placeholder="Requested Leave"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Remaining Leave:</label>
-                                                            <input type="text" disabled="" class="remaining form-control" placeholder="Remaining Leave"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Attachment(s)</label>
-                                                            <input type="file" name="attachments" class="form-control o_website_form_input attachments" multiple="true" accept="image/*,application/pdf,video/*"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Notes:</label>
-                                                            <input type="text"  class="form-control notes" name="notes"/>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 text-lg-right text-center">
-                                                    <button t-attf-class="btn btn-primary px-4 new_timeoff_confirm">
-                                                        Submit
-                                                    </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
@@ -277,57 +314,75 @@
                                             </div>
                                             <div class="row justify-content-between mb-1 mt-3">
                                                 <div class="col-sm-auto text-center mb-3 mb-sm-0">
-                                                    <a href="#newPermissionModal" data-backdrop="static" data-keyboard="false"
-                                                       class="add-btn" data-toggle="modal" data-target="#newPermissionModal">
+                                                    <a href="#newPermissionModal" data-backdrop="static"
+                                                       data-keyboard="false"
+                                                       class="add-btn" data-toggle="modal"
+                                                       data-target="#newPermissionModal">
                                                         <i class="fal fa-plus"></i>
                                                     </a>
                                                 </div>
 
 
                                                 <!-- Modal -->
-                                                <div class="modal fade" id="newPermissionModal" tabindex="-1" role="dialog" aria-labelledby="newPermissionModalTitle"
+                                                <div class="modal fade" id="newPermissionModal" tabindex="-1"
+                                                     role="dialog" aria-labelledby="newPermissionModalTitle"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
-                                                        <form method="POST" class="modal-content js_website_submit_form new_permission_form">
-                                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                            <form method="POST"
+                                                                  class="modal-content js_website_submit_form new_permission_form">
+                                                                <input type="hidden" name="csrf_token"
+                                                                       t-att-value="request.csrf_token()"/>
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="newPermissionModalTitle">New Permission Request</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <h5 class="modal-title"
+                                                                        id="newPermissionModalTitle">New Permission
+                                                                        Request</h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true"></span>
                                                                     </button>
                                                                 </div>
                                                                 <div id="new-opp-dialog-2">
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label>Permission Type:</label>
-                                                                                 <select name="req_type" class="custom-select form-control req_type_select req_type" required="True"> 
-                                                                                    <option value="in">In Late</option>
-                                                                                    <option value="out">Out Early</option>
-                                                                                </select>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Permission Type:</label>
+                                                                                    <select name="req_type"
+                                                                                            class="custom-select form-control req_type_select req_type"
+                                                                                            required="True">
+                                                                                        <option value="in">In
+                                                                                            Late</option>
+                                                                                        <option value="out">Out
+                                                                                            Early</option>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label>Date &amp; Time:</label>
-                                                                                <input type="text" class="form-control dateTimeInput date_time"/>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Date &amp; Time:</label>
+                                                                                    <input type="text"
+                                                                                           class="form-control dateTimeInput date_time"/>
 
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <div class="form-group">
-                                                                                <label>Reason:</label>
-                                                                                <input type="text" class="form-control reason" name="reason" id="" placeholder="Reason"/>
+                                                                            <div class="col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Reason:</label>
+                                                                                    <input type="text"
+                                                                                           class="form-control reason"
+                                                                                           name="reason" id=""
+                                                                                           placeholder="Reason"/>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button t-attf-class="btn btn-primary new_permission_confirm">Submit</button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+                                                                    <button t-attf-class="btn btn-primary new_permission_confirm">
+                                                                        Submit</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -335,88 +390,87 @@
                                                 </div>
 
 
+                                                <div class="row justify-content-end mb-1">
+                                                    <t t-call="portal.portal_searchbar">
+                                                        <t t-set="title"></t>
+                                                    </t>
+                                                </div>
+                                                <div class="table-responsive my-table-container">
+                                                    <table class="table my-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Reference</th>
+                                                                <th scope="col">Employee</th>
+                                                                <th scope="col">Type</th>
+                                                                <th scope="col">Date &amp; Time</th>
+                                                                <th scope="col">Status</th>
+                                                                <th scope="col">Edit</th>
 
-
-                                        <div class="row justify-content-end mb-1">
-                                            <t t-call="portal.portal_searchbar">
-                                                <t t-set="title"> </t>
-                                            </t>
-                                        </div>
-                                        <div class="table-responsive my-table-container">
-                                            <table class="table my-table">
-                                                <thead>
-                                                <tr>
-                                                    <th scope="col">Reference</th>
-                                                    <th scope="col">Employee</th>
-                                                    <th scope="col">Type</th>
-                                                    <th scope="col">Date &amp; Time</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Edit</th>
-
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <t t-foreach="perms" t-as="leave">
-                                                    <tr>
-                                                        <td><span t-field="leave.name"/></td>
-                                                        <td><span t-field="leave.employee_id.name"/></td>
-                                                        <td><span t-field="leave.req_type"/></td>
-                                                        <td><span t-field="leave.date_time"/></td>
-                                                        <td><span t-att-class="'green-color' if leave.state=='validate' else '' 
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <t t-foreach="perms" t-as="leave">
+                                                                <tr>
+                                                                    <td><span t-field="leave.name"/></td>
+                                                                    <td><span t-field="leave.employee_id.name"/></td>
+                                                                    <td><span t-field="leave.req_type"/></td>
+                                                                    <td><span t-field="leave.date_time"/></td>
+                                                                    <td><span t-att-class="'green-color' if leave.state=='validate' else ''
                                                                                'yellow-color' if leave.state=='confirm' else ''
                                                                                'red-color' if leave.state=='cancel' else ''
                                                                                'red-color' if leave.state=='refuse' else ''
                                                                                'yellow-color' if leave.state=='draft' else ''
                                                                                'green-color' if leave.state=='validate1' else ''
                                                                                " t-field="leave.state"/></td>
-                                                        <td>
-                                                        <a t-attf-href="/my/permission_req/#{leave.id}"
-                                                   title="Edit">
-                                                        <i class="fas fa-pencil-square-o" style="font-size:18px;"></i>
-                                                    </a>
-                                                        </td>
-                                                    </tr>
-                                                </t>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                                                    <td>
+                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"
+                                                                           title="Edit">
+                                                                            <i class="fas fa-pencil-square-o"
+                                                                               style="font-size:18px;"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </t>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
-                                        <t t-if="grouped_permission">
-                                        <t t-foreach="grouped_permission" t-as="permission">
-                                            <div class="table-responsive my-table-container">
-                                                <table class="table my-table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">Reference</th>
-                                                        <th scope="col">Permission</th>
-                                                        <th scope="col">Date &amp; Time</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">
-                                                            <i class="far fa-cog"></i>
-                                                        </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                <t t-foreach="permission" t-as="permission">
-                                                    <tr>
-                                                        <td><span t-field="permission.name"/></td>
-                                                        <td><span t-field="permission.req_type"/></td>
-                                                        <td><span t-field="permission.date"/></td>
-                                                        <td><span t-att-class="'green-color' if permission.state=='validate' else '' 
+                                            <t t-if="grouped_permission">
+                                                <t t-foreach="grouped_permission" t-as="permission">
+                                                    <div class="table-responsive my-table-container">
+                                                        <table class="table my-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">Reference</th>
+                                                                    <th scope="col">Permission</th>
+                                                                    <th scope="col">Date &amp; Time</th>
+                                                                    <th scope="col">Status</th>
+                                                                    <th scope="col">
+                                                                        <i class="far fa-cog"></i>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <t t-foreach="permission" t-as="permission">
+                                                                    <tr>
+                                                                        <td><span t-field="permission.name"/></td>
+                                                                        <td><span t-field="permission.req_type"/></td>
+                                                                        <td><span t-field="permission.date"/></td>
+                                                                        <td><span t-att-class="'green-color' if permission.state=='validate' else ''
                                                                                'yellow-color' if permission.state=='confirm' else ''
                                                                                'red-color' if permission.state=='cancel' else ''
                                                                                'red-color' if permission.state=='refuse' else ''
                                                                                'yellow-color' if permission.state=='draft' else ''
                                                                                'green-color' if permission.state=='validate1' else ''
                                                                                " t-field="permission.state"/></td>
-                                                    </tr>
+                                                                    </tr>
+                                                                </t>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </t>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </t>
-                                        </t>
+                                            </t>
 
 
                                         </div>
@@ -433,247 +487,150 @@
                                             </div>
                                             <div class="row justify-content-between mb-1 mt-3">
                                                 <div class="col-sm-auto text-center mb-3 mb-sm-0">
-                                                    <a href="#newLeaveModal" data-backdrop="static" data-keyboard="false"
+                                                    <a href="#newLeaveModal" data-backdrop="static"
+                                                       data-keyboard="false"
                                                        class="add-btn" data-toggle="modal" data-target="#newLeaveModal">
                                                         <i class="fal fa-plus"></i>
                                                     </a>
                                                 </div>
 
 
-                                                <div class="modal fade" id="newLeaveModal" role="dialog" aria-labelledby="newLeaveModalTitle"
+                                                <div class="modal fade" id="newLeaveModal" role="dialog"
+                                                     aria-labelledby="newLeaveModalTitle"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content">
-                                                        <form method="POST" class="modal-content js_website_submit_form new_return_form">
-                                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                            <form method="POST"
+                                                                  class="modal-content js_website_submit_form new_return_form">
+                                                                <input type="hidden" name="csrf_token"
+                                                                       t-att-value="request.csrf_token()"/>
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="newLeaveModalTitle">New Leave Return</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <h5 class="modal-title" id="newLeaveModalTitle">New
+                                                                        Leave Return</h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true"></span>
                                                                     </button>
                                                                 </div>
                                                                 <div id="new-opp-dialog-3">
-                                                                <div class="modal-body">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label>Related Leave:</label>
-                                                                                <input type="text" name="reference_ret" class="form-control reference_ret" placeholder="TMF-190001"/>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+<!--                                                                            <div class="col-md-6">-->
+<!--                                                                                <div class="form-group">-->
+<!--                                                                                    <label>Related Leave:</label>-->
+<!--                                                                                    <input type="text"-->
+<!--                                                                                           name="reference_ret"-->
+<!--                                                                                           class="form-control reference_ret"-->
+<!--                                                                                           placeholder="TMF-190001"/>-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Related Leave:</label>
+                                                                                    <select name="reference_ret"
+                                                                                            id="mySelect"
+                                                                                            class="form-control link-style reference_ret">
+                                                                                        <t t-foreach="leaves"
+                                                                                           t-as="o">
+                                                                                            <option t-esc="o.reference"
+                                                                                                    t-att-value="o.name"/>
+                                                                                        </t>
+                                                                                    </select>
+
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group">
-                                                                                <label>Leave Type:</label>
-                                                                                <select name="holiday_status_id" class="custom-select form-control type_select holiday_status_id" required="True">
-                                                                                    <t t-foreach="holiday_types or []" t-as="htype">
-                                                                                        <option t-att-value="htype[0]">
-                                                                                            <t t-esc="htype[1]" />
-                                                                                        </option>
-                                                                                    </t>
-                                                                                </select>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Leave Type:</label>
+                                                                                    <select name="holiday_status_id"
+                                                                                            class="custom-select form-control type_select holiday_status_id"
+                                                                                            required="True">
+                                                                                        <t t-foreach="holiday_types or []"
+                                                                                           t-as="htype">
+                                                                                            <option t-att-value="htype[0]">
+                                                                                                <t t-esc="htype[1]"/>
+                                                                                            </option>
+                                                                                        </t>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label>Return Date:</label>
-                                                                                <div class="input-group date">
-                                                                                    <input type="date" name="request_date" class="form-control date request_date" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
-                                                                                    <div class="input-group-append">
-                                                                                        <span class="input-group-text">
-                                                                                            <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>
-                                                                                        </span>
+                                                                            <div class="col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Return Date:</label>
+                                                                                    <div class="input-group date">
+                                                                                        <input type="date"
+                                                                                               name="request_date"
+                                                                                               class="form-control date request_date"
+                                                                                               data-date-format="YYYY-MM-DD"
+                                                                                               placeholder="YYYY-MM-DD"/>
+                                                                                        <div class="input-group-append">
+                                                                                            <span class="input-group-text">
+                                                                                                <span class="fa fa-calendar"
+                                                                                                      role="img"
+                                                                                                      aria-label="Calendar"></span>
+                                                                                            </span>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button t-attf-class="btn btn-primary px-4 new_return_confirm">
-                                                                    Submit
-                                                                </button>
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+                                                                    <button t-attf-class="btn btn-primary px-4 new_return_confirm">
+                                                                        Submit
+                                                                    </button>
                                                                 </div>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
-
-                                                <div class="col-sm-auto">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-auto">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto p-0">
-                                                                    <p class="m-0">Sort by:</p>
-                                                                </div>
-                                                                <div class="col-auto pl-2">
-                                                                    <select class="custom-select my-1 mr-sm-2">
-                                                                        <option value="0">Newest</option>
-                                                                        <option value="1">One</option>
-                                                                        <option value="2">Two</option>
-                                                                        <option value="3">Three</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto p-0">
-                                                                    <p class="m-0">Filter by:</p>
-                                                                </div>
-                                                                <div class="col-auto pl-2">
-                                                                    <select class="custom-select my-1 mr-sm-2">
-                                                                        <option value="0">Approved</option>
-                                                                        <option value="1">One</option>
-                                                                        <option value="2">Two</option>
-                                                                        <option value="3">Three</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="row justify-content-end mb-1">
+                                                    <t t-call="portal.portal_searchbar">
+                                                        <t t-set="title"></t>
+                                                    </t>
                                                 </div>
+                                                <div class="table-responsive my-table-container">
+                                                    <table class="table my-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Reference</th>
+<!--                                                                <th scope="col">Type</th>-->
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">state</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <t t-foreach="returns" t-as="o">
+                                                                <tr>
+                                                                    <td><span t-field="o.leave_related"/></td>
+<!--                                                                    <td><span t-field="o.holiday_status_id.name"/></td>-->
+                                                                    <td><span t-field="o.date_time"/></td>
+                                                                    <td><span t-att-class="'green-color' if o.state=='validate' else ''
+                                                                               'yellow-color' if o.state=='confirm' else ''
+                                                                               'red-color' if o.state=='cancel' else ''
+                                                                               'red-color' if o.state=='refuse' else ''
+                                                                               'yellow-color' if o.state=='draft' else ''
+                                                                               'green-color' if o.state=='validate1' else ''
+                                                                               " t-field="o.state"/></td>
+<!--                                                                    <td>-->
+<!--                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"-->
+<!--                                                                           title="Edit">-->
+<!--                                                                            <i class="fas fa-pencil-square-o"-->
+<!--                                                                               style="font-size:18px;"></i>-->
+<!--                                                                        </a>-->
+<!--                                                                    </td>-->
+                                                                </tr>
+                                                            </t>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+
                                             </div>
-<!--                                             <div class="table-responsive my-table-container">
-                                                <table class="table my-table small-th-fs">
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">Reference</th>
-                                                        <th scope="col">Submission Date</th>
-                                                        <th scope="col">Related Leave</th>
-                                                        <th scope="col">Leave Type</th>
-                                                        <th scope="col">Return Date</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">
-                                                            <i class="far fa-cog"></i>
-                                                        </th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="green-color">Approved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="red-color">Unapproved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="yellow-color">pending</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="green-color">Approved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="red-color">Unapproved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="yellow-color">pending</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="green-color">Approved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="red-color">Unapproved</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TMF-190001</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td>TMF-190001</td>
-                                                        <td>Regular Leave</td>
-                                                        <td>Sunday, 8, 2019</td>
-                                                        <td><span class="yellow-color">pending</span></td>
-                                                        <td>
-                                                            <a href="#">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -681,8 +638,8 @@
                         </div>
                     </div>
                 </section>
-                </t>
-       </xpath>
-</template>
+            </t>
+        </xpath>
+    </template>
 
 </odoo>

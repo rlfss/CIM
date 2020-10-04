@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+       <record id="mail_template_leave_return" model="mail.template">
+            <field name="name">Leave Return Email</field>
+            <field name="model_id" ref="hr_permission.model_hr_leavereturn"/>
+            <field name="subject">Leave Return | (Ref ${object.name or 'n/a' })</field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="email_to">${object.employee_id.parent_id.work_email|safe}</field>
+            <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    السادة / إدارة الموارد البشرية
+                    <br/><br/>
+                  <br/><br/>  نفيدكم بأن الموظف : <strong>${object.employee_id.name}</strong>
+                   <br/><br/>  رقم وظيفيى : <strong>${object.employee_id.employee_num}</strong>
+                   <br/><br/>إدارة : <strong>${object.employee_id.department_id.name}</strong>
+                      <br/><br/>قد باشر عمله بتاريخ : <strong>${object.date_time}</strong>
+                      <br/><br/>رقم مرجعي : <strong>${object.leave_related}</strong>
+                       <br/><br/> ، هذا للعلم و الإجراءات الخاصة بكم
+                 <br/><br/><strong>المدير المباشر</strong>
+               <br/><br/> الأسم : <strong>${object.employee_id.parent_id.name}</strong>
+               <br/><br/>الإدارة : <strong>${object.employee_id.parent_id.department_id.name}</strong>
+               <br/><br/>الصفة : <strong>${object.employee_id.parent_id.job_id.name}</strong>
+
+
+                    <br/><br/>
+                </p>
+            </div>
+            </field>
+<!--            <field name="report_template" ref="leave_report.leave_report"/>-->
+<!--            <field name="report_name">${(object.reference or '').replace('/','_')}</field>-->
+<!--            <field name="report_template" ref="leave_report.leave_report"/>-->
+<!--            <field name="report_name">${(object.reference or '').replace('/','_')}</field>-->
+            <field name="lang">${object.lang}</field>
+            <field name="user_signature" eval="True"/>
+            <field name="auto_delete" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
