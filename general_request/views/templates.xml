@@ -2,6 +2,7 @@
     <data>
         <template id="tmp_request_form" name="General Request">
             <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
