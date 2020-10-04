@@ -602,8 +602,7 @@
                                                                                   data-original-title=""
                                                                                   title=""><strong>
                                                     Description: </strong><span
-                                                        class="o_image_alt"></span></button></div></div></div></div><textarea
-                                                        class="note-codable"></textarea>
+                                                        class="o_image_alt"></span></button></div></div></div></div>
                                                     <textarea placeholder="Memo" rows="4" class="form-control load_editor"
                                                               name="message" id="memo">
                                                         <t t-esc="request.params.get('message', '')"/>
@@ -616,15 +615,6 @@
                                                         class="note-icon-bar"></div></div></div></div></odoo-wysiwyg-container></div>
                                             </div>
                                             </div>
-<!--                                            <div class="col-md-12">-->
-<!--                                                <div class="form-group">-->
-<!--                                                    <label>Memo :</label>-->
-<!--                                                    <textarea placeholder="Memo" rows="4" class="form-control load_editor"-->
-<!--                                                              name="message" id="memo">-->
-<!--                                                        <t t-esc="request.params.get('message', '')"/>-->
-<!--                                                    </textarea>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
                                             <div class="col-12 text-lg-right text-center">
                                                 <input class="btn btn-primary px-4" type="Submit" value="send"/>
                                             </div>
