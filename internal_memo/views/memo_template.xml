@@ -32,7 +32,12 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-        <menuitem name="Memo Template" id="memo_template_menu" parent="hr_holidays.menu_hr_holidays_configuration" action="memo_template_action"/>
+        <menuitem name="Memo Template"
+                  id="memo_template_menu"
+                  parent="hr_holidays.menu_hr_holidays_configuration"
+                  action="memo_template_action"
+                  groups="hr_holidays.group_hr_holidays_manager"
+        />
 
 
 </odoo>
