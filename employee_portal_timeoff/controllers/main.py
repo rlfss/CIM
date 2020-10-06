@@ -186,8 +186,8 @@ class WebsiteAccount(CustomerPortal):
             order = "holiday_status_id, %s" % order
         # content according to pager and archive selected
         leaves = HrLeave.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
-
-        domain = [('employee_id.user_id', '=', request.env.user.id)]
+        #
+        # domain = [('employee_id.user_id', '=', request.env.user.id)]
         perms = HrPerm.search(domain)
         returns = HrReturn.search(domain,order=order, limit=self._items_per_page, offset=pager['offset'])
         if groupby == 'none':
