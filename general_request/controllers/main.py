@@ -11,13 +11,19 @@ _logger = logging.getLogger(__name__)
 
 class PartnerForm(CustomerPortal):
 
+    def get_domain_my_team_leaves(self, user):
+        emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
+                                                limit=1)
 
+        return [
+            '|', ('manager_id', '=', emp and emp.id or False), ('manager_id.parent_id', '=', emp and emp.id or False),
+        ]
 
     @http.route(['/my/request','/my/request/page/<int:page>'], type='http', auth="public", website=True)
     def partner_form(self,page=1, sortby=None, **post):
 
         GeneralRequest = request.env['general.request']
-        domain = [('employee_id.user_id', '=', request.env.user.id)]
+        domain = self.get_domain_my_leaves(request.env.user)
         request_type_id = GeneralRequest.search(domain)
 
 
