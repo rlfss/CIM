@@ -62,6 +62,7 @@
         <!-- This Menu Item must have a parent and an action -->
         <menuitem id="general_request_menu" name="General Request" parent="hr.menu_hr_root"
                   action="general_request_action"
+                  groups="hr.group_hr_user,hr.group_hr_user"
                   sequence="5"/>
     </data>
 </odoo>

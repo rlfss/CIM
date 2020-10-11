@@ -1,3 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_general_request_manager,general.request.manager,model_general_request,hr.group_hr_manager,1,1,1,1
-access_general_request_user,general.request.user,model_general_request,hr.group_hr_user,1,0,0,0
+access_general_request,general.request,model_general_request,,1,1,1,1
