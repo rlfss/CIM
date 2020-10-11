@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 1 degree -->
+         <record id="1_degree_1" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">16.75</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_1" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">16.75</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_1" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">16.75</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_1" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">16.75</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_1" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">16.75</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_1" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">16.75</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_1" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">16.75</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_1" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">16.75</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_1" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">16.75</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_1" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">16.75</field>
+            <field name="count">10</field>
+        </record>
+         <!-- 2 degree -->
+        <record id="1_degree_2" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">12.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_2" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">12.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_2" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">12.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_2" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">12.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_2" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">12.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_2" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">12.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_2" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">12.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_2" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">12.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_2" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">12.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_2" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">12.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 3 degree -->
+        <record id="1_degree_3" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">4.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_3" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">4.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_3" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">4.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_3" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">4.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_3" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">4.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_3" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">4.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_3" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">4.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_3" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">4.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_3" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">4.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_3" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">4.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 4 degree -->
+        <record id="1_degree_4" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">12.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_4" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">12.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_4" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">12.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_4" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">12.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_4" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">12.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_4" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">12.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_4" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">12.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_4" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">12.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_4" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">12.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_4" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">12.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 5 degree -->
+        <record id="1_degree_5" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">29.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_5" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">29.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_5" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">29.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_5" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">29.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_5" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">29.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_5" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">29.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_5" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">29.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_5" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">29.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_5" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">29.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_5" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">29.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 6 degree -->
+        <record id="1_degree_6" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">8.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_6" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">8.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_6" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">8.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_6" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">8.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_6" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">8.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_6" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">8.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_6" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">8.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_6" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">8.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_6" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">8.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_6" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">8.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 7 degree -->
+        <record id="1_degree_7" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">4.5</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_7" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">4.5</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_7" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">4.5</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_7" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">4.5</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_7" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">4.5</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_7" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">4.5</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_7" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">4.5</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_7" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">4.5</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_7" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">4.5</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_7" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">4.5</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 8 degree -->
+        <record id="1_degree_8" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">42</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_8" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">42</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_8" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">42</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_8" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">42</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_8" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">42</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_8" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">42</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_8" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">42</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_8" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">42</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_8" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">42</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_8" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">42</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 9 degree -->
+        <record id="1_degree_9" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">50</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_9" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">50</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_9" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">50</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_9" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">50</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_9" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">50</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_9" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">50</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_9" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">50</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_9" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">50</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_9" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">50</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_9" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">50</field>
+            <field name="count">10</field>
+        </record>
+         <!-- 10 degree -->
+        <record id="1_degree_10" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">46</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_10" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">46</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_10" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">46</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_10" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">46</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_10" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">46</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_10" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">46</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_10" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">46</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_10" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">46</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_10" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">46</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_10" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">46</field>
+            <field name="count">10</field>
+        </record>
+         <!-- 11 degree -->
+        <record id="1_degree_11" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">21</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_11" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">21</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_11" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">21</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_11" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">21</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_11" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">21</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_11" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">21</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_11" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">21</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_11" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">21</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_11" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">21</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_11" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">21</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 12 degree -->
+        <record id="1_degree_12" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">62</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_12" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">62</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_12" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">62</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_12" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">62</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_12" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">62</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_12" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">62</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_12" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">62</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_12" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">62</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_12" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">62</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_12" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">62</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 13 degree -->
+        <record id="1_degree_13" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">42</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_13" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">42</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_13" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">42</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_13" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">42</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_13" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">42</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_13" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">42</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_13" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">42</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_13" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">42</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_13" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">42</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_13" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">42</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 14 degree -->
+        <record id="1_degree_14" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">84</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_14" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">84</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_14" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">84</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_14" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">84</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_14" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">84</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_14" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">84</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_14" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">84</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_14" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">84</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_14" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">84</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_14" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">84</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 15 degree -->
+        <record id="1_degree_15" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">84</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_15" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">84</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_15" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">84</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_15" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">84</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_15" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">84</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_15" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">84</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_15" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">84</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_15" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">84</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_15" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">84</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_15" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">84</field>
+            <field name="count">10</field>
+        </record>
+        <!-- 16 degree -->
+        <record id="1_degree_16" model="generate.bonuses">
+            <field name="bonus">1</field>
+            <field name="value">84</field>
+            <field name="count">1</field>
+        </record>
+        <record id="2_degree_16" model="generate.bonuses">
+            <field name="bonus">2</field>
+            <field name="value">84</field>
+            <field name="count">2</field>
+        </record>
+        <record id="3_degree_16" model="generate.bonuses">
+            <field name="bonus">3</field>
+            <field name="value">84</field>
+            <field name="count">3</field>
+        </record>
+        <record id="4_degree_16" model="generate.bonuses">
+            <field name="bonus">4</field>
+            <field name="value">84</field>
+            <field name="count">4</field>
+        </record>
+        <record id="5_degree_16" model="generate.bonuses">
+            <field name="bonus">5</field>
+            <field name="value">84</field>
+            <field name="count">5</field>
+        </record>
+        <record id="6_degree_16" model="generate.bonuses">
+            <field name="bonus">6</field>
+            <field name="value">84</field>
+            <field name="count">6</field>
+        </record>
+        <record id="7_degree_16" model="generate.bonuses">
+            <field name="bonus">7</field>
+            <field name="value">84</field>
+            <field name="count">7</field>
+        </record>
+        <record id="8_degree_16" model="generate.bonuses">
+            <field name="bonus">8</field>
+            <field name="value">84</field>
+            <field name="count">8</field>
+        </record>
+        <record id="9_degree_16" model="generate.bonuses">
+            <field name="bonus">9</field>
+            <field name="value">84</field>
+            <field name="count">9</field>
+        </record>
+        <record id="10_degree_16" model="generate.bonuses">
+            <field name="bonus">10</field>
+            <field name="value">84</field>
+            <field name="count">10</field>
+        </record>
+
+
+    </data>
+</odoo>

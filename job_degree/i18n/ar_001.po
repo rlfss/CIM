@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* job_degree
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200625\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-15 02:13+0000\n"
+"PO-Revision-Date: 2020-07-15 02:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__basic_salary
+msgid "Basic Salary"
+msgstr "الراتب الأساسي"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__bonus
+msgid "Bonus"
+msgstr "العلاوة"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__bonus_name
+msgid "Bonus Name"
+msgstr "علاوة"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__bonuses_lines
+#: model_terms:ir.ui.view,arch_db:job_degree.job_degree_form
+msgid "Bonuses"
+msgstr "العلاوات"
+
+#. module: job_degree
+#: model_terms:ir.actions.act_window,help:job_degree.job_degree_action
+msgid "Create First Job Degree"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__create_uid
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__create_date
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__degree_code
+msgid "Degree Code"
+msgstr "كود الدرجة"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__display_name
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__id
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__id
+msgid "ID"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model,name:job_degree.model_job_degree
+#: model_terms:ir.ui.view,arch_db:job_degree.job_degree_form
+#: model_terms:ir.ui.view,arch_db:job_degree.job_degree_tree
+msgid "Job Degree"
+msgstr "الدرجة الوظيفية"
+
+#. module: job_degree
+#: model:ir.actions.act_window,name:job_degree.job_degree_action
+#: model:ir.ui.menu,name:job_degree.create_job_degree
+msgid "Job Degrees"
+msgstr "الدرجات الوظيفية"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses____last_update
+#: model:ir.model.fields,field_description:job_degree.field_job_degree____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__write_uid
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__write_date
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__no_of_years
+msgid "Minimum job upgrade per ( year )"
+msgstr "الحد الأدنى للترقية (سنة)"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__no_of_bonuses
+msgid "No of Bonuses"
+msgstr "عدد العلاوات"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__value
+msgid "Value"
+msgstr "القيمة"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_job_degree__bonuses_value
+msgid "Value of the annual increase"
+msgstr "قيمة الزيادة السنوية"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__l_bonuses
+msgid "bonuses lines"
+msgstr "العلاوات"
+
+#. module: job_degree
+#: model:ir.model.fields,field_description:job_degree.field_generate_bonuses__count
+msgid "count"
+msgstr ""
+
+#. module: job_degree
+#: model:ir.model,name:job_degree.model_generate_bonuses
+msgid "generate.bonuses"
+msgstr ""

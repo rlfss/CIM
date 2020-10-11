@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+
+    <record id="job_degree_form" model="ir.ui.view">
+        <field name="name">Job Degrees</field>
+        <field name="model">job.degree</field>
+        <field name="arch" type="xml">
+            <form string="Job Degree">
+                <sheet>
+                     <group col="3">
+                        <group>
+                            <field name="degree_no" class="oe_inline"/>
+<!--                            <field name="degree_name" class="oe_inline"/>-->
+                        </group>
+                        <group>
+                            <field name="no_of_bonuses" class="oe_inline"/>
+                            <field name="bonuses_value" class="oe_inline"/>
+                        </group>
+                         <group>
+                            <field name="basic_salary" class="oe_inline"/>
+                            <field name="no_of_years" class="oe_inline"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                          <page string="Bonuses">
+                              <field name="bonuses_lines" readonly="1" force_save="1">
+                                  <tree>
+                                      <field name="bonus"/>
+                                      <field name="value"/>
+                                      <field name="count" invisible="1"/>
+                                  </tree>
+                              </field>
+                          </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="job_degree_tree" model="ir.ui.view">
+        <field name="name">Job Degrees</field>
+        <field name="model">job.degree</field>
+        <field name="arch" type="xml">
+            <tree string="Job Degree">
+                <field name="degree_no" type="char"/>
+                <field name="no_of_bonuses"/>
+                <field name="bonuses_value"/>
+                <field name="basic_salary"/>
+                <field name="no_of_years"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="job_degree_action" model="ir.actions.act_window">
+        <field name="name">Job Degrees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">job.degree</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+         <p>
+            Create First Job Degree
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="create_job_degree" name="Job Degrees" parent="hr.menu_human_resources_configuration" action="job_degree_action" sequence="1"/>
+
+
+  </data>
+</odoo>
