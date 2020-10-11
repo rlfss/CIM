@@ -4,6 +4,10 @@ import base64
 from random import choice
 from string import digits
 import itertools
+
+from dateutil import relativedelta
+from datetime import date , datetime
+
 from werkzeug import url_encode
 import pytz
 
@@ -21,6 +25,7 @@ class Employee(models.Model):
     _inherit = 'hr.employee'
 
     employee_num = fields.Char(string="Employee Number", store=True)
+
 
     employee_status = fields.Many2one('hr.employee.status', string="Employee Status", store=True)
     employee_branch = fields.Many2one('hr.employee.branch', string="Employee Branch", store=True)
@@ -81,33 +86,126 @@ class Employee(models.Model):
         'hr.employee.guardianship', 'employee_id', string="Guardianship", groups="hr.group_hr_user", tracking=True)
 
 
+    experience = fields.One2many(
+        'hr.employee.experience' , 'employee_id' , string="Experience" , groups="hr.group_hr_user", tracking=True)
+    total_years = fields.Float(string="Total Experience",compute='_compute_total_no_years_experience',stored=True)
+    previous_experience = fields.Float(string="Previous Experience",compute='_compute_previous_experience',stored=True)
+    current_experience = fields.Float(string="Current Experience",compute='_compute_current_experience',stored=True)
+    legal_leave_monthly_allocation = fields.Float(string="Legal Leave Monthly Allocation",compute='_compute_legal_leave_monthly_allocation',stored=True)
+    employee_time_granted = fields.Boolean("Time Granted",default=False)
 
+    appointmentdegree = fields.Many2one('job.degree', string="Appointment Degree", tracking=True)
+    appointmentsalary = fields.Many2one('generate.bonuses', string="Appointment Salary", tracking=True)
+    appointmentwage = fields.Float( string="Appointment Wage",compute="_compute_appintment_wage",stored=True)
 
- 
-    appointmentdegree = fields.Many2one('hr.employee.appointmentdegree', string="Appointment Degree", tracking=True)
-    appointmentsalary = fields.Many2one('hr.employee.appointmentsalary', string="Appointment Salary", tracking=True)
+    currentdegree = fields.Many2one('job.degree', string="Current Degree", tracking=True)
+    currentsalary = fields.Many2one('generate.bonuses', string="Current Salary", tracking=True)
+    currentwage = fields.Float(string="Current Wage",compute="_compute_current_wage", stored=True)
 
-    currentdegree = fields.Many2one('hr.employee.currentdegree', string="Current Degree", tracking=True)
-    currentdegree_date = fields.Date(string="Date of acquiring Current Degree", groups="hr.group_hr_user", tracking=True)
-    
-    currentsalary = fields.Many2one('hr.employee.currentsalary', string="Current Salary", tracking=True)
     currentsalary_date = fields.Date(string="Date of acquiring Current Salary", groups="hr.group_hr_user", tracking=True)
+    currentdegree_date = fields.Date(string="Date of acquiring Current Degree", groups="hr.group_hr_user", tracking=True)
+    financial_statrted_date = fields.Date('Work Started Date',compute='_compute_working_date',inverse='_inverse_working_date',tracking=True,stored=True)
 
 
 
+    hiring_date = fields.Date('Hiring Date', compute='_compute_contract_data', readonly=True,stored=True)
+    started_date = fields.Date('Work Started Date', compute='_compute_contract_data', readonly=True,stored=True)
+    first_work_date = fields.Date('First Work Date', compute='_compute_contract_data', readonly=True,stored=True)
+    position_type = fields.Many2one('hr.contract.positiontype', compute='_compute_contract_data', string="Position Type", readonly=True,stored=True)
 
-    hiring_date = fields.Date('Hiring Date', compute='_compute_contract_data', readonly=True)
-    started_date = fields.Date('Work Started Date', compute='_compute_contract_data', readonly=True)
-    first_work_date = fields.Date('First Work Date', compute='_compute_contract_data', readonly=True)
-    position_type = fields.Many2one('hr.contract.positiontype', compute='_compute_contract_data', string="Position Type", readonly=True)
+
+    appointment_decision = fields.Char('Appointment Decision No.', compute='_compute_contract_data', readonly=True,stored=True)
+
+    @api.model
+    def create_employee_allocation(self):
+        # for employee in self:
+        #     allocation = employee.env['hr.leave.allocation']
+        #     myallocation = allocation.search([('employee_id', '=', employee.id)])
+        #     for new in myallocation:
+        #         if
+        print("abcd")
+
+    @api.depends('experience.experience_years')
+    def _compute_total_no_years_experience(self):
+        for rec in self:
+            rec.total_years = 0.0
+            for item in rec.experience:
+                rec.total_years += item.experience_years/12
+
+    @api.depends('total_years')
+    def _compute_previous_experience(self):
+        for rec in self :
+            rec.previous_experience = rec.total_years
+
+    @api.depends('previous_experience','started_date')
+    def _compute_current_experience(self):
+        for rec in self:
+            today = date.today()
+            y = relativedelta.relativedelta(today, rec.started_date)
+            rec.current_experience = (y.years * 12 + y.months)/12 + rec.previous_experience
+
+    @api.depends('current_experience','birthday')
+    def _compute_legal_leave_monthly_allocation(self):
+        for rec in self:
+            today = date.today()
+            y = relativedelta.relativedelta(today, rec.birthday)
+            total_age = y.years
+            if total_age > 50 or rec.current_experience >= 20 :
+                rec.legal_leave_monthly_allocation = 3.75
+            else :
+                rec.legal_leave_monthly_allocation = 2.5
 
 
-    appointment_decision = fields.Char('Appointment Decision No.', compute='_compute_contract_data', readonly=True)
+
+    @api.onchange('appointmentdegree')
+    def _get_bonuses_ids(self):
+        for rec in self:
+            if rec.appointmentdegree:
+                bonuses_ids = rec.appointmentdegree.bonuses_lines.ids
+                rec.appointmentsalary = False
+                return {
+                    'domain': {
+                        'appointmentsalary': [('id','in',bonuses_ids)]
+                    }
+                }
+
+    @api.depends('appointmentdegree','appointmentsalary')
+    def _compute_appintment_wage(self):
+        for rec in self:
+            rec.appointmentwage = (rec.appointmentdegree.basic_salary +
+                                   (rec.appointmentsalary.value * rec.appointmentsalary.count) )
+
+    @api.onchange('currentdegree')
+    def _get_current_bonuses_ids(self):
+        for rec in self:
+            if rec.currentdegree:
+                current_bonuses_ids = rec.currentdegree.bonuses_lines.ids
+                rec.currentsalary = False
+                return {
+                    'domain': {
+                        'currentsalary': [('id', 'in', current_bonuses_ids)]
+                    }
+                }
+
+    @api.depends('currentdegree', 'currentsalary')
+    def _compute_current_wage(self):
+        for rec in self:
+            rec.currentwage = (rec.currentdegree.basic_salary +
+                                   (rec.currentsalary.value * rec.currentsalary.count))
+
+    @api.depends('contract_id.started_date')
+    def _compute_working_date(self):
+        for rec in self:
+            rec.financial_statrted_date = rec.contract_id.started_date if rec.contract_id.started_date else False
+
+    def _inverse_working_date(self):
+        for rec in self:
+            rec.contract_id.started_date = rec.financial_statrted_date if rec.financial_statrted_date else False
 
     def _compute_contract_data(self):
         """ get the lastest contract """
-        Contract = self.env['hr.contract']
         for employee in self:
+            Contract = employee.env['hr.contract']
             mycontract = Contract.search([('employee_id', '=', employee.id)], order='date_start desc', limit=1)
             employee.hiring_date = None
             employee.started_date = None
@@ -115,16 +213,26 @@ class Employee(models.Model):
             employee.position_type = None
             employee.appointment_decision = None
             for line in mycontract:
-                if employee.hiring_date:
+                if line.hiring_date:
                     employee.hiring_date = line.hiring_date
-                if employee.started_date:
+                else:
+                    line.hiring_date = False
+                if line.started_date:
                     employee.started_date = line.started_date
-                if employee.first_work_date:
+                else:
+                    line.started_date = False
+                if line.first_work_date:
                     employee.first_work_date = line.first_work_date
-                if employee.position_type:
+                else:
+                    line.first_work_date = False
+                if line.position_type:
                     employee.position_type = line.position_type
-                if employee.appointment_decision:
+                else:
+                    line.position_type = False
+                if line.appointment_decision:
                     employee.appointment_decision = line.appointment_decision
+                else:
+                    line.appointment_decision = False
 
 
 class EmployeeDegreeAppointment(models.Model):
@@ -269,4 +377,23 @@ class EmployeeTrainingGuardianshipType(models.Model):
     _description = "Employee Guardianship Type"
 
     name = fields.Char(string="Guardianship Type", store=True)
+
+class EmployeeExperience(models.Model):
+    _name = 'hr.employee.experience'
+    _description = "Employee Experience"
+
+    employee_id = fields.Many2one('hr.employee', string="Employee")
+
+
+    description = fields.Char(string="Description",store=True)
+    experience_date_from = fields.Date(string="Start Date", groups="hr.group_hr_user", tracking=True)
+    experience_date_to = fields.Date(string="End Date", groups="hr.group_hr_user", tracking=True)
+    experience_years = fields.Float(string="Experience")
+
+    @api.onchange('experience_date_from','experience_date_to')
+    def _get_experience_years(self):
+        y = relativedelta.relativedelta(self.experience_date_to , self.experience_date_from)
+        self.experience_years = y.years *12 + y.months
+
+
 

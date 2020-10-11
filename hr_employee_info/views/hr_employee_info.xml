@@ -94,21 +94,25 @@
                     <group col="3">
                         <group>
                             <field name="appointmentdegree"/>
-                            <field name="appointmentsalary"/>
+                            <field name="appointmentsalary" />
+                            <field name="appointmentwage"/>
                         </group>
                         <group>
                             <field name="currentdegree"/>
-                            <field name="currentdegree_date"/>
+                            <field name="currentsalary"/>
+                            <field name="currentwage"/>
+
                         </group>
                         <group>
-                            <field name="currentsalary"/>
+                            <field name="currentdegree_date"/>
                             <field name="currentsalary_date"/>
+                            <field name="financial_statrted_date" attrs="{'readonly':True}"/>
                         </group>
                     </group>
                 </page>
 
                 <page string="Job Data">
-                    <group col="3">
+                    <group col="4">
                         <group>
                             <field name="hiring_date"/>
                             <field name="position_type"/>
@@ -119,6 +123,12 @@
                         </group>
                         <group>
                             <field name="first_work_date"/>
+                        </group>
+                        <group>
+                            <field name="previous_experience"/>
+                            <field name="current_experience"/>
+                            <field name="legal_leave_monthly_allocation"/>
+                            <field name="employee_time_granted" invisible="1"/>
                         </group>
                     </group>
                 </page>            
@@ -190,8 +200,37 @@
                         </field>
                     </group>
                 </page>
+                <page string="Experience">
+                    <group>
+                        <field name="experience">
+                            <tree string="Experience" editable="bottom">
+                                <field name="description"/>
+                                <field name="experience_date_from" />
+                                <field name="experience_date_to" />
+                                <field name="experience_years" readonly="1" force_save="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <br/>
+                        <div class="row">
+                             <label for="total_years" class="col-2 mr-0" string="Experience Years" />
+                             <field name="total_years"  class="oe_inline" readonly="1" force_save="1"/>
+                             <span class="ml8">Years</span>
+                        </div>
+                </page>
             </xpath>
 
+        </field>
+    </record>
+    <record id="view_work_date_readonly" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="groups_id" eval="[(6, 0, [ref('hr.group_hr_manager')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='financial_statrted_date']" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </xpath>
         </field>
     </record>
 

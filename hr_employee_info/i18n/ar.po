@@ -221,6 +221,12 @@ msgstr "المربوط عند التعيين"
 
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__appointmentwage
+msgid "Appointment Wage"
+msgstr "أجر التعيين"
+
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__currentdegree
 msgid "Current Degree"
 msgstr "الدرجة الحالية"
