@@ -294,6 +294,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 request_hour_to: $('.new_timeoff_form .request_hour_to').val(),
                 request_date_from_period: $('.new_timeoff_form .request_date_from_period').val(),
                 notes: $('.new_timeoff_form .notes').val(),
+                attachment: $('.new_timeoff_form .attachment').val(),
             }],
         }).then(function (response) {
             if (response.errors) {

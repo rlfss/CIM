@@ -54,9 +54,9 @@
                 <xpath expr="//div[@name='description']" position="before">
                     <field name="cus_level" invisible="1"/>
                     <!-- per day -->
-                    <div class="row balance" attrs="{'invisible': [('cus_level', '=', False)]}">
+                    <div class="row balance">
                         <label for="attachment" class="col-2 mr-0" string="Attachment"/>
-                        <field name="attachment" class="oe_inline" widget="many2many_binary"/>
+                        <field name="attachment"  widget="binary" filename="filename"/>
                     </div>
 
                 </xpath>

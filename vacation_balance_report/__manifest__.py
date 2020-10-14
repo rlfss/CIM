@@ -9,8 +9,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
+        #'security/ir.model.access.csv',
+        #'views/views.xml',
         'wizards/vacation_balance.xml',
         'reports/report.xml'
         

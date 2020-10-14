@@ -37,7 +37,7 @@ class AddAttachment(models.Model):
     _inherit = 'hr.leave'
     _description = 'Add Attachment'
 
-    attachment = fields.Many2many('ir.attachment', string="Attachment", copy=False)
+    attachment = fields.Binary(string="Attachment", copy=False, attachment=True)
     cus_level = fields.Boolean(string="cus level", related='holiday_status_id.custom_leave')
     notes = fields.Text("Notes")
 

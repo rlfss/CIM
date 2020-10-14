@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_vacation_balance_report_vacation_balance_report,vacation_balance_report.vacation_balance_report,model_vacation_balance_report_vacation_balance_report,base.group_user,1,1,1,1
+access_employee_vacation,employee.vacation,model_employee_vacation,base.group_user,1,1,1,1

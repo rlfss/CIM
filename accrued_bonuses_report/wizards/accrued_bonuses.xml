@@ -45,8 +45,10 @@
             <field name="view_id" ref="accrued_bonuses_form_wizard"/>
             <field name="target">new</field>
         </record>
-
-        <menuitem id="create_accrued_bonuses" name="Accrued Bonuses Report" parent="hr_holidays.menu_hr_holidays_report" action="accrued_bonuses_action_wizard" sequence="3"/>
+        <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+        <!-- This Menu Item Must have a parent -->
+<!--        <menuitem id="create_reporting_bonuses" name="Reporting" parent="hr.menu_hr_root" sequence="4"/>-->
+        <menuitem id="create_accrued_bonuses" name="Accrued Bonuses Report" parent="hr.hr_menu_hr_reports" action="accrued_bonuses_action_wizard" sequence="3"/>
 
 
 

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200625\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-10 20:21+0000\n"
-"PO-Revision-Date: 2020-07-10 20:21+0000\n"
+"POT-Creation-Date: 2020-07-18 15:06+0000\n"
+"PO-Revision-Date: 2020-07-18 15:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,11 @@ msgid "Employee Name"
 msgstr "اسم الموظف"
 
 #. module: accrued_bonuses_report
+#: model:ir.model.fields,field_description:accrued_bonuses_report.field_accrued_bonuses__type
+msgid "For"
+msgstr "لكل"
+
+#. module: accrued_bonuses_report
 #: model:ir.model.fields,field_description:accrued_bonuses_report.field_accrued_bonuses__id
 #: model:ir.model.fields,field_description:accrued_bonuses_report.field_report_accrued_bonuses_report_report_accrued_bounses_xls__id
 msgid "ID"
@@ -109,11 +114,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:accrued_bonuses_report.accrued_bonuses_form_wizard
 msgid "Print"
 msgstr "طباعة"
-
-#. module: accrued_bonuses_report
-#: model:ir.model.fields,field_description:accrued_bonuses_report.field_accrued_bonuses__type
-msgid "Type"
-msgstr "النوع"
 
 #. module: accrued_bonuses_report
 #: model:ir.model,name:accrued_bonuses_report.model_report_accrued_bonuses_report_report_accrued_bounses_xls

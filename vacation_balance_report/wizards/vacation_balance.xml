@@ -52,7 +52,7 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem id="create_vacation_balance" name="Vacation Balance Report" parent="hr_holidays.menu_hr_holidays_report" action="vacation_balance_action_wizard" sequence="3"/>
+        <menuitem id="create_vacation_balance" name="Vacation Balance Report" parent="hr.hr_menu_hr_reports" action="vacation_balance_action_wizard" sequence="3"/>
 
 
 

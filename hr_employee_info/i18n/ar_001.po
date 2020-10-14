@@ -402,6 +402,31 @@ msgstr "الجنس"
 msgid "General"
 msgstr "عام"
 
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__department_id
+#: model:ir.model.fields,field_description:hr.field_res_users__department_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Department"
+msgstr "الوحدة الإدارية"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_department__name
+msgid "Department Name"
+msgstr "اسم الوحدة الإدارية"
+
+#. module: hr
+#: model:ir.actions.act_window,name:hr.open_module_tree_department
+#: model:ir.ui.menu,name:hr.menu_hr_department_tree
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+msgid "Departments"
+msgstr "الوحدات الإدارية"
+
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__graduation_date
 msgid "Graduation Date"

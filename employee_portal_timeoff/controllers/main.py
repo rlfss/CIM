@@ -12,7 +12,7 @@ from odoo.exceptions import AccessError, MissingError
 import binascii
 import functools
 import logging
-
+import base64
 import json
 
 import werkzeug.urls
@@ -190,6 +190,24 @@ class WebsiteAccount(CustomerPortal):
         # domain = [('employee_id.user_id', '=', request.env.user.id)]
         perms = HrPerm.search(domain)
         returns = HrReturn.search(domain,order=order, limit=self._items_per_page, offset=pager['offset'])
+
+        # attachments = []
+        # if 'file' in values:
+        #
+        #     for c_file in request.httprequest.files.getlist('file'):
+        #         data = c_file.read()
+        #
+        #         if c_file.filename:
+        #             new_attachment = request.env['ir.attachment'].sudo().create({
+        #                 'name': c_file.filename,
+        #                 'datas': base64.b64encode(data),
+        #                 'datas_fname': c_file.filename,
+        #                 'res_model': 'hr.leave',
+        #                 'res_id': HrLeave.id
+        #             })
+        #
+        #             attachments.append((c_file.filename, data))
+
         if groupby == 'none':
             grouped_timeoff = []
             if leaves:

@@ -24,6 +24,8 @@ class HrEmployeeInfo(models.Model):
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
+    name = fields.Text(translate=True)
+
     employee_num = fields.Char(string="Employee Number", store=True)
 
 

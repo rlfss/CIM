@@ -279,11 +279,17 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Attachment(s)</label>
-                                                                <input type="file" name="attachments"
-                                                                       class="form-control o_website_form_input attachments"
+                                                                <input type="file" name="attachment"
+                                                                       class="form-control o_website_form_input attachment"
                                                                        multiple="true"
-                                                                       accept="image/*,application/pdf,video/*"/>
-                                                            </div>
+                                                                       accept="image/*,application/pdf,video/"/>
+
+
+<!--                                                            <input type="file" name="attachment" class="form-control o_website_form_input attachment"-->
+<!--                                                                   multiple="true" data-show-upload="true"-->
+<!--                                                                   data-show-caption="true" accept="image/*,application/pdf,video/*"-->
+<!--                                                                   data-show-preview="true"/>-->
+                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
@@ -515,15 +521,15 @@
                                                                 <div id="new-opp-dialog-3">
                                                                     <div class="modal-body">
                                                                         <div class="row">
-<!--                                                                            <div class="col-md-6">-->
-<!--                                                                                <div class="form-group">-->
-<!--                                                                                    <label>Related Leave:</label>-->
-<!--                                                                                    <input type="text"-->
-<!--                                                                                           name="reference_ret"-->
-<!--                                                                                           class="form-control reference_ret"-->
-<!--                                                                                           placeholder="TMF-190001"/>-->
-<!--                                                                                </div>-->
-<!--                                                                            </div>-->
+                                                                            <!--                                                                            <div class="col-md-6">-->
+                                                                            <!--                                                                                <div class="form-group">-->
+                                                                            <!--                                                                                    <label>Related Leave:</label>-->
+                                                                            <!--                                                                                    <input type="text"-->
+                                                                            <!--                                                                                           name="reference_ret"-->
+                                                                            <!--                                                                                           class="form-control reference_ret"-->
+                                                                            <!--                                                                                           placeholder="TMF-190001"/>-->
+                                                                            <!--                                                                                </div>-->
+                                                                            <!--                                                                            </div>-->
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label>Related Leave:</label>
@@ -597,7 +603,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th scope="col">Reference</th>
-<!--                                                                <th scope="col">Type</th>-->
+                                                                <!--                                                                <th scope="col">Type</th>-->
                                                                 <th scope="col">Date</th>
                                                                 <th scope="col">state</th>
 
@@ -607,7 +613,7 @@
                                                             <t t-foreach="returns" t-as="o">
                                                                 <tr>
                                                                     <td><span t-field="o.leave_related"/></td>
-<!--                                                                    <td><span t-field="o.holiday_status_id.name"/></td>-->
+                                                                    <!--                                                                    <td><span t-field="o.holiday_status_id.name"/></td>-->
                                                                     <td><span t-field="o.date_time"/></td>
                                                                     <td><span t-att-class="'green-color' if o.state=='validate' else ''
                                                                                'yellow-color' if o.state=='confirm' else ''
@@ -616,13 +622,13 @@
                                                                                'yellow-color' if o.state=='draft' else ''
                                                                                'green-color' if o.state=='validate1' else ''
                                                                                " t-field="o.state"/></td>
-<!--                                                                    <td>-->
-<!--                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"-->
-<!--                                                                           title="Edit">-->
-<!--                                                                            <i class="fas fa-pencil-square-o"-->
-<!--                                                                               style="font-size:18px;"></i>-->
-<!--                                                                        </a>-->
-<!--                                                                    </td>-->
+                                                                    <!--                                                                    <td>-->
+                                                                    <!--                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"-->
+                                                                    <!--                                                                           title="Edit">-->
+                                                                    <!--                                                                            <i class="fas fa-pencil-square-o"-->
+                                                                    <!--                                                                               style="font-size:18px;"></i>-->
+                                                                    <!--                                                                        </a>-->
+                                                                    <!--                                                                    </td>-->
                                                                 </tr>
                                                             </t>
                                                         </tbody>
