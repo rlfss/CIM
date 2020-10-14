@@ -24,7 +24,6 @@ class HrEmployeeInfo(models.Model):
 class Employee(models.Model):
     _inherit = 'hr.employee'
 
-    name = fields.Text(translate=True)
 
     employee_num = fields.Char(string="Employee Number", store=True)
 
@@ -117,6 +116,24 @@ class Employee(models.Model):
 
 
     appointment_decision = fields.Char('Appointment Decision No.', compute='_compute_contract_data', readonly=True,stored=True)
+
+    employee_age = fields.Integer(string="Age")
+
+
+    @api.onchange('birthday')
+    def onchange_employee_birthday(self):
+        if self.birthday:
+            today = date.today()
+            age = today.year - self.birthday.year - (
+                        (today.month, today.day) < (self.birthday.month, self.birthday.day))
+            self.employee_age = age
+
+    @api.constrains('employee_age')
+    def check_employee_age(self):
+        for age in self:
+            if age.employee_age:
+                if age.employee_age < 18 :
+                    raise ValidationError(_("Age should be 18 years old or more"))
 
     @api.model
     def create_employee_allocation(self):

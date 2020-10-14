@@ -8,6 +8,7 @@
         'security/ir.model.access.csv',
         'views/hr_employee_info.xml',
         'views/contract.xml',
+        'data/retirement_schdule_data.xml'
     ],
     'installable': True,
 }
