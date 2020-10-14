@@ -437,7 +437,7 @@ class EmpPortalTimeOff(models.Model):
             dt_to =  datetime.strptime(end, '%Y-%m-%d').date()
             leaves_ids = self.env['hr.leave'].search([('employee_id', '=', emp.id), ('holiday_status_id', '=', timeoff_type)])
             type_ids = self.env['hr.leave.type'].search([('id', '=', timeoff_type)])
-           
+
             basic_balance =  type_ids.max_leaves
             remaining_balance =  type_ids.virtual_remaining_leaves
 

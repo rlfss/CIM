@@ -502,7 +502,7 @@ body.modal-open .mm-slideout {
     margin: 0 auto;
     display: flex;
     height: 50px;
-    max-width: 50px;
+    max-width: 70px;
     background-color: white;
     align-items: center;
     justify-content: center;

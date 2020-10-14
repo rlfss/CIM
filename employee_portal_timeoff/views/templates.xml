@@ -384,6 +384,13 @@
                                     <span t-else="" class="text-muted"> - </span>
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <strong class="col-12 col-sm-4">Notes</strong>
+                                <div class="col">
+                                    <span t-if="timeoff.notes" t-field="timeoff.notes"/>
+                                    <span t-else="" class="text-muted"> - </span>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <div role="dialog" class="modal fade modal_edit_timeoff">
