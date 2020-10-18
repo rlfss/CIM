@@ -416,21 +416,21 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <t t-foreach="perms" t-as="leave">
+                                                            <t t-foreach="perms" t-as="permission">
                                                                 <tr>
-                                                                    <td><span t-field="leave.name"/></td>
-                                                                    <td><span t-field="leave.employee_id.name"/></td>
-                                                                    <td><span t-field="leave.req_type"/></td>
-                                                                    <td><span t-field="leave.date_time"/></td>
-                                                                    <td><span t-att-class="'green-color' if leave.state=='validate' else ''
-                                                                               'yellow-color' if leave.state=='confirm' else ''
-                                                                               'red-color' if leave.state=='cancel' else ''
-                                                                               'red-color' if leave.state=='refuse' else ''
-                                                                               'yellow-color' if leave.state=='draft' else ''
-                                                                               'green-color' if leave.state=='validate1' else ''
-                                                                               " t-field="leave.state"/></td>
+                                                                    <td><span t-field="permission.name"/></td>
+                                                                    <td><span t-field="permission.employee_id.name"/></td>
+                                                                    <td><span t-field="permission.req_type"/></td>
+                                                                    <td><span t-field="permission.date_time"/></td>
+                                                                    <td><span t-att-class="'green-color' if permission.state=='validate' else ''
+                                                                               'yellow-color' if permission.state=='confirm' else ''
+                                                                               'red-color' if permission.state=='cancel' else ''
+                                                                               'red-color' if permission.state=='refuse' else ''
+                                                                               'yellow-color' if permission.state=='draft' else ''
+                                                                               'green-color' if permission.state=='validate1' else ''
+                                                                               " t-field="permission.state"/></td>
                                                                     <td>
-                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"
+                                                                        <a t-attf-href="/my/permission_req/#{permission.id}"
                                                                            title="Edit">
                                                                             <i class="fas fa-pencil-square-o"
                                                                                style="font-size:18px;"></i>
@@ -456,6 +456,7 @@
                                                                     <th scope="col">
                                                                         <i class="far fa-cog"></i>
                                                                     </th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -522,15 +523,6 @@
                                                                 <div id="new-opp-dialog-3">
                                                                     <div class="modal-body">
                                                                         <div class="row">
-                                                                            <!--                                                                            <div class="col-md-6">-->
-                                                                            <!--                                                                                <div class="form-group">-->
-                                                                            <!--                                                                                    <label>Related Leave:</label>-->
-                                                                            <!--                                                                                    <input type="text"-->
-                                                                            <!--                                                                                           name="reference_ret"-->
-                                                                            <!--                                                                                           class="form-control reference_ret"-->
-                                                                            <!--                                                                                           placeholder="TMF-190001"/>-->
-                                                                            <!--                                                                                </div>-->
-                                                                            <!--                                                                            </div>-->
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label>Related Leave:</label>
@@ -607,6 +599,8 @@
                                                                 <!--                                                                <th scope="col">Type</th>-->
                                                                 <th scope="col">Date</th>
                                                                 <th scope="col">state</th>
+                                                                <th scope="col">Edit</th>
+
 
                                                             </tr>
                                                         </thead>
@@ -623,13 +617,13 @@
                                                                                'yellow-color' if o.state=='draft' else ''
                                                                                'green-color' if o.state=='validate1' else ''
                                                                                " t-field="o.state"/></td>
-                                                                    <!--                                                                    <td>-->
-                                                                    <!--                                                                        <a t-attf-href="/my/permission_req/#{leave.id}"-->
-                                                                    <!--                                                                           title="Edit">-->
-                                                                    <!--                                                                            <i class="fas fa-pencil-square-o"-->
-                                                                    <!--                                                                               style="font-size:18px;"></i>-->
-                                                                    <!--                                                                        </a>-->
-                                                                    <!--                                                                    </td>-->
+                                                                    <td>
+                                                                        <a t-attf-href="/my/return_req/#{o.id}"
+                                                                           title="Edit">
+                                                                            <i class="fas fa-pencil-square-o"
+                                                                               style="font-size:18px;"></i>
+                                                                        </a>
+                                                                    </td>
                                                                 </tr>
                                                             </t>
                                                         </tbody>

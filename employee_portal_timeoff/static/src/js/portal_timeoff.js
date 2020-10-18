@@ -5,7 +5,7 @@ var publicWidget = require('web.public.widget');
 var time = require('web.time');
 
 publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
-    selector: '#wrapwrap:has(.new_timeoff_form, .edit_timeoff_form)',
+    selector: '#wrapwrap:has(.new_timeoff_form, .edit_timeoff_form,.new_permission_form,.edit_permission_form,.new_return_form,.edit_return_form)',
     events: {
         'click .action_validate': '_onNewTeamVal',
         'click .action_validate2': '_onNewTeamVal2',
@@ -19,6 +19,8 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         'click .new_permission_confirm': '_onNewpermissionConfirm',
         'click .new_return_confirm': '_onNewreturnConfirm',
         'click .edit_timeoff_confirm': '_onEditTimeOffConfirm',
+        'click .edit_permission_confirm': '_onEditPermissionConfirm',
+        'click .edit_return_confirm': '_onEditReturnConfirm',
         'change .request_date_to': '_onchange',
     },
 
@@ -88,16 +90,6 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
 
 
 
-
-
-
-
-
-
-
-
-
-
     _create_NewTeamConfirm: function () {
         return this._rpc({
             model: 'hr.leave',
@@ -135,11 +127,6 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
             }
         });
     },
-
-
-
-
-
 
 
 
@@ -384,6 +371,36 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         });
     },
 
+    _editPermission: function () {
+        return this._rpc({
+            model: 'hr.permission',
+            method: 'update_permission_portal',
+            args: [[parseInt($('.edit_permission_form .permission_id').val())],{
+                permissionID: parseInt($('.edit_permission_form .permission_id').val()),
+                req_type: $('.edit_permission_form .req_type').val(),
+                date_time: $('.edit_permission_form .date_time').val(),
+                reason: $('.edit_permission_form .reason').val(),
+            }],
+        }).then(function () {
+            window.location.reload();
+        });
+    },
+
+    _editReturn: function () {
+        return this._rpc({
+            model: 'hr.leavereturn',
+            method: 'update_return_portal',
+            args: [[parseInt($('.edit_return_form .return_id').val())],{
+                returnID: parseInt($('.edit_return_form .return_id').val()),
+                reference_ret: $('.edit_return_form .reference_ret').val(),
+                holiday_status_id: $('.edit_return_form .holiday_status_id').val(),
+                request_date: $('.edit_return_form .request_date').val(),
+            }],
+        }).then(function () {
+            window.location.reload();
+        });
+    },
+
     //--------------------------------------------------------------------------
     // Handlers
     //--------------------------------------------------------------------------
@@ -473,6 +490,16 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         ev.preventDefault();
         ev.stopPropagation();
         this._buttonExec($(ev.currentTarget), this._editTimeOffRequest);
+    },
+    _onEditPermissionConfirm: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._buttonExec($(ev.currentTarget), this._editPermission);
+    },
+    _onEditReturnConfirm: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._buttonExec($(ev.currentTarget), this._editReturn);
     },
     _parse_date: function (value) {
         console.log(value);

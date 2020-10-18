@@ -73,6 +73,38 @@ class EmpPortalTimeOff(models.Model):
         return not self.r_leave_signature
 
 
+    def write(self, values):
+        is_officer = self.env.user.has_group('base.group_portal')
+
+        if not is_officer:
+            if any(hol.date_from.date() < fields.Date.today() for hol in self):
+                raise UserError(_('You must have manager rights to modify/validate a time off that already begun'))
+
+        employee_id = values.get('employee_id', False)
+        if not self.env.context.get('leave_fast_create'):
+            if values.get('state'):
+                self._check_approval_update(values['state'])
+                if any(holiday.validation_type == 'both' for holiday in self):
+                    if values.get('employee_id'):
+                        employees = self.env['hr.employee'].browse(values.get('employee_id'))
+                    else:
+                        employees = self.mapped('employee_id')
+                    self._check_double_validation_rules(employees, values['state'])
+            if 'date_from' in values:
+                values['request_date_from'] = values['date_from']
+            if 'date_to' in values:
+                values['request_date_to'] = values['date_to']
+        result = super(EmpPortalTimeOff, self).write(values)
+        if not self.env.context.get('leave_fast_create'):
+            for holiday in self:
+                if employee_id:
+                    holiday.add_follower(employee_id)
+                    self._sync_employee_details()
+                if 'number_of_days' not in values and ('date_from' in values or 'date_to' in values):
+                    holiday._onchange_leave_dates()
+        return result
+
+
 
     def update_timeoff_portal(self, values):
         dt_from = values['from']
@@ -737,6 +769,19 @@ class PermissionRequests(models.Model):
         temp_id = self.env.ref('employee_portal_timeoff.refuse_email_email_template_id')
         temp_id.send_mail(task_id, force_send=True)
 
+    def update_permission_portal(self,values):
+        for permission in self:
+            permission_values = {
+                'employee_id': self.env.user.employee_id.id,
+                'req_type': values['req_type'],
+                'date_time': values['date_time'],
+                'reason': values['reason'],
+            }
+            if values['permissionID']:
+                permission_rec = self.env['hr.permission'].sudo().browse(values['permissionID'])
+                if permission_rec:
+                    permission_rec.sudo().write(permission_values)
+
     @api.model
     def create_permission_portal(self, values):
         if not (self.env.user.employee_id):
@@ -793,3 +838,18 @@ class LeaveReturnDeclaration(models.Model):
                 return {
                     'errors': _('There is no leaves related to this Reference !')
                 }
+
+
+    def update_return_portal(self,values):
+        for reference in self:
+            return_values = {
+                'employee_id': self.env.user.employee_id.id,
+                'leave_related': values['reference_ret'],
+                'date_time': values['request_date'],
+                #'holiday_status_id':values['holiday_status_id']
+
+            }
+            if values['returnID']:
+                return_rec = self.env['hr.leavereturn'].sudo().browse(values['returnID'])
+                if return_rec:
+                    return_rec.sudo().write(return_values)
