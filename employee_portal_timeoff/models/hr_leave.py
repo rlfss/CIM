@@ -74,11 +74,11 @@ class EmpPortalTimeOff(models.Model):
 
 
     def write(self, values):
-        is_officer = self.env.user.has_group('base.group_portal')
-
-        if not is_officer:
-            if any(hol.date_from.date() < fields.Date.today() for hol in self):
-                raise UserError(_('You must have manager rights to modify/validate a time off that already begun'))
+        # is_officer = self.env.user.has_group('base.group_portal')
+        #
+        # if not is_officer:
+        #     if any(hol.date_from.date() < fields.Date.today() for hol in self):
+        #         raise UserError(_('You must have manager rights to modify/validate a time off that already begun'))
 
         employee_id = values.get('employee_id', False)
         if not self.env.context.get('leave_fast_create'):
