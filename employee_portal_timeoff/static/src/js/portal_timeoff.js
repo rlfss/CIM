@@ -358,7 +358,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 timeoff_address: $('.edit_timeoff_form .timeoff_address').val(),
                 timeoff_type: $('.edit_timeoff_form .holiday_status_id').val(),
                 from: $('.edit_timeoff_form .request_date_from').val(),
-                to: $('.edit_timeoff_form .request_date_to').val(),
+                to: $('.edit_timeoff_form .edit_request_date_to').val(),
                 number_of_days: this._parse_date($('.edit_timeoff_form .number_of_days').val()),
                 half_day: $('.edit_timeoff_form .request_unit_half').prop("checked"),
                 custom_hours: $('.edit_timeoff_form .request_unit_hours').prop("checked"),

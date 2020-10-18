@@ -460,7 +460,7 @@
                                                     <label class="control-label" for="date_to">To</label>
                                                     <div class="input-group date">
                                                         <input type="date" name="request_date_to"
-                                                               class="form-control date_to request_date_to"
+                                                               class="form-control date_to edit_request_date_to"
                                                                t-att-value="timeoff.request_date_to"
                                                                data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>
                                                         <div class="input-group-append">
