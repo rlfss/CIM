@@ -64,9 +64,15 @@ class PermissionRequests(models.Model):
             return result
 
 
-
+    def action_confirm(self):
+        self.write({'state': 'confirm'})
+        return True
 
     def action_approve(self):
+        self.write({'state': 'validate1'})
+        return True
+
+    def action_validate(self):
         self.write({'state': 'validate'})
         return True
 

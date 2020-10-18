@@ -251,11 +251,11 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
             if (response.errors) {
                 $('#new-opp-dialog-1 .alert').remove();
                 $('#new-opp-dialog-1 div:first').prepend('<div class="alert alert-danger">' + response.errors + '</div>');
-                self.$("input.number_of_days").val('');                
+                self.$("input.number_of_days").val('');
                 return Promise.reject(response);
             } else {
                 self.$("input.request_date_to").prop("disabled", false);                
-                self.$("input.number_of_days").val(response.date_to);                
+                self.$("input.number_of_days").val(response.date_to);
                 self.$("input.current").val(response.current);                
                 self.$("input.requested").val(response.requested);                
                 self.$("input.remaining").val(response.remaining);                

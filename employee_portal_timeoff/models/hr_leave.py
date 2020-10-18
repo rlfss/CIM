@@ -6,7 +6,7 @@ from datetime import datetime, time, timedelta
 from odoo.tools import float_compare
 from odoo.tools.float_utils import float_round
 from dateutil.relativedelta import relativedelta
-from odoo.exceptions import AccessError, UserError, ValidationError
+from odoo.exceptions import AccessError, UserError, ValidationError, AccessDenied
 from pytz import timezone, UTC
 from datetime import datetime, timedelta
 from odoo.tools.translate import _
@@ -460,7 +460,6 @@ class EmpPortalTimeOff(models.Model):
         # timeoff_type = self.env['hr.leave.type'].sudo().browse(2)
         # if timeoff_type.exclude_weekends:
         #     data = self._get_number_of_days(values['start'], values['start'], None)
-
         if (values['start'] and values['end']):
             dt_from = values['start']
             end = values['end']
@@ -479,7 +478,7 @@ class EmpPortalTimeOff(models.Model):
             date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
             date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
             number_of_days = self.portal_get_number_of_days(date_from, date_to, 'ex')
-            number_of_days = int(number_of_days['days'])
+            number_of_days = int(number_of_days['days']) + 1
             remaining = remaining_balance - number_of_days
             if number_of_days:
                 return {

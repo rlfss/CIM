@@ -252,6 +252,7 @@ class WebsiteAccount(CustomerPortal):
                 'timeoff': timeoff,
                 'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only(),
                 'emp_id': emp and emp.id or False
+
             })
 
     @http.route(['/my/leaves/summary'], type='http', auth="user", website=True)

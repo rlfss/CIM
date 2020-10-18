@@ -529,7 +529,7 @@
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="permission_req.name"/>
                                 </h5>
-                                <button t-if="permission_req.state != 'confirm'" type="button" data-toggle="modal"
+                                <button t-if="permission_req.state == 'draft'" type="button" data-toggle="modal"
                                         data-target=".edit_permission_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
 
@@ -660,6 +660,7 @@
                                     <span class="text-nowrap" t-esc="return_req.name"/>
                                 </h5>
                                 <button type="button" data-toggle="modal"
+                                        t-if="return_req.state == 'draft'"
                                         data-target=".edit_return_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
                             </div>
