@@ -496,6 +496,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         ev.stopPropagation();
         this._buttonExec($(ev.currentTarget), this._editPermission);
     },
+
     _onEditReturnConfirm: function (ev) {
         ev.preventDefault();
         ev.stopPropagation();

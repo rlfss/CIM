@@ -17,6 +17,7 @@
             <field name="allocation_notif_subtype_id" eval="ref('mt_leave_allocation')"/>
             <field name="create_calendar_meeting" eval="True"/>
             <field name="color_name">red</field>
+            <field name="validation_type">supermanager</field>
         </record>
 
         <record id="2_leave_custom" model="hr.leave.type">

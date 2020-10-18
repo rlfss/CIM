@@ -31,6 +31,7 @@ class CustomLeave(models.Model):
         ('years', 'Year')
     ], string="Unit of time between two intervals", default='months')
     date_to = fields.Date()
+    time_to_apply = fields.Float("Time to Apply (Years)")
 
 
 class AddAttachment(models.Model):
@@ -81,6 +82,12 @@ class AddAttachment(models.Model):
                 elif rec.employee_id.gender != 'female':
                     raise ValidationError(_("This leave Applicable for only Female"))
 
+    @api.constrains('holiday_status_id')
+    def _check_current_experience(self):
+        for rec in self:
+            if rec.holiday_status_id.time_to_apply > rec.employee_id.current_experience and rec.holiday_status_id.allocated_method == 'auto'\
+                    and rec.holiday_status_id.automated_allocation == 'based':
+                raise ValidationError(_("This leave Applicable for Employee that have more than 1 year experience"))
 
 class HrAllocation(models.Model):
     _inherit = 'hr.leave.allocation'

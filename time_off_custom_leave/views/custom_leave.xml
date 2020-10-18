@@ -36,6 +36,9 @@
                     </div>
 
                 </xpath>
+                <field name="submission" position="after">
+                    <field name="time_to_apply"/>
+                </field>
             </field>
             <!-- <span>Add</span>-->
             <!-- <field name="number_per_interval" class="ml8" attrs="{'required': [('automated_allocation', '=', 'custom')]}"/>-->

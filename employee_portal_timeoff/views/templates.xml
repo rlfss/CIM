@@ -532,6 +532,9 @@
                                 <button t-if="permission_req.state == 'draft'" type="button" data-toggle="modal"
                                         data-target=".edit_permission_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
+<!--                                <button type="button" name="cancel"  special="cancel" class="btn btn-link btn-sm">-->
+<!--                                                Cancel</button>-->
+
 
                             </div>
                             <div class="row mb-2">

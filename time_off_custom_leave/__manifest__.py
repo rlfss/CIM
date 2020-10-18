@@ -2,7 +2,7 @@
 {
     'name': "Custom Leaves",
     'version': '0.1',
-    'depends': ['base','hr','hr_holidays','hr_holidays_public','leave_cim'],
+    'depends': ['base','hr','hr_holidays','hr_holidays_public','leave_cim','hr_employee_info'],
     'data': [
         # 'security/ir.model.access.csv',
         'views/custom_leave.xml',

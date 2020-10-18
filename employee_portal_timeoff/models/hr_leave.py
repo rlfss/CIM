@@ -242,6 +242,13 @@ class EmpPortalTimeOff(models.Model):
                 'errors': _('You Can Not Create Leave Continuous ' + str(dura_days) + ' Days')
             }
 
+
+        if tftype.time_to_apply > emp.current_experience and tftype.allocated_method == 'auto' \
+                and tftype.automated_allocation == 'based':
+            return {
+                'errors': _('This leave Applicable for Employee that have more than 1 year experience ')
+            }
+
         if timeoff_submission == 'back':
             dt_from = values['from']
             date_object = datetime.strptime(dt_from, '%Y-%m-%d').date()
@@ -492,6 +499,7 @@ class EmpPortalTimeOff(models.Model):
                 return {
                     'errors': _('Enter Start Date !')
                 }
+
     def team_action_validate(self, values):
         random_code = random.randint(9, 50000)
         timenow = datetime.now() + timedelta(minutes=2)
@@ -747,6 +755,10 @@ class PermissionRequests(models.Model):
 
     def _default_access_token(self):
         return str(uuid.uuid4())
+
+    def action_cancel(self):
+        self.write({'state': 'cancel'})
+        return True
 
 
     access_token = fields.Char('Security Token', required=True, default=_default_access_token, readonly=True)
