@@ -10,6 +10,7 @@ from odoo.exceptions import AccessError, UserError, ValidationError, AccessDenie
 from pytz import timezone, UTC
 from datetime import datetime, timedelta
 from odoo.tools.translate import _
+from odoo.addons.hr_holidays.models.hr_leave import HolidaysRequest as HolidaysRequest
 
 import uuid
 
@@ -80,6 +81,7 @@ class EmpPortalTimeOff(models.Model):
         #     if any(hol.date_from.date() < fields.Date.today() for hol in self):
         #         raise UserError(_('You must have manager rights to modify/validate a time off that already begun'))
 
+        super(HolidaysRequest, self).write(values)
         employee_id = values.get('employee_id', False)
         if not self.env.context.get('leave_fast_create'):
             if values.get('state'):
@@ -94,7 +96,7 @@ class EmpPortalTimeOff(models.Model):
                 values['request_date_from'] = values['date_from']
             if 'date_to' in values:
                 values['request_date_to'] = values['date_to']
-        result = super(EmpPortalTimeOff, self).write(values)
+        result = super(HolidaysRequest, self).write(values)
         if not self.env.context.get('leave_fast_create'):
             for holiday in self:
                 if employee_id:
@@ -103,6 +105,8 @@ class EmpPortalTimeOff(models.Model):
                 if 'number_of_days' not in values and ('date_from' in values or 'date_to' in values):
                     holiday._onchange_leave_dates()
         return result
+
+    HolidaysRequest.write = HolidaysRequest
 
 
 
