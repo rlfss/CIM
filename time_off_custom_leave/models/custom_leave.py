@@ -38,7 +38,8 @@ class AddAttachment(models.Model):
     _inherit = 'hr.leave'
     _description = 'Add Attachment'
 
-    attachment = fields.Binary(string="Attachment", copy=False, attachment=True)
+    attachment = fields.Binary(string="Attachment", copy=False,attachment=True)
+    filename = fields.Char("Filename")
     cus_level = fields.Boolean(string="cus level", related='holiday_status_id.custom_leave')
     notes = fields.Text("Notes")
 

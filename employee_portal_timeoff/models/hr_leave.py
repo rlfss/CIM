@@ -161,7 +161,7 @@ class EmpPortalTimeOff(models.Model):
         date_from = timezone(tz).localize(datetime.combine(dt_from, my_time)).astimezone(UTC).replace(tzinfo=None)
         date_to = timezone(tz).localize(datetime.combine(dt_to, my_time)).astimezone(UTC).replace(tzinfo=None)
         dura_days = self.portal_get_number_of_days(date_from, date_to, 'ex')
-        dura_days = int(dura_days['days'])
+        dura_days = int(dura_days['days']) + 1
         
 
         if (tftype.custom_leave == True and tftype.applicable_for == 'both' and tftype.only_time_granted == False):
@@ -176,6 +176,7 @@ class EmpPortalTimeOff(models.Model):
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
                         'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -200,7 +201,8 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
-                        'attachment' : values['attachment']
+                        'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -226,6 +228,7 @@ class EmpPortalTimeOff(models.Model):
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
                         'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -279,6 +282,7 @@ class EmpPortalTimeOff(models.Model):
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
                             'attachment': values['attachment']
+
                         }
                         tmp_leave = self.env['hr.leave'].sudo().new(values)
                         tmp_leave._onchange_request_parameters()
@@ -307,6 +311,7 @@ class EmpPortalTimeOff(models.Model):
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
                         'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -353,6 +358,7 @@ class EmpPortalTimeOff(models.Model):
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
                             'attachment': values['attachment']
+
                         }
                         tmp_leave = self.env['hr.leave'].sudo().new(values)
                         tmp_leave._onchange_request_parameters()
@@ -381,6 +387,7 @@ class EmpPortalTimeOff(models.Model):
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
                         'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -421,6 +428,7 @@ class EmpPortalTimeOff(models.Model):
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
                         'attachment': values['attachment']
+
                     }
                     tmp_leave = self.env['hr.leave'].sudo().new(values)
                     tmp_leave._onchange_request_parameters()
@@ -448,7 +456,8 @@ class EmpPortalTimeOff(models.Model):
                     'request_date_to': dt_to,
                     'timeoff_address':  values['timeoff_address'],
                     'notes': values['notes'],
-                    'attachment': values['attachment']
+                    'attachment':values['attachment']
+
                 }
                 tmp_leave = self.env['hr.leave'].sudo().new(values)
                 tmp_leave._onchange_request_parameters()
@@ -471,7 +480,7 @@ class EmpPortalTimeOff(models.Model):
         # timeoff_type = self.env['hr.leave.type'].sudo().browse(2)
         # if timeoff_type.exclude_weekends:
         #     data = self._get_number_of_days(values['start'], values['start'], None)
-        if (values['start'] and values['end']):
+        if (values['start'] and values['end']) and values['timeoff_type']:
             dt_from = values['start']
             end = values['end']
             timeoff_type = values['timeoff_type']
@@ -503,6 +512,17 @@ class EmpPortalTimeOff(models.Model):
                 return {
                     'errors': _('Enter Start Date !')
                 }
+        else:
+            timeoff_type = values['timeoff_type']
+            type_ids = self.env['hr.leave.type'].search([('id', '=', timeoff_type)])
+            remaining_balance = type_ids.virtual_remaining_leaves
+            return {
+                'current': remaining_balance,
+                'requested': 0,
+                'remaining': 0,
+            }
+
+
 
     def team_action_validate(self, values):
         random_code = random.randint(9, 50000)

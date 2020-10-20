@@ -280,17 +280,8 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Attachment(s)</label>
-                                                                <input type="file" name="attachment"
-                                                                       class="form-control o_website_form_input attachment"
-                                                                       multiple="true"
-                                                                       accept="image/*,application/pdf,video/"/>
-
-
-<!--                                                            <input type="file" name="attachment" class="form-control o_website_form_input attachment"-->
-<!--                                                                   multiple="true" data-show-upload="true"-->
-<!--                                                                   data-show-caption="true" accept="image/*,application/pdf,video/*"-->
-<!--                                                                   data-show-preview="true"/>-->
-                                                             </div>
+                                                                <input type="file" name="attachment" accept="image/*" class="form-control attachment"/>
+                                                        </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">

@@ -21,6 +21,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         'click .edit_timeoff_confirm': '_onEditTimeOffConfirm',
         'click .edit_permission_confirm': '_onEditPermissionConfirm',
         'click .edit_return_confirm': '_onEditReturnConfirm',
+        'change .holiday_status_id': '_onchange',
         'change .request_date_to': '_onchange',
     },
 
@@ -254,9 +255,10 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 self.$("input.number_of_days").val('');
                 return Promise.reject(response);
             } else {
-                self.$("input.request_date_to").prop("disabled", false);                
+                self.$("select.holiday_status_id").prop("disabled", false);
+                self.$("input.request_date_to").prop("disabled", false);
                 self.$("input.number_of_days").val(response.date_to);
-                self.$("input.current").val(response.current);                
+                self.$("input.current").val(response.current);
                 self.$("input.requested").val(response.requested);                
                 self.$("input.remaining").val(response.remaining);                
             }
@@ -356,7 +358,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 timeoffID: parseInt($('.edit_timeoff_form .timeoff_id').val()),
                 description: $('.edit_timeoff_form .name').val(),
                 timeoff_address: $('.edit_timeoff_form .timeoff_address').val(),
-                timeoff_type: $('.edit_timeoff_form .holiday_status_id').val(),
+                timeoff_type: $('.edit_timeoff_form .edit_holiday_status_id').val(),
                 from: $('.edit_timeoff_form .request_date_from').val(),
                 to: $('.edit_timeoff_form .edit_request_date_to').val(),
                 number_of_days: this._parse_date($('.edit_timeoff_form .number_of_days').val()),

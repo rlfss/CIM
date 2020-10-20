@@ -430,7 +430,7 @@
                                             <div class="form-group">
                                                 <label for="timeoff">Time off Type</label>
                                                 <select name="holiday_status_id"
-                                                        class="form-control time_off_type_select holiday_status_id"
+                                                        class="form-control time_off_type_select edit_holiday_status_id"
                                                         required="True">
                                                     <t t-foreach="holiday_types or []" t-as="htype">
                                                         <option t-att-value="htype[0]"

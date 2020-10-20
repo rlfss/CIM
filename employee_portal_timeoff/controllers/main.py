@@ -27,6 +27,7 @@ from odoo import registry as registry_get
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome as Home
 from odoo.addons.web.controllers.main import db_monodb, ensure_db, set_cookie_and_redirect, login_and_redirect
 
+
 def fragment_to_query_string(func):
     @functools.wraps(func)
     def wrapper(self, *a, **kw):
@@ -46,7 +47,9 @@ def fragment_to_query_string(func):
                 window.location = r;
             </script></head><body></body></html>"""
         return func(self, *a, **kw)
+
     return wrapper
+
 
 class OAuthController(http.Controller):
 
@@ -77,7 +80,8 @@ class OAuthController(http.Controller):
                     url = '/web#menu_id=%s' % menu
                 resp = login_and_redirect(*credentials, redirect_url=url)
                 # Since /web is hardcoded, verify user has right to land on it
-                if werkzeug.urls.url_parse(resp.location).path == '/web' and not request.env.user.has_group('base.group_user'):
+                if werkzeug.urls.url_parse(resp.location).path == '/web' and not request.env.user.has_group(
+                        'base.group_user'):
                     resp.location = '/my/home'
                 return resp
             except AttributeError:
@@ -86,7 +90,8 @@ class OAuthController(http.Controller):
                 url = "/web/login?oauth_error=1"
             except AccessDenied:
                 # oauth credentials not valid, user could be on a temporary session
-                _logger.info('OAuth2: access denied, redirect to main page in case a valid session exists, without setting cookies')
+                _logger.info(
+                    'OAuth2: access denied, redirect to main page in case a valid session exists, without setting cookies')
                 url = "/web/login?oauth_error=3"
                 redirect = werkzeug.utils.redirect(url, 303)
                 redirect.autocorrect_location_header = False
@@ -98,6 +103,7 @@ class OAuthController(http.Controller):
 
         return set_cookie_and_redirect(url)
 
+
 class WebsiteAccount(CustomerPortal):
 
     def get_domain_my_leaves(self, user):
@@ -106,6 +112,7 @@ class WebsiteAccount(CustomerPortal):
         return [
             ('employee_id', '=', emp and emp.id or False),
         ]
+
     def get_domain_my_team_leaves(self, user):
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
@@ -123,7 +130,8 @@ class WebsiteAccount(CustomerPortal):
         return values
 
     @http.route(['/my/leaves', '/my/leaves/page/<int:page>'], type='http', auth="user", website=True)
-    def portal_my_leaves(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, groupby='none', **kw):
+    def portal_my_leaves(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, groupby='none',
+                         **kw):
         values = self._prepare_portal_layout_values()
         HrLeave = request.env['hr.leave']
         HrPerm = request.env['hr.permission']
@@ -131,16 +139,17 @@ class WebsiteAccount(CustomerPortal):
         Timeoff_sudo = request.env['hr.leave'].sudo()
         domain = self.get_domain_my_leaves(request.env.user)
 
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
-                        '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
-                        '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
-                        ])
+        holiday_domain = (['&', ('virtual_remaining_leaves', '>=', 0),
+                           '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
+                           '&', ('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
+                           ])
         holiday_type_ids = request.env['hr.leave.type'].search(holiday_domain)
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
         values.update({
-            'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only()})
+            'holiday_types': holiday_type_ids.with_context(
+                {'employee_id': emp and emp.id or False, 'lang': user.lang}).name_get_only()})
         # fileter  By
         searchbar_filters = {
             'all': {'label': _('All'), 'domain': []},
@@ -189,7 +198,7 @@ class WebsiteAccount(CustomerPortal):
         #
         # domain = [('employee_id.user_id', '=', request.env.user.id)]
         perms = HrPerm.search(domain)
-        returns = HrReturn.search(domain,order=order, limit=self._items_per_page, offset=pager['offset'])
+        returns = HrReturn.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
 
         # attachments = []
         # if 'file' in values:
@@ -217,11 +226,11 @@ class WebsiteAccount(CustomerPortal):
         values.update({
             'date': date_begin,
             'leaves': leaves,
-             'perms': perms,
-             'returns': returns,
+            'perms': perms,
+            'returns': returns,
             'grouped_timeoff': grouped_timeoff,
             'page_name': 'leave',
-            'timeoffs':get_days_all_request,
+            'timeoffs': get_days_all_request,
             'archive_groups': archive_groups,
             'default_url': '/my/leaves',
             'pager': pager,
@@ -234,24 +243,22 @@ class WebsiteAccount(CustomerPortal):
         })
         return request.render("employee_portal_timeoff.portal_my_leaves_details", values)
 
-
-
-
     @http.route(['''/my/timeoff/<model('hr.leave'):timeoff>'''], type='http', auth="user", website=True)
     def portal_my_timeoff(self, timeoff, **kw):
+
         user = request.env.user
-        emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
-                                                limit=1)
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
-                        '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
-                        '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
-                        ])
+        emp = request.env['hr.employee'].search([('user_id', '=', user.id)],limit=1)
+        holiday_domain = (['&', ('virtual_remaining_leaves', '>=', 0),
+                           '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
+                           '&', ('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
+                           ])
         holiday_type_ids = request.env['hr.leave.type'].search(holiday_domain)
         return request.render(
             "employee_portal_timeoff.portal_my_timeoff", {
                 'timeoff': timeoff,
-                'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only(),
-                'emp_id': emp and emp.id or False
+                'holiday_types': holiday_type_ids.with_context(
+                    {'employee_id': emp and emp.id or False, 'lang': user.lang}).name_get_only(),
+                'emp_id': emp and emp.id or False,
 
             })
 
@@ -259,10 +266,11 @@ class WebsiteAccount(CustomerPortal):
     def leaves_summary(self):
         get_days_all_request = request.env['hr.leave.type'].get_days_all_request()
         return request.render(
-            "employee_portal_timeoff.my_leaves_summary",{
-                'timeoffs':get_days_all_request})
-        
-    @http.route(['''/my/permission_req/<model('hr.permission'):permission_req>'''], type='http', auth="user", website=True)
+            "employee_portal_timeoff.my_leaves_summary", {
+                'timeoffs': get_days_all_request})
+
+    @http.route(['''/my/permission_req/<model('hr.permission'):permission_req>'''], type='http', auth="user",
+                website=True)
     def portal_my_permission_req(self, permission_req, **kw):
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
@@ -272,6 +280,7 @@ class WebsiteAccount(CustomerPortal):
                 'permission_req': permission_req,
                 'emp_id': emp and emp.id or False
             })
+
     @http.route(['''/my/return_req/<model('hr.leavereturn'):return_req>'''], type='http', auth="user", website=True)
     def portal_my_return_req(self, return_req, **kw):
         user = request.env.user
@@ -284,28 +293,25 @@ class WebsiteAccount(CustomerPortal):
                 'emp_id': emp and emp.id or False
             })
 
-
-
-
-
-
     @http.route(['/my/team/leaves', '/my/team/leaves/page/<int:page>'], type='http', auth="user", website=True)
-    def portal_my_team_leaves(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, groupby='none', **kw):
+    def portal_my_team_leaves(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, groupby='none',
+                              **kw):
         values = self._prepare_portal_layout_values()
         HrLeave = request.env['hr.leave']
         Timeoff_sudo = request.env['hr.leave'].sudo()
         domain = self.get_domain_my_team_leaves(request.env.user)
 
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
-                        '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
-                        '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
-                        ])
+        holiday_domain = (['&', ('virtual_remaining_leaves', '>=', 0),
+                           '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
+                           '&', ('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
+                           ])
         holiday_type_ids = request.env['hr.leave.type'].search(holiday_domain)
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
         values.update({
-            'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only()})
+            'holiday_types': holiday_type_ids.with_context(
+                {'employee_id': emp and emp.id or False, 'lang': user.lang}).name_get_only()})
         # fileter  By
         searchbar_filters = {
             'all': {'label': _('All'), 'domain': []},
@@ -362,7 +368,7 @@ class WebsiteAccount(CustomerPortal):
             'leaves': leaves,
             'grouped_timeoff': grouped_timeoff,
             'page_name': 'leave',
-            'timeoffs':get_days_all_request,
+            'timeoffs': get_days_all_request,
             'archive_groups': archive_groups,
             'default_url': '/my/team/leaves',
             'pager': pager,
@@ -375,23 +381,21 @@ class WebsiteAccount(CustomerPortal):
         })
         return request.render("employee_portal_timeoff.my_team_portal_my_leaves_details", values)
 
-
-
-
     @http.route(['''/my/team/leaves/<model('hr.leave'):timeoff>'''], type='http', auth="user", website=True)
     def portal_my_timeoff_team(self, timeoff, **kw):
         user = request.env.user
         emp = request.env['hr.employee'].search([('user_id', '=', user.id)],
                                                 limit=1)
-        holiday_domain=(['&', ('virtual_remaining_leaves', '>=', 0),
-                        '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
-                        '&',('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
-                        ])
+        holiday_domain = (['&', ('virtual_remaining_leaves', '>=', 0),
+                           '|', ('allocation_type', 'in', ['fixed_allocation', 'no']),
+                           '&', ('allocation_type', '=', 'fixed'), ('max_leaves', '>', '0')
+                           ])
         holiday_type_ids = request.env['hr.leave.type'].search(holiday_domain)
         return request.render(
             "employee_portal_timeoff.portal_my_timeoff_team", {
                 'timeoff': timeoff,
-                'holiday_types':holiday_type_ids.with_context({'employee_id':emp and emp.id or False,'lang':user.lang}).name_get_only(),
+                'holiday_types': holiday_type_ids.with_context(
+                    {'employee_id': emp and emp.id or False, 'lang': user.lang}).name_get_only(),
                 'emp_id': emp and emp.id or False
             })
 
@@ -420,7 +424,7 @@ class WebsiteAccount(CustomerPortal):
             return {'error': _('Invalid signature data.')}
 
         query_string = '?&message=sign_ok'
-        url = '/my/team/leaves/'+str(task_id)+'?&message=sign_ok&aprove'
+        url = '/my/team/leaves/' + str(task_id) + '?&message=sign_ok&aprove'
         return {
             'force_refresh': True,
             'redirect_url': url,
@@ -451,7 +455,7 @@ class WebsiteAccount(CustomerPortal):
             return {'error': _('Invalid signature data.')}
 
         query_string = '?&message=sign_ok'
-        url = '/my/team/leaves/'+str(task_id)+'?&message=sign_ok&aprove'
+        url = '/my/team/leaves/' + str(task_id) + '?&message=sign_ok&aprove'
         return {
             'force_refresh': True,
             'redirect_url': url,
@@ -482,20 +486,15 @@ class WebsiteAccount(CustomerPortal):
             return {'error': _('Invalid signature data.')}
 
         query_string = '?&message=sign_ok'
-        url = '/my/team/leaves/'+str(task_id)+'?&message=sign_ok&refuse'
+        url = '/my/team/leaves/' + str(task_id) + '?&message=sign_ok&refuse'
         return {
             'force_refresh': True,
             'redirect_url': url,
         }
 
-
-
-
-
-
-
     @http.route(['/my/team/permission', '/my/team/permission/page/<int:page>'], type='http', auth="user", website=True)
-    def portal_my_team_permission(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None, groupby='none', **kw):
+    def portal_my_team_permission(self, page=1, date_begin=None, date_end=None, sortby=None, filterby=None,
+                                  groupby='none', **kw):
         values = self._prepare_portal_layout_values()
         HrLeave = request.env['hr.permission']
         Timeoff_sudo = request.env['hr.permission'].sudo()
@@ -568,20 +567,6 @@ class WebsiteAccount(CustomerPortal):
         })
         return request.render("employee_portal_timeoff.my_team_portal_my_permission_details", values)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @http.route(['''/my/team/permission/<model('hr.permission'):timeoff>'''], type='http', auth="user", website=True)
     def portal_my_permission_team(self, timeoff, **kw):
         user = request.env.user
@@ -618,12 +603,11 @@ class WebsiteAccount(CustomerPortal):
             return {'error': _('Invalid signature data.')}
 
         query_string = '?&message=sign_ok'
-        url = '/my/team/permission/'+str(task_id)+'?&message=sign_ok&aprove'
+        url = '/my/team/permission/' + str(task_id) + '?&message=sign_ok&aprove'
         return {
             'force_refresh': True,
             'redirect_url': url,
         }
-
 
     @http.route(['/my/team/permission/<int:task_id>/refuse_sign'], type='json', auth="public", website=True)
     def portal_permission_sign_r(self, task_id, access_token=None, source=False, name=None, signature=None):
@@ -650,7 +634,7 @@ class WebsiteAccount(CustomerPortal):
             return {'error': _('Invalid signature data.')}
 
         query_string = '?&message=sign_ok'
-        url = '/my/team/permission/'+str(task_id)+'?&message=sign_ok&refuse'
+        url = '/my/team/permission/' + str(task_id) + '?&message=sign_ok&refuse'
         return {
             'force_refresh': True,
             'redirect_url': url,
