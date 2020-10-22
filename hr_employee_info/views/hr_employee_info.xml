@@ -113,6 +113,8 @@
                     </group>
                 </page>
 
+
+
                 <page string="Job Data">
                     <group col="4">
                         <group>
@@ -133,8 +135,15 @@
                             <field name="employee_time_granted" invisible="1"/>
                         </group>
                     </group>
+                    <group string="Education">
+                        <field name="certificate"/>
+                        <field name="study_field"/>
+                        <field name="study_school"/>
+                    </group>
                 </page>            
             </xpath>
+
+            <xpath expr="//page[@name='personal_information']/group/group[7]" position="replace"></xpath>
 
             <xpath expr="//notebook[last()]" position="inside">
                 <page string="Family">

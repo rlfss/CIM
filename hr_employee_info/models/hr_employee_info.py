@@ -95,16 +95,16 @@ class Employee(models.Model):
     legal_leave_monthly_allocation = fields.Float(string="Legal Leave Monthly Allocation",compute='_compute_legal_leave_monthly_allocation',stored=True)
     employee_time_granted = fields.Boolean("Time Granted",default=False)
 
-    appointmentdegree = fields.Many2one('job.degree', string="Appointment Degree", tracking=True)
+    appointmentdegree = fields.Many2one('job.degree', string="Appointment Grade", tracking=True)
     appointmentsalary = fields.Many2one('generate.bonuses', string="Appointment Salary", tracking=True)
     appointmentwage = fields.Float( string="Appointment Wage",compute="_compute_appintment_wage",stored=True)
 
-    currentdegree = fields.Many2one('job.degree', string="Current Degree", tracking=True)
+    currentdegree = fields.Many2one('job.degree', string="Current Grade", tracking=True)
     currentsalary = fields.Many2one('generate.bonuses', string="Current Salary", tracking=True)
     currentwage = fields.Float(string="Current Wage",compute="_compute_current_wage", stored=True)
 
     currentsalary_date = fields.Date(string="Date of acquiring Current Salary", groups="hr.group_hr_user", tracking=True)
-    currentdegree_date = fields.Date(string="Date of acquiring Current Degree", groups="hr.group_hr_user", tracking=True)
+    currentdegree_date = fields.Date(string="Date of acquiring Current Grade", groups="hr.group_hr_user", tracking=True)
     financial_statrted_date = fields.Date('Work Started Date',compute='_compute_working_date',inverse='_inverse_working_date',tracking=True,stored=True)
 
 
@@ -122,7 +122,6 @@ class Employee(models.Model):
 
     @api.depends('birthday')
     def _compute_employee_birthday(self):
-        print("aaaaa")
         if self.birthday:
             today = date.today()
             age = today.year - self.birthday.year - (
