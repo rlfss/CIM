@@ -117,11 +117,11 @@ class Employee(models.Model):
 
     appointment_decision = fields.Char('Appointment Decision No.', compute='_compute_contract_data', readonly=True,stored=True)
 
-    employee_age = fields.Integer(string="Age")
+    employee_age = fields.Integer(string="Age",compute='_compute_employee_birthday',store=True)
 
 
-    @api.onchange('birthday')
-    def onchange_employee_birthday(self):
+    @api.depends('birthday')
+    def _compute_employee_birthday(self):
         if self.birthday:
             today = date.today()
             age = today.year - self.birthday.year - (
