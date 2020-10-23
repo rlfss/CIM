@@ -126,8 +126,8 @@ class Employee(models.Model):
         if self.national_id:
             if number > 2 or number < 1:
                 raise ValidationError(_('National Number should start with 1 for Male and 2 for Female'))
-            if len(self.national_id) > 14 or len(self.national_id) < 14:
-                raise ValidationError(_('National Number should be 14'))
+            if len(self.national_id) > 13 or len(self.national_id) < 13:
+                raise ValidationError(_('National Number should be 13'))
             if self.gender == 'male' and number == 2:
                 raise ValidationError(_('National Number for Male should be start with 1'))
             if self.gender == 'female' and number == 1:
