@@ -11,9 +11,10 @@ class HrRetirement(models.Model):
                 contract.write({
                     'state': 'cancel'
                 })
-            elif contract.employee_id.gender == 'female' and contract.employee_id.employee_age >= 60:
+            if contract.employee_id.gender == 'female' and contract.employee_id.employee_age >= 60:
                 contract.write({
                     'state': 'cancel'
                 })
+
 
 

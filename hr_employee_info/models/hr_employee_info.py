@@ -117,16 +117,44 @@ class Employee(models.Model):
 
     appointment_decision = fields.Char('Appointment Decision No.', compute='_compute_contract_data', readonly=True,stored=True)
 
-    employee_age = fields.Integer(string="Age",compute='_compute_employee_birthday',stored=True)
+    employee_age = fields.Integer(string="Age")
+
+    @api.constrains('national_id')
+    def _check_national_number(self):
+        number = int(str(self.national_id)[:1])
+
+        if self.national_id:
+            if number > 2 or number < 1:
+                raise ValidationError(_('National Number should start with 1 for Male and 2 for Female'))
+            if len(self.national_id) > 14 or len(self.national_id) < 14:
+                raise ValidationError(_('National Number should be 14'))
+            if self.gender == 'male' and number == 2:
+                raise ValidationError(_('National Number for Male should be start with 1'))
+            if self.gender == 'female' and number == 1:
+                raise ValidationError(_('National Number for Female should be start with 2'))
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (national_id)', """National ID Must be unique!"""),
+    ]
 
 
-    @api.depends('birthday')
-    def _compute_employee_birthday(self):
+    @api.onchange('birthday')
+    def _check_employee_age(self):
         if self.birthday:
             today = date.today()
             age = today.year - self.birthday.year - (
-                        (today.month, today.day) < (self.birthday.month, self.birthday.day))
+                    (today.month, today.day) < (self.birthday.month, self.birthday.day))
             self.employee_age = age
+
+    def _compute_employee_birthday(self):
+        for employee in self.search([]):
+            if employee.birthday:
+                today = date.today()
+                age = today.year - employee.birthday.year - (
+                            (today.month, today.day) < (employee.birthday.month, employee.birthday.day))
+                employee.write({
+                    'employee_age': age
+                })
 
     @api.constrains('employee_age')
     def check_employee_age(self):
