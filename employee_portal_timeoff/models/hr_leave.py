@@ -177,7 +177,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -204,7 +203,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -231,7 +229,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -286,7 +283,6 @@ class EmpPortalTimeOff(models.Model):
                             'request_date_to': dt_to,
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
-                            'name': values['name'],
                             'attachment': values['attachment']
 
                         }
@@ -316,7 +312,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -364,7 +359,6 @@ class EmpPortalTimeOff(models.Model):
                             'request_date_to': dt_to,
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
-                            'name': values['name'],
                             'attachment': values['attachment']
 
                         }
@@ -394,7 +388,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -436,7 +429,6 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
-                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -466,7 +458,6 @@ class EmpPortalTimeOff(models.Model):
                     'request_date_to': dt_to,
                     'timeoff_address':  values['timeoff_address'],
                     'notes': values['notes'],
-                    'name': values['name'],
                     'attachment':values['attachment']
 
                 }
