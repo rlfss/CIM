@@ -120,11 +120,13 @@ class EmpPortalTimeOff(models.Model):
             dt_to = datetime.strptime(dt_to, '%Y-%m-%d').date()
         if duration:
             dt_to = datetime.strptime(dt_from, '%Y-%m-%d').date()  + timedelta(days=duration)
+
         for timeoff in self:
             timeoff_values = {
                 'holiday_status_id': int(values['timeoff_type']),
                 'request_date_from': dt_from,
                 'request_date_to': dt_to,
+                'notes': values['notes']
             }
             if values['timeoffID']:
                 timeoff_rec = self.env['hr.leave'].sudo().browse(values['timeoffID'])
@@ -175,6 +177,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -201,6 +204,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -227,6 +231,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address': values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -281,6 +286,7 @@ class EmpPortalTimeOff(models.Model):
                             'request_date_to': dt_to,
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
+                            'name': values['name'],
                             'attachment': values['attachment']
 
                         }
@@ -310,6 +316,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -357,6 +364,7 @@ class EmpPortalTimeOff(models.Model):
                             'request_date_to': dt_to,
                             'timeoff_address':  values['timeoff_address'],
                             'notes': values['notes'],
+                            'name': values['name'],
                             'attachment': values['attachment']
 
                         }
@@ -386,6 +394,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -427,6 +436,7 @@ class EmpPortalTimeOff(models.Model):
                         'request_date_to': dt_to,
                         'timeoff_address':  values['timeoff_address'],
                         'notes': values['notes'],
+                        'name': values['name'],
                         'attachment': values['attachment']
 
                     }
@@ -456,6 +466,7 @@ class EmpPortalTimeOff(models.Model):
                     'request_date_to': dt_to,
                     'timeoff_address':  values['timeoff_address'],
                     'notes': values['notes'],
+                    'name': values['name'],
                     'attachment':values['attachment']
 
                 }
@@ -488,10 +499,8 @@ class EmpPortalTimeOff(models.Model):
             dt_to =  datetime.strptime(end, '%Y-%m-%d').date()
             leaves_ids = self.env['hr.leave'].search([('employee_id', '=', emp.id), ('holiday_status_id', '=', timeoff_type)])
             type_ids = self.env['hr.leave.type'].search([('id', '=', timeoff_type)])
-
             basic_balance =  type_ids.max_leaves
             remaining_balance =  type_ids.virtual_remaining_leaves
-
             number_of_days = self._get_number_of_days(dt_from, dt_to, emp)['days']
             my_time = datetime.min.time()
             tz = self.env.user.tz if self.env.user.tz else 'UTC'  # custom -> already in UTC

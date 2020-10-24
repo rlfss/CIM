@@ -407,6 +407,7 @@
                                     <span t-else="" class="text-muted"> - </span>
                                 </div>
                             </div>
+
                         </div>
                         <div>
                             <div role="dialog" class="modal fade modal_edit_timeoff">
@@ -423,9 +424,9 @@
                                         </header>
                                         <main class="modal-body" id="sign-dialog">
                                             <div class="form-group">
-                                                <label class="col-form-label" for="name">Description</label>
-                                                <input type="text" class="form-control name" name="name"
-                                                       t-att-value="timeoff.name" placeholder="Description"/>
+                                                <label class="col-form-label" for="name">Notes</label>
+                                                <input type="text" class="form-control notes" name="notes"
+                                                       t-att-value="timeoff.notes" placeholder="Description"/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="timeoff">Time off Type</label>
