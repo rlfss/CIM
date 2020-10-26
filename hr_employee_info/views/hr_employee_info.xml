@@ -39,6 +39,7 @@
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
 
+
             <xpath expr="//field[@name='job_title']" position="before">
                             <h2>
                 <label for="employee_num" name="employee_num"/>
@@ -143,7 +144,7 @@
                         </group>
                     </group>
                     <group string="Education">
-                        <field name="certificate"/>
+                        <field name="employee_certificate" options="{'no_create_edit': True, 'no_quick_create': True,'no_open':True}"/>
                         <field name="study_field"/>
                         <field name="study_school"/>
                     </group>

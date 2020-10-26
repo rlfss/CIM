@@ -16,6 +16,8 @@ access_hr_employee_info_employee_appointmentsalary,hr.employee.appointmentsalary
 access_hr_employee_info_employee_currentdegree,hr.employee.currentdegree,hr_employee_info.model_hr_employee_currentdegree,base.group_user,1,1,1,1
 access_hr_employee_info_employee_currentsalary,hr.employee.currentsalary,hr_employee_info.model_hr_employee_currentsalary,base.group_user,1,1,1,1
 access_hr_contract_positiontype_manager,hr.contract.positiontype.manager,model_hr_contract_positiontype,hr_contract.group_hr_contract_manager,1,1,1,1
+access_hr_employee_certificate,hr.employee.certificate,model_hr_employee_certification,base.group_user,1,1,1,1
+
 
 
 

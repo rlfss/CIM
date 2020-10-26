@@ -10,6 +10,7 @@
         'views/hr_employee_info.xml',
         'views/contract.xml',
         'views/settings.xml',
+        'views/employee_certificates.xml',
         'data/retirement_schdule_data.xml'
     ],
     'installable': True,

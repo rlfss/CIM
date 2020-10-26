@@ -120,6 +120,7 @@ class Employee(models.Model):
     employee_age = fields.Integer(string="Age")
 
     check_retirement = fields.Boolean(compute='_get_employees_retiremnet',search='_search_retirement')
+    employee_certificate = fields.Many2one('hr.employee.certification',"Certificate Level")
 
     @api.depends('employee_age')
     def _get_employees_retiremnet(self):
@@ -471,3 +472,7 @@ class EmployeeExperience(models.Model):
 
 
 
+class EmployeeCertifications(models.Model):
+    _name = 'hr.employee.certification'
+
+    name = fields.Char("Certification")

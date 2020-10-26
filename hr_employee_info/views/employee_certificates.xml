@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="employee_certficate_view_form" model="ir.ui.view">
+            <field name="name">employee_certficate_view_form</field>
+            <field name="model">hr.employee.certification</field>
+            <field name="arch" type="xml">
+                <form string="Employee Certifications">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_certificate_view_tree" model="ir.ui.view">
+            <field name="name">employee_certificate_view_tree</field>
+            <field name="model">hr.employee.certification</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Certifications">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="employee_certificate_action" model="ir.actions.act_window">
+            <field name="name">Employee Certifications</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee.certification</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="create_employee_certificate" name="Employees Certifications" parent="hr.menu_human_resources_configuration" action="employee_certificate_action" sequence="1"/>
+
+
+
+    </data>
+</odoo>
