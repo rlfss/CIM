@@ -183,11 +183,15 @@
                     <group>
                         <field name="qualifications">
                         <tree string="Qualifications" editable="bottom">
-                            <field name="educational_level"/>
-                            <field name="specialization"/>
-                            <field name="graduation_place"/>
+                            <field name="qualification_type"/>
                             <field name="graduation_date"/>
-                            <field name="graduation_type"/>
+                            <field name="institute"/>
+                            <field name="faculty"/>
+                            <field name="department"/>
+                            <field name="country"/>
+                            <field name="institute_type"/>
+                            <field name="specialization"/>
+                            <field name="grade"/>
                         </tree>
                         </field>
                     </group>

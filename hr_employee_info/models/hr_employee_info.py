@@ -372,23 +372,52 @@ class EmployeeFamily(models.Model):
 class EmployeeQualifications(models.Model):
     _name = 'hr.employee.qualifications'
     _description = "Employee Qualifications"
+
     employee_id = fields.Many2one('hr.employee', string="Employee")
+
+    @api.model
+    def _get_year(self):
+        return [(str(i), str(i)) for i in range(1970, 2031)]
 
     educational_level = fields.Many2one(
         'hr.employee.educational', 'Educational level', groups="hr.group_hr_user", tracking=True)
 
-
-    specialization = fields.Many2one(
-        'hr.employee.educational.specialization', string="Specialization", tracking=True)
     graduation_place = fields.Many2one(
         'hr.employee.educational.place', 'Graduation place', groups="hr.group_hr_user", tracking=True)
 
-    graduation_date = fields.Char(string="Graduation Date", groups="hr.group_hr_user", tracking=True)
 
-    graduation_type = fields.Selection([
-        ('general', 'General'),
+    qualification_type = fields.Selection([
+        ('academic', 'Academic'),
+        ('professional', 'Professional')],
+         "Qualification Type", tracking=True)
+
+    graduation_date = fields.Selection(selection=_get_year, string='Year',
+                            default=date.today().strftime('%Y'), groups="hr.group_hr_user", tracking=True)
+
+
+    institute = fields.Many2one('hr.employee.institute',"Institute",groups="hr.group_hr_user", tracking=True)
+
+    faculty = fields.Many2one('hr.employee.faculty',"Faculty",groups="hr.group_hr_user", tracking=True)
+
+    department = fields.Many2one('hr.employee.department',"Department",groups="hr.group_hr_user", tracking=True)
+
+    country = fields.Many2one('res.country',"Country",groups="hr.group_hr_user", tracking=True)
+    country = fields.Many2one('res.country',"Country",groups="hr.group_hr_user", tracking=True)
+
+    institute_type = fields.Selection([
+        ('public', 'Public'),
         ('private', 'Private')
-    ], string="Type", tracking=True)
+    ], string="Institute Type", tracking=True)
+
+    specialization = fields.Many2one(
+        'hr.employee.educational.specialization', string="Specialization", tracking=True)
+
+    grade = fields.Selection([('acceptable','Acceptable'),
+                              ('good','Good'),
+                              ('very','Very good'),
+                              ('excellent','Excellent')
+    ],string="Grade", tracking=True)
+
 
 
 class EmployeeEducational(models.Model):
@@ -396,6 +425,24 @@ class EmployeeEducational(models.Model):
     _description = "Employee Educational"
 
     name = fields.Char(string="Educational level", store=True)
+
+class EmployeeDepartment(models.Model):
+    _name = 'hr.employee.department'
+    _description = "Employee Department"
+
+    name = fields.Char(string="Department", store=True)
+
+class EmployeeFaculty(models.Model):
+    _name = 'hr.employee.faculty'
+    _description = "Employee Faculty"
+
+    name = fields.Char(string="Faculty", store=True)
+
+class EmployeeInstitute(models.Model):
+    _name = 'hr.employee.institute'
+    _description = "Employee Institute"
+
+    name = fields.Char(string="Institute", store=True)
 
 
 class EmployeeEducationalSpecialization(models.Model):
