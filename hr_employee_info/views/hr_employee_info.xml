@@ -11,6 +11,9 @@
                 <field name="name" string="Employee" filter_domain="['|', '|', ('employee_num', 'ilike', self), ('work_email', 'ilike', self), ('name', 'ilike', self)]"/>
                 <field name="employee_num" string="Employee No." filter_domain="[('employee_num', 'ilike', self)]"/>
             </xpath>
+            <filter name="is_absent" position="before">
+                <filter name="check_retirement" string="Retirements" domain="[('check_retirement', '=', True)]"/>
+            </filter>
          </field>
     </record>
 
@@ -43,6 +46,7 @@
             </xpath>
             <xpath expr="//field[@name='birthday']" position="after">
 				<field name="employee_age" readonly="1" force_save="1"/>
+				<field name="check_retirement" invisible="1"/>
 			</xpath>
 
             <xpath expr="//field[@name='department_id']" position="before">
@@ -80,10 +84,12 @@
                 <field name="mobile"/>
             </xpath>
 
-
+            <page name="personal_information" position="attributes">
+                <attribute name="groups">hr_employee_info.group_private_info</attribute>
+            </page>
 
             <xpath expr="//notebook[last()]" position="inside">
-                <page string="Financial">
+                <page string="Financial" groups="hr_employee_info.group_financial_info">
                     <group>
                         <group>
                             <field name="bank_account_id"/>
@@ -115,7 +121,7 @@
 
 
 
-                <page string="Job Data">
+                <page string="Job Data" groups="hr_employee_info.group_job_info">
                     <group col="4">
                         <group>
                             <field name="hiring_date"/>

@@ -119,15 +119,42 @@ class Employee(models.Model):
 
     employee_age = fields.Integer(string="Age")
 
+    check_retirement = fields.Boolean(compute='_get_employees_retiremnet',search='_search_retirement')
+
+    @api.depends('employee_age')
+    def _get_employees_retiremnet(self):
+        for employee in self:
+            if employee.employee_age >= 65 and employee.gender == 'male':
+                employee.check_retirement = True
+
+            elif employee.employee_age >= 60 and employee.gender == 'female':
+                employee.check_retirement = True
+            else:
+                employee.check_retirement = False
+
+    def _search_retirement(self,operator,value):
+        employee_ids =[]
+        for employee in self.search([('employee_age','>=',60)]):
+            if employee.employee_age >= 65 and employee.gender == 'male':
+                employee_ids.append(employee.id)
+            elif employee.employee_age >= 60 and employee.gender == 'female':
+                employee_ids.append(employee.id)
+        return [('id','in',employee_ids)]
+
     @api.constrains('national_id')
     def _check_national_number(self):
+        params = self.env['ir.config_parameter'].sudo()
+        max_number = int(params.get_param('hr_employee_info.max_number'))
         number = int(str(self.national_id)[:1])
 
         if self.national_id:
             if number > 2 or number < 1:
                 raise ValidationError(_('National Number should start with 1 for Male and 2 for Female'))
-            if len(self.national_id) > 13 or len(self.national_id) < 13:
-                raise ValidationError(_('National Number should be 13'))
+            if max_number:
+                if len(self.national_id) > max_number or len(self.national_id) < max_number:
+                    raise ValidationError(_('National Number should be ')+ str(max_number))
+            else:
+                raise ValidationError(_('You should set Max National ID Number in setting'))
             if self.gender == 'male' and number == 2:
                 raise ValidationError(_('National Number for Male should be start with 1'))
             if self.gender == 'female' and number == 1:

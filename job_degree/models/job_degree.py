@@ -9,7 +9,7 @@ class JobDegree(models.Model):
     _description = 'Job Degree'
 
     #degree_name = fields.Char(string="Degree Name",required=True ,tracking=True)
-    degree_no = fields.Integer(string="Degree Number",required=True,tracking=True)
+    degree_no = fields.Integer(string="Grade Number",required=True,tracking=True)
     no_of_bonuses = fields.Float(string="No of Bonuses",required=True,tracking=True)
     bonuses_value = fields.Float(string="Value of the annual increase",required=True,tracking=True)
     basic_salary = fields.Float(string="Basic Salary",required=True,tracking=True)
