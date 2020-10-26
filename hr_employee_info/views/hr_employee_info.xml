@@ -11,8 +11,9 @@
                 <field name="name" string="Employee" filter_domain="['|', '|', ('employee_num', 'ilike', self), ('work_email', 'ilike', self), ('name', 'ilike', self)]"/>
                 <field name="employee_num" string="Employee No." filter_domain="[('employee_num', 'ilike', self)]"/>
             </xpath>
-            <filter name="is_absent" position="before">
+            <filter name="inactive" position="before">
                 <filter name="check_retirement" string="Retirements" domain="[('check_retirement', '=', True)]"/>
+                <separator/>
             </filter>
          </field>
     </record>
