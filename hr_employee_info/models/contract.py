@@ -16,7 +16,7 @@ class Contract(models.Model):
         help="Work Started date.")
     first_work_date = fields.Date('First Work Date', default=fields.Date.today,
         help="First Work Date.")
-    position_type = fields.Many2one('hr.contract.positiontype', string="Position Type")
+    position_type = fields.Many2one('hr.contract.positiontype', string="Hiring Type")
 
 
     appointment_decision = fields.Char('Appointment Decision No.')
