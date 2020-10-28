@@ -12,7 +12,7 @@ class Contract(models.Model):
 
     hiring_date = fields.Date('Hiring Date', default=fields.Date.today,
         help="hiring date.")
-    started_date = fields.Date('Work Started Date', default=fields.Date.today,
+    started_date = fields.Date('Work Start Date', default=fields.Date.today,
         help="Work Started date.")
     first_work_date = fields.Date('First Work Date', default=fields.Date.today,
         help="First Work Date.")

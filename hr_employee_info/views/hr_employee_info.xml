@@ -202,10 +202,12 @@
                             <tree string="Training Courses" editable="bottom">
                                 <field name="training_type"/>
                                 <field name="course_field"/>
+                                <field name="title"/>
+                                <field name="institute"/>
                                 <field name="training_date_from"/>
                                 <field name="training_date_to"/>
-                                <field name="training_place"/>
-                                <field name="degree"/>
+                                <field name="country"/>
+                                <field name="mark"/>
                             </tree>
                         </field>
                     </group>

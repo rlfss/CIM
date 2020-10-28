@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200625\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-26 13:58+0000\n"
-"PO-Revision-Date: 2020-07-26 13:58+0000\n"
+"POT-Creation-Date: 2020-10-27 21:05+0000\n"
+"PO-Revision-Date: 2020-10-27 21:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,16 +31,41 @@ msgid "AB-"
 msgstr ""
 
 #. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__qualification_type__academic
+msgid "Academic"
+msgstr "شهادة أكاديمية"
+
+#. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__grade__acceptable
+msgid "Acceptable"
+msgstr "مقبول"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__employee_age
+msgid "Age"
+msgstr "السن"
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "Age should be 18 years old or more"
+msgstr "السن يجب ان يكون 18 او اكثر"
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract__appointment_decision
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__appointment_decision
 msgid "Appointment Decision No."
 msgstr "رقم قرار التعيين"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__appointmentdegree
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__name
 msgid "Appointment Degree"
 msgstr "الدرجة عند التعيين"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__appointmentdegree
+msgid "Appointment Grade"
+msgstr "درجة التعيين"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__appointmentsalary
@@ -59,6 +84,26 @@ msgid "Blood Group"
 msgstr "فصيلة الدم"
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__employee_certificate
+msgid "Certificate Level"
+msgstr "مستوى الشهادة"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__name
+msgid "Certification"
+msgstr "شهادة"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__check_retirement
+msgid "Check Retirement"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.model,name:hr_employee_info.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الإعدادات"
+
+#. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_contract
 msgid "Contract"
 msgstr "العقد"
@@ -69,25 +114,30 @@ msgid "Contract Position Type"
 msgstr "نوع موقف العقد"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__course_field
-msgid "Course field"
-msgstr "مجال الدورة"
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__country
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__country
+msgid "Country"
+msgstr "الدولة"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract_positiontype__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__create_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__create_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__create_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__create_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__create_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__create_uid
@@ -99,16 +149,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__create_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__create_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__create_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__create_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__create_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__create_date
@@ -116,7 +170,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__currentdegree
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__name
 msgid "Current Degree"
 msgstr "الدرجة الحالية"
@@ -125,6 +178,11 @@ msgstr "الدرجة الحالية"
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__current_experience
 msgid "Current Experience"
 msgstr "الخبرة الحالية"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__currentdegree
+msgid "Current Grade"
+msgstr "الدرجة الحالية"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__currentsalary
@@ -154,7 +212,7 @@ msgstr "تاريخ الميلاد"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__currentdegree_date
-msgid "Date of acquiring Current Degree"
+msgid "Date of acquiring Current Grade"
 msgstr "تاريخ الحصول على الدرجة الحالية"
 
 #. module: hr_employee_info
@@ -163,9 +221,10 @@ msgid "Date of acquiring Current Salary"
 msgstr "تاريخ الحصول على المربوط الحالي"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__degree
-msgid "Degree"
-msgstr "النتيجة"
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__department
+msgid "Department"
+msgstr "القسم"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__description
@@ -177,16 +236,20 @@ msgstr "الوصف"
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__display_name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__display_name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__display_name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__display_name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__display_name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__display_name
@@ -204,9 +267,14 @@ msgid "Driver License Type"
 msgstr "درجة رخصة القيادة"
 
 #. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.hr_employee_view_form
+msgid "Education"
+msgstr "التعليم"
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__name
 msgid "Educational Specialization"
-msgstr ""
+msgstr "التخصص"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__name
@@ -248,6 +316,13 @@ msgid "Employee Branch"
 msgstr "الفرع"
 
 #. module: hr_employee_info
+#: model:ir.actions.act_window,name:hr_employee_info.employee_certificate_action
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.employee_certficate_view_form
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.employee_certificate_view_tree
+msgid "Employee Certifications"
+msgstr "شهادات الموظف"
+
+#. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_currentsalary
 msgid "Employee Current Salary"
 msgstr "مربوط الموظف الحالى"
@@ -258,6 +333,11 @@ msgid "Employee Current degree"
 msgstr "درجة الموظف الحالية"
 
 #. module: hr_employee_info
+#: model:ir.model,name:hr_employee_info.model_hr_employee_department
+msgid "Employee Department"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_educational
 msgid "Employee Educational"
 msgstr ""
@@ -265,12 +345,30 @@ msgstr ""
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_experience
 msgid "Employee Experience"
-msgstr ""
+msgstr "خبرة الموظف"
+
+#. module: hr_employee_info
+#: model:ir.model,name:hr_employee_info.model_hr_employee_faculty
+msgid "Employee Faculty"
+msgstr "الكلية"
 
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_family
 msgid "Employee Family"
-msgstr ""
+msgstr "العائلة"
+
+#. module: hr
+#: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_employee_public__department_id
+#: model:ir.model.fields,field_description:hr.field_hr_job__department_id
+#: model:ir.model.fields,field_description:hr.field_res_users__department_id
+#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
+#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
+#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
+msgid "Department"
+msgstr "الوحدة الإدارية"
 
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_guardianship
@@ -281,6 +379,11 @@ msgstr ""
 #: model:ir.model,name:hr_employee_info.model_hr_employee_guardianship_type
 msgid "Employee Guardianship Type"
 msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.model,name:hr_employee_info.model_hr_employee_institute
+msgid "Employee Institute"
+msgstr "المؤسسة"
 
 #. module: hr_employee_info
 #: model_terms:ir.ui.view,arch_db:hr_employee_info.view_employee_filter_inherit
@@ -295,12 +398,12 @@ msgstr "رقم الموظف"
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_qualifications
 msgid "Employee Qualifications"
-msgstr ""
+msgstr "المؤهلات"
 
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_educational_specialization
 msgid "Employee Specialization"
-msgstr ""
+msgstr "التخصص"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__employee_status
@@ -311,7 +414,7 @@ msgstr "حالة الموظف"
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_training
 msgid "Employee Training Courses"
-msgstr ""
+msgstr "الدورات تدريبية"
 
 #. module: hr_employee_info
 #: model:ir.model,name:hr_employee_info.model_hr_employee_info
@@ -329,9 +432,24 @@ msgid "Employee status"
 msgstr ""
 
 #. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.res_config_settings_view_form
+msgid "Employees"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.ui.menu,name:hr_employee_info.create_employee_certificate
+msgid "Employees Certifications"
+msgstr "الشهادات"
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__experience_date_to
 msgid "End Date"
 msgstr "الى"
+
+#. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__grade__excellent
+msgid "Excellent"
+msgstr "ممتاز"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__experience
@@ -344,6 +462,12 @@ msgstr "الخبرة"
 #: model_terms:ir.ui.view,arch_db:hr_employee_info.hr_employee_view_form
 msgid "Experience Years"
 msgstr "سنين الخبرة"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__faculty
+msgid "Faculty"
+msgstr "الكلية"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__family_id
@@ -372,6 +496,11 @@ msgid "Female"
 msgstr "أنثى"
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__course_field
+msgid "Field"
+msgstr "المجال"
+
+#. module: hr_employee_info
 #: model_terms:ir.ui.view,arch_db:hr_employee_info.hr_employee_view_form
 msgid "Financial"
 msgstr "المالية"
@@ -398,39 +527,14 @@ msgid "Gender"
 msgstr "الجنس"
 
 #. module: hr_employee_info
-#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__graduation_type__general
-msgid "General"
-msgstr "عام"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_employee__department_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_base__department_id
-#: model:ir.model.fields,field_description:hr.field_hr_employee_public__department_id
-#: model:ir.model.fields,field_description:hr.field_hr_job__department_id
-#: model:ir.model.fields,field_description:hr.field_res_users__department_id
-#: model_terms:ir.ui.view,arch_db:hr.hr_employee_public_view_search
-#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
-#: model_terms:ir.ui.view,arch_db:hr.view_employee_filter
-#: model_terms:ir.ui.view,arch_db:hr.view_job_filter
-msgid "Department"
-msgstr "الوحدة الإدارية"
-
-#. module: hr
-#: model:ir.model.fields,field_description:hr.field_hr_department__name
-msgid "Department Name"
-msgstr "اسم الوحدة الإدارية"
-
-#. module: hr
-#: model:ir.actions.act_window,name:hr.open_module_tree_department
-#: model:ir.ui.menu,name:hr.menu_hr_department_tree
-#: model_terms:ir.ui.view,arch_db:hr.view_department_filter
-msgid "Departments"
-msgstr "الوحدات الإدارية"
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__grade__good
+msgid "Good"
+msgstr "جيد"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__graduation_date
-msgid "Graduation Date"
-msgstr "تاريخ التخرج "
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__grade
+msgid "Grade"
+msgstr "التقدير"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__graduation_place
@@ -460,20 +564,43 @@ msgid "Hiring Date"
 msgstr "تاريخ التعيين"
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract__position_type
+msgid "Hiring Type"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.actions.server,name:hr_employee_info.ir_cron_get_age_ir_actions_server
+#: model:ir.cron,cron_name:hr_employee_info.ir_cron_get_age
+#: model:ir.cron,name:hr_employee_info.ir_cron_get_age
+msgid "Hr holiday: Get Employees Age"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.actions.server,name:hr_employee_info.ir_cron_retirement_create_ir_actions_server
+#: model:ir.cron,cron_name:hr_employee_info.ir_cron_retirement_create
+#: model:ir.cron,name:hr_employee_info.ir_cron_retirement_create
+msgid "Hr holiday: create Retirement"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract_positiontype__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__id
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__id
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__id
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__id
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__id
@@ -493,7 +620,19 @@ msgstr "مكان صدور البطاقة الشخصية"
 #. module: hr_employee_info
 #: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_training__training_type__in
 msgid "In Country"
-msgstr ""
+msgstr "داخلي"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__name
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__institute
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__institute
+msgid "Institute"
+msgstr "المؤسسة المانحة"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__institute_type
+msgid "Institute Type"
+msgstr "نوع المؤسسة"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__issuing_booklet
@@ -510,16 +649,20 @@ msgstr "البيانات الوظيفية"
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch____last_update
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary____last_update
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience____last_update
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info____last_update
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status____last_update
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training____last_update
@@ -531,16 +674,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__write_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__write_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__write_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__write_uid
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__write_uid
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__write_uid
@@ -552,16 +699,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentdegree__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_appointmentsalary__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_branch__write_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_certification__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentdegree__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_currentsalary__write_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_department__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_place__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_educational_specialization__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_experience__write_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_faculty__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship_type__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_info__write_date
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_institute__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_status__write_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__write_date
@@ -584,6 +735,17 @@ msgid "Male"
 msgstr "ذكر"
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__mark
+msgid "Mark"
+msgstr "الدرجة"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_res_config_settings__max_number
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.res_config_settings_view_form
+msgid "Max Number For National ID"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__mother_name
 msgid "Mother Name"
 msgstr "اسم الام الثلاثي"
@@ -594,10 +756,44 @@ msgid "Name"
 msgstr "الاسم"
 
 #. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.res_config_settings_view_form
+msgid "National ID"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.model.constraint,message:hr_employee_info.constraint_hr_employee_name_uniq
+msgid "National ID Must be unique!"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__national_id
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__national_id
 msgid "National No"
 msgstr "الرقم الوطني"
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "National Number for Female should be start with 2"
+msgstr ""
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "National Number for Male should be start with 1"
+msgstr ""
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "National Number should be "
+msgstr ""
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "National Number should start with 1 for Male and 2 for Female"
+msgstr ""
 
 #. module: hr_employee_info
 #: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_family__gender__other
@@ -607,7 +803,7 @@ msgstr "اخرى"
 #. module: hr_employee_info
 #: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_training__training_type__out
 msgid "Out Country"
-msgstr ""
+msgstr "خارجي"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__passport_issue_date
@@ -620,7 +816,6 @@ msgid "Passport issue place"
 msgstr "مكان صدور جواز السفر"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract__position_type
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract_positiontype__name
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__position_type
 msgid "Position Type"
@@ -629,17 +824,32 @@ msgstr "طريقة شغل الوظيفة"
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__previous_experience
 msgid "Previous Experience"
-msgstr ""
+msgstr "الخبرة السابقة"
 
 #. module: hr_employee_info
-#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__graduation_type__private
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__institute_type__private
 msgid "Private"
-msgstr ""
+msgstr "قطاع خاص"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__mobile
 msgid "Private Mobile"
 msgstr "رقم الجوال الشخصي"
+
+#. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__qualification_type__professional
+msgid "Professional"
+msgstr "شهادة مهنية"
+
+#. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__institute_type__public
+msgid "Public"
+msgstr "قطاع عام"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__qualification_type
+msgid "Qualification Type"
+msgstr "نوع المؤهل"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__qualifications
@@ -656,6 +866,26 @@ msgstr "تاريخ الاستلام"
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_family__relation
 msgid "Relative Relation"
 msgstr "صلة القرابة"
+
+#. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.view_employee_filter_inherit
+msgid "Retirements"
+msgstr "التقاعدات"
+
+#. module: hr_employee_info
+#: model:res.groups,name:hr_employee_info.group_financial_info
+msgid "Show Financial Information"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:res.groups,name:hr_employee_info.group_job_info
+msgid "Show Job Information"
+msgstr ""
+
+#. module: hr_employee_info
+#: model:res.groups,name:hr_employee_info.group_private_info
+msgid "Show Private Information"
+msgstr ""
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__social_situation
@@ -683,9 +913,19 @@ msgid "Statement"
 msgstr "بيان العهدة"
 
 #. module: hr_employee_info
+#: model_terms:ir.ui.view,arch_db:hr_employee_info.inherit_help_desk_tree
+msgid "Ticket ID"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__employee_time_granted
 msgid "Time Granted"
 msgstr "الوقت الممنوح"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__title
+msgid "Title"
+msgstr "الدورة"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__total_years
@@ -699,14 +939,12 @@ msgid "Training Courses"
 msgstr "الدورات التدريبية"
 
 #. module: hr_employee_info
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__training_place
-msgid "Training place"
-msgstr "مكان الدورة "
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__training_type
+msgid "Training type"
+msgstr "نوع التدريب"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_guardianship__guardianship_type
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__graduation_type
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_training__training_type
 msgid "Type"
 msgstr "نوع العهدة"
 
@@ -716,14 +954,23 @@ msgid "Value"
 msgstr "قيمة العهدة"
 
 #. module: hr_employee_info
+#: model:ir.model.fields.selection,name:hr_employee_info.selection__hr_employee_qualifications__grade__very
+msgid "Very good"
+msgstr "جيد جدا"
+
+#. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__warranty_id
 msgid "Warranty card number"
 msgstr "رقم بطاقة الضمان الاجتماعي"
 
 #. module: hr_employee_info
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_contract__started_date
-#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__financial_statrted_date
 #: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__started_date
+msgid "Work Start Date"
+msgstr "تاريخ بداية العمل"
+
+#. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee__financial_statrted_date
 msgid "Work Started Date"
 msgstr "تاريخ مباشرة العمل"
 
@@ -733,8 +980,24 @@ msgid "Work Started date."
 msgstr "تاريخ بدء العمل"
 
 #. module: hr_employee_info
+#: model:ir.model.fields,field_description:hr_employee_info.field_hr_employee_qualifications__graduation_date
+msgid "Date of issue"
+msgstr "تاريخ الحصول على المؤهل"
+
+#. module: hr_employee_info
+#: code:addons/hr_employee_info/models/hr_employee_info.py:0
+#, python-format
+msgid "You should set Max National ID Number in setting"
+msgstr ""
+
+#. module: hr_employee_info
 #: model:ir.model.fields,help:hr_employee_info.field_hr_contract__hiring_date
 msgid "hiring date."
+msgstr ""
+
+#. module: hr_employee_info
+#: model:ir.model,name:hr_employee_info.model_hr_employee_certification
+msgid "hr.employee.certification"
 msgstr ""
 
 #. module: hr_employee_info

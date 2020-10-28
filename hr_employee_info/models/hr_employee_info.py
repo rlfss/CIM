@@ -110,7 +110,7 @@ class Employee(models.Model):
 
 
     hiring_date = fields.Date('Hiring Date', compute='_compute_contract_data', readonly=True,stored=True)
-    started_date = fields.Date('Work Started Date', compute='_compute_contract_data', readonly=True,stored=True)
+    started_date = fields.Date('Work Start Date', compute='_compute_contract_data', readonly=True,stored=True)
     first_work_date = fields.Date('First Work Date', compute='_compute_contract_data', readonly=True,stored=True)
     position_type = fields.Many2one('hr.contract.positiontype', compute='_compute_contract_data', string="Position Type", readonly=True,stored=True)
 
@@ -391,7 +391,7 @@ class EmployeeQualifications(models.Model):
         ('professional', 'Professional')],
          "Qualification Type", tracking=True)
 
-    graduation_date = fields.Selection(selection=_get_year, string='Year',
+    graduation_date = fields.Selection(selection=_get_year, string='Date of issue',
                             default=date.today().strftime('%Y'), groups="hr.group_hr_user", tracking=True)
 
 
@@ -402,7 +402,7 @@ class EmployeeQualifications(models.Model):
     department = fields.Many2one('hr.employee.department',"Department",groups="hr.group_hr_user", tracking=True)
 
     country = fields.Many2one('res.country',"Country",groups="hr.group_hr_user", tracking=True)
-    country = fields.Many2one('res.country',"Country",groups="hr.group_hr_user", tracking=True)
+
 
     institute_type = fields.Selection([
         ('public', 'Public'),
@@ -468,14 +468,17 @@ class EmployeeTrainingCourses(models.Model):
     training_type = fields.Selection([
         ('in', 'In Country'),
         ('out', 'Out Country')
-    ], string="Type", default="general", tracking=True)
-    course_field = fields.Char(string="Course field", store=True)
+    ], string="Training type", tracking=True)
+    course_field = fields.Char(string="Field",groups="hr.group_hr_user", store=True,tracking=True)
+    title = fields.Char(string="Title",groups="hr.group_hr_user", store=True,tracking=True)
+    institute = fields.Char(string="Institute",groups="hr.group_hr_user", store=True,tracking=True)
 
     training_date_from = fields.Date(string="Date From", groups="hr.group_hr_user", tracking=True)
     training_date_to = fields.Date(string="Date To", groups="hr.group_hr_user", tracking=True)
-    training_place = fields.Char('Training place', groups="hr.group_hr_user", tracking=True)
 
-    degree = fields.Char(string="Degree", store=True)
+    country = fields.Many2one('res.country',"Country",groups="hr.group_hr_user", tracking=True)
+
+    mark = fields.Char(string="Mark", store=True)
 
 class EmployeeTrainingGuardianship(models.Model):
     _name = 'hr.employee.guardianship'
