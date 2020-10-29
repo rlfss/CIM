@@ -50,8 +50,9 @@
                       singleDatePicker: true,
                       timePicker24Hour: true,
                       showDropdowns: true,
+
                       locale: {
-                          format: 'YYYY-MM-DD HH:MM:00'
+                          format: 'YYYY-MM-DD HH:mm:00'
                       }
                   });
               });
