@@ -10,7 +10,7 @@ class CustomLeave(models.Model):
     _inherit = 'hr.leave.type'
     _description = 'Custom Leaves'
 
-    custom_leave = fields.Boolean(string="Custom Leave", default=False)
+    custom_leave = fields.Boolean(string="Special Leave", default=False)
     fixed_period = fields.Float(string="Fixed Period", default=1)
     only_time_granted = fields.Boolean(string="Only time Granted", default=False)
     applicable_for = fields.Selection(

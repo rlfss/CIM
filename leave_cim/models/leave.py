@@ -15,6 +15,8 @@ from odoo.tools import float_compare
 from odoo.tools.float_utils import float_round
 from odoo.tools.translate import _
 
+from odoo.addons.hr_holidays.models.hr_leave import HolidaysRequest as HolidaysRequest
+
 _logger = logging.getLogger(__name__)
 
 class HolidaysType(models.Model):
@@ -67,6 +69,7 @@ class Holidays(models.Model):
     basic_balance = fields.Char(compute='_compute_basic_balance',stored=True)
     current_balance = fields.Char(compute='_compute_current_balance',stored=True)
     balance_consumed = fields.Char(compute='_compute_balance_consumed',stored=True)
+
 
     @api.depends('holiday_status_id.max_leaves')
     def _compute_basic_balance(self):
@@ -232,4 +235,18 @@ class Holidays(models.Model):
                 hour , m , s = total.split(':')
                 # raise ValidationError(_(str(days) + ' ' + str(hours)))
                 return {'days': float(1), 'hours': float(hour)}
+
+    def action_cancel(self):
+        self.write({'state': 'cancel'})
+        return True
+
+    @api.constrains('date_from', 'date_to', 'employee_id')
+    def _check_date_state(self):
+        if self.env.context.get('leave_skip_state_check'):
+            return
+        for holiday in self:
+            if holiday.state in ['refuse', 'validate1', 'validate']:
+                raise ValidationError(_("This modification is not allowed in the current state."))
+
+    HolidaysRequest._check_date_state = _check_date_state
 

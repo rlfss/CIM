@@ -133,6 +133,15 @@ class EmpPortalTimeOff(models.Model):
                 if timeoff_rec:
                     timeoff_rec.sudo().write(timeoff_values)
                     timeoff_rec._onchange_request_parameters()
+
+    def cancel_timeoff_portal(self, values):
+
+        for timeoff in self:
+            if values['timeoffID']:
+                timeoff_rec = self.env['hr.leave'].sudo().browse(values['timeoffID'])
+                if timeoff_rec:
+                    timeoff_rec.sudo().action_cancel()
+                    timeoff_rec._onchange_request_parameters()
                     
     @api.model
     def create_timeoff_portal(self, values):

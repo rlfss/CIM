@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
+<!--        <record id="mo_group_sequence_auto" model="ir.sequence">-->
+<!--            <field name="name">time off request</field>-->
+<!--            <field name="code">hr.leave</field>-->
+<!--            <field name="prefix">TimeOff-</field>-->
+<!--            <field name="padding">4</field>-->
+<!--        </record>-->
         <record id="view_edit_holiday_status_form" model="ir.ui.view">
             <field name="name">hr.leave.type</field>
             <field name="model">hr.leave.type</field>
@@ -20,17 +25,16 @@
             </field>
         </record>
         
-        <record id="hr_leave_view_tree_inherit" model="ir.ui.view">
-            <field name="name">hr.holidays.view.tree</field>
-            <field name="model">hr.leave</field>
-            <field name="mode">primary</field>
-            <field name="inherit_id" ref="hr_holidays.hr_leave_view_tree"/>
-            <field name="arch" type="xml">
-                <field name="name" position="before">
-                    <field name="reference"/>
-                </field>
-            </field>
-        </record>
+<!--        <record id="hr_leave_view_tree_inherit" model="ir.ui.view">-->
+<!--            <field name="name">hr.holidays.view.tree</field>-->
+<!--            <field name="model">hr.leave</field>-->
+<!--            <field name="inherit_id" ref="hr_holidays.hr_leave_view_tree_my"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <field name="holiday_status_id" position="before">-->
+<!--                    <field name="reference"/>-->
+<!--                </field>-->
+<!--            </field>-->
+<!--        </record>-->
 
         <record id="hr_leave_view_form_manager_approve_inherit" model="ir.ui.view">
             <field name="name">hr.leave</field>
@@ -56,7 +60,6 @@
             <xpath expr="//button[@name='action_confirm']" position="before">
                 <button name="action_review_send2" string="Send Email" type="object" class="btn-primary" attrs="{'invisible': ['|', ('review_status', '!=', 'reviewed'), ('state', '!=', 'validate')]}"/>
             </xpath>
-
              <xpath expr="//div[@name='description']" position="before">
                  <div class="row">
                      <label for="review_status" class="col-2 mr-0" string="Review Status"/>

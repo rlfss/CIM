@@ -373,7 +373,7 @@
                         <div class="col-lg-5 mb-4 mb-lg-0">
                             <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
                                 <a href="/my/leaves" class="line-hover">
-                                   <i class="fa fa-arrow-left mr-1"/>Back
+                                    <i class="fa fa-arrow-left mr-1"/>Back
                                 </a>
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="timeoff.name"/>
@@ -381,6 +381,10 @@
                                 <button t-if="timeoff.state == 'confirm'" type="button" data-toggle="modal"
                                         data-target=".modal_edit_timeoff" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
+
+                                <button type="button" t-if="timeoff.state in ['draft','confirm']"
+                                        class="btn btn-link btn-sm action_cancel" data-original-title="" title=""><span>
+                                    Cancel</span></button>
                             </div>
                             <div class="row mb-2">
                                 <strong class="col-12 col-sm-4">Reference</strong>
@@ -537,14 +541,18 @@
                         <div class="col-lg-5 mb-4 mb-lg-0">
 
                             <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
+                                <a href="/my/leaves" class="line-hover">
+                                    <i class="fa fa-arrow-left mr-1"/>Back
+                                </a>
+
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="permission_req.name"/>
                                 </h5>
                                 <button t-if="permission_req.state == 'draft'" type="button" data-toggle="modal"
                                         data-target=".edit_permission_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
-<!--                                <button type="button" name="cancel"  special="cancel" class="btn btn-link btn-sm">-->
-<!--                                                Cancel</button>-->
+                                <!--                                <button type="button" name="cancel"  special="cancel" class="btn btn-link btn-sm">-->
+                                <!--                                                Cancel</button>-->
 
 
                             </div>
@@ -584,19 +592,19 @@
                                                 &amp;times;</button>
                                         </header>
                                         <main class="modal-body" id="sign-dialog">
-                                             <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Permission Type:</label>
-                                                <select name="req_type"
-                                                        class="custom-select form-control req_type_select req_type"
-                                                        required="True">
-                                                    <option value="in">In
-                                                        Late</option>
-                                                    <option value="out">Out
-                                                        Early</option>
-                                                </select>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Permission Type:</label>
+                                                    <select name="req_type"
+                                                            class="custom-select form-control req_type_select req_type"
+                                                            required="True">
+                                                        <option value="in">In
+                                                            Late</option>
+                                                        <option value="out">Out
+                                                            Early</option>
+                                                    </select>
+                                                </div>
                                             </div>
-                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Date &amp; Time:</label>
@@ -716,37 +724,37 @@
                                         </header>
                                         <main class="modal-body" id="sign-dialog">
 
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Related Leave:</label>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Related Leave:</label>
 
-                                                            <input type="text"
-                                                            class="form-control reference_ret"
-                                                            name="reference_ret" id=""
-                                                            t-att-data-id="return_req.id"
-                                                            t-att-value="return_req.leave_related"/>
+                                                    <input type="text"
+                                                           class="form-control reference_ret"
+                                                           name="reference_ret" id=""
+                                                           t-att-data-id="return_req.id"
+                                                           t-att-value="return_req.leave_related"/>
 
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Return Date:</label>
+                                                    <div class="input-group date">
+                                                        <input type="date"
+                                                               name="request_date"
+                                                               class="form-control date request_date"
+                                                               data-date-format="YYYY-MM-DD"
+                                                               placeholder="YYYY-MM-DD"/>
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <span class="fa fa-calendar"
+                                                                      role="img"
+                                                                      aria-label="Calendar"></span>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label>Return Date:</label>
-                                                            <div class="input-group date">
-                                                                <input type="date"
-                                                                       name="request_date"
-                                                                       class="form-control date request_date"
-                                                                       data-date-format="YYYY-MM-DD"
-                                                                       placeholder="YYYY-MM-DD"/>
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">
-                                                                        <span class="fa fa-calendar"
-                                                                              role="img"
-                                                                              aria-label="Calendar"></span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                </div>
+                                            </div>
                                         </main>
                                         <footer class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">

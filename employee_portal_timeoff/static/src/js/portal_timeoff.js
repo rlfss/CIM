@@ -19,6 +19,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         'click .new_permission_confirm': '_onNewpermissionConfirm',
         'click .new_return_confirm': '_onNewreturnConfirm',
         'click .edit_timeoff_confirm': '_onEditTimeOffConfirm',
+        'click .action_cancel': '_onCancelTimeOffConfirm',
         'click .edit_permission_confirm': '_onEditPermissionConfirm',
         'click .edit_return_confirm': '_onEditReturnConfirm',
         'change .holiday_status_id': '_onchange',
@@ -375,6 +376,18 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         });
     },
 
+    _cancelTimeOffRequest: function () {
+        return this._rpc({
+            model: 'hr.leave',
+            method: 'cancel_timeoff_portal',
+            args: [[parseInt($('.edit_timeoff_form .timeoff_id').val())], {
+                timeoffID: parseInt($('.edit_timeoff_form .timeoff_id').val()),
+            }],
+        }).then(function () {
+            window.location.reload();
+        });
+    },
+
     _editPermission: function () {
         return this._rpc({
             model: 'hr.permission',
@@ -495,6 +508,12 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         ev.stopPropagation();
         this._buttonExec($(ev.currentTarget), this._editTimeOffRequest);
     },
+    _onCancelTimeOffConfirm: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._buttonExec($(ev.currentTarget), this._cancelTimeOffRequest);
+    },
+
     _onEditPermissionConfirm: function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
