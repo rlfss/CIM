@@ -95,6 +95,10 @@ class LeaveReturnDeclaration(models.Model):
         self.write({'state': 'draft'})
         return True
 
+    def action_cancel(self):
+        self.write({'state': 'cancel'})
+        return True
+
     def action_return_send(self):
         ''' Opens a wizard to compose an email, with relevant mail template loaded by default '''
         self.ensure_one()

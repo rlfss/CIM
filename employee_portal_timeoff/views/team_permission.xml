@@ -362,7 +362,17 @@
                                 <div class="col">
                                     <span t-if="doc.date_time" t-field="doc.date_time"/>
                                 </div>
-                        </div>
+                           </div>
+
+
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-md-around">
+                    <div class="row">
+                                <strong style="margin-right:20px;">Reason</strong>
+                                <div>
+                                    <span t-if="doc.reason" t-field="doc.reason"/>
+                                </div>
+                           </div>
                     </div>
 
 

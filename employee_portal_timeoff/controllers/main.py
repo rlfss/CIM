@@ -157,6 +157,7 @@ class WebsiteAccount(CustomerPortal):
             'refuse': {'label': _('Refused'), 'domain': [('state', '=', 'refuse')]},
             'validate1': {'label': _('Second Approval'), 'domain': [('state', '=', 'validate1')]},
             'validate': {'label': _('Approved'), 'domain': [('state', '=', 'validate')]},
+            'cancel': {'label': _('Cancelled'), 'domain': [('state', '=', 'cancel')]},
         }
         # sort By
         searchbar_sortings = {

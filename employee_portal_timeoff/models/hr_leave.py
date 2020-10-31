@@ -135,7 +135,6 @@ class EmpPortalTimeOff(models.Model):
                     timeoff_rec._onchange_request_parameters()
 
     def cancel_timeoff_portal(self, values):
-
         for timeoff in self:
             if values['timeoffID']:
                 timeoff_rec = self.env['hr.leave'].sudo().browse(values['timeoffID'])
@@ -826,6 +825,13 @@ class PermissionRequests(models.Model):
                 if permission_rec:
                     permission_rec.sudo().write(permission_values)
 
+    def cancel_permission_portal(self,values):
+        for permission in self:
+            if values['permissionID']:
+                permission_rec = self.env['hr.permission'].sudo().browse(values['permissionID'])
+                if permission_rec:
+                    permission_rec.sudo().action_cancel()
+
     @api.model
     def create_permission_portal(self, values):
         if not (self.env.user.employee_id):
@@ -897,3 +903,10 @@ class LeaveReturnDeclaration(models.Model):
                 return_rec = self.env['hr.leavereturn'].sudo().browse(values['returnID'])
                 if return_rec:
                     return_rec.sudo().write(return_values)
+
+    def cancel_return_portal(self,values):
+        for reference in self:
+            if values['returnID']:
+                return_rec = self.env['hr.leavereturn'].sudo().browse(values['returnID'])
+                if return_rec:
+                    return_rec.sudo().action_cancel()

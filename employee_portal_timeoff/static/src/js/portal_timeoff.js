@@ -21,7 +21,9 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         'click .edit_timeoff_confirm': '_onEditTimeOffConfirm',
         'click .action_cancel': '_onCancelTimeOffConfirm',
         'click .edit_permission_confirm': '_onEditPermissionConfirm',
+        'click .action_cancel_permission': '_onCancelPermissionConfirm',
         'click .edit_return_confirm': '_onEditReturnConfirm',
+        'click .action_cancel_return': '_onCancelReturnConfirm',
         'change .holiday_status_id': '_onchange',
         'change .request_date_to': '_onchange',
     },
@@ -201,7 +203,6 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
 
 
 
-
     _create_NewTeamRef: function () {
         return this._rpc({
             model: 'hr.leave',
@@ -216,7 +217,7 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                       countSec = 100,
                       timer = setInterval(() => {
                       countSec >= 0 ? remSec.text(countSec--) : clearInterval(timer);
-                      }, 1000); 
+                      }, 1000);
                   });;
     },
 
@@ -403,6 +404,19 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         });
     },
 
+    _cancelPermission: function () {
+        return this._rpc({
+            model: 'hr.permission',
+            method: 'cancel_permission_portal',
+            args: [[parseInt($('.edit_permission_form .permission_id').val())],{
+                permissionID: parseInt($('.edit_permission_form .permission_id').val()),
+
+            }],
+        }).then(function () {
+            window.location.reload();
+        });
+    },
+
     _editReturn: function () {
         return this._rpc({
             model: 'hr.leavereturn',
@@ -412,6 +426,18 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
                 reference_ret: $('.edit_return_form .reference_ret').val(),
                 holiday_status_id: $('.edit_return_form .holiday_status_id').val(),
                 request_date: $('.edit_return_form .request_date').val(),
+            }],
+        }).then(function () {
+            window.location.reload();
+        });
+    },
+
+    _cancelReturn: function () {
+        return this._rpc({
+            model: 'hr.leavereturn',
+            method: 'cancel_return_portal',
+            args: [[parseInt($('.edit_return_form .return_id').val())],{
+                returnID: parseInt($('.edit_return_form .return_id').val()),
             }],
         }).then(function () {
             window.location.reload();
@@ -519,12 +545,23 @@ publicWidget.registry.EmpPortalTimeOff = publicWidget.Widget.extend({
         ev.stopPropagation();
         this._buttonExec($(ev.currentTarget), this._editPermission);
     },
+    _onCancelPermissionConfirm: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._buttonExec($(ev.currentTarget), this._cancelPermission);
+    },
 
     _onEditReturnConfirm: function (ev) {
         ev.preventDefault();
         ev.stopPropagation();
         this._buttonExec($(ev.currentTarget), this._editReturn);
     },
+    _onCancelReturnConfirm: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        this._buttonExec($(ev.currentTarget), this._cancelReturn);
+    },
+
     _parse_date: function (value) {
         console.log(value);
         var date = moment(value, "YYYY-MM-DD", true);

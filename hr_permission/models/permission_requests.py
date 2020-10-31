@@ -83,3 +83,7 @@ class PermissionRequests(models.Model):
     def action_draft(self):
         self.write({'state': 'draft'})
         return True
+
+    def action_cancel(self):
+        self.write({'state': 'cancel'})
+        return True

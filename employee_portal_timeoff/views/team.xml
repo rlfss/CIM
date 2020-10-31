@@ -527,8 +527,17 @@
                             </div>
                     </div>
 
+                    <div class="d-flex flex-wrap justify-content-md-around">
+                        <center>
+                             <h1 class="mt-4 mb-4"> No of days: <span t-if="doc.number_of_days" t-field="doc.number_of_days"/></h1>
+                        </center>
+                    </div>
 
-                    <h1 class="mt-4 mb-4"> No of days: <span t-if="doc.number_of_days" t-field="doc.number_of_days"/></h1>
+                    <div class="d-flex flex-wrap justify-content-md-around">
+                        <center>
+                             <h1 class="mt-4 mb-4"> Notes: <span t-if="doc.notes" t-field="doc.notes"/></h1>
+                        </center>
+                    </div>
 
                     <div t-if="doc.leave_signature">
 

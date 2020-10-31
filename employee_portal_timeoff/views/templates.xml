@@ -376,15 +376,16 @@
                                     <i class="fa fa-arrow-left mr-1"/>Back
                                 </a>
                                 <h5 class="mb-0">
-                                    <span class="text-nowrap" t-esc="timeoff.name"/>
+                                    <span class="text-nowrap" t-esc="timeoff.reference"/>
                                 </h5>
                                 <button t-if="timeoff.state == 'confirm'" type="button" data-toggle="modal"
                                         data-target=".modal_edit_timeoff" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
 
                                 <button type="button" t-if="timeoff.state in ['draft','confirm']"
-                                        class="btn btn-link btn-sm action_cancel" data-original-title="" title=""><span>
-                                    Cancel</span></button>
+                                        class="btn btn-link btn-sm action_cancel" data-original-title="" title="">
+                                    <i class="fa fa-times-circle mr-1"/>Cancel
+                                </button>
                             </div>
                             <div class="row mb-2">
                                 <strong class="col-12 col-sm-4">Reference</strong>
@@ -551,9 +552,10 @@
                                 <button t-if="permission_req.state == 'draft'" type="button" data-toggle="modal"
                                         data-target=".edit_permission_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
-                                <!--                                <button type="button" name="cancel"  special="cancel" class="btn btn-link btn-sm">-->
-                                <!--                                                Cancel</button>-->
-
+                                <button type="button" t-if="permission_req.state in ['draft','confirm']"
+                                        class="btn btn-link btn-sm action_cancel_permission" data-original-title="" title="">
+                                    <i class="fa fa-times-circle mr-1"/>Cancel
+                                </button>
 
                             </div>
                             <div class="row mb-2">
@@ -678,6 +680,9 @@
                     <div class="row">
                         <div class="col-lg-5 mb-4 mb-lg-0">
                             <div class="border-bottom d-flex justify-content-between py-2 mb-3 align-items-center">
+                                <a href="/my/leaves" class="line-hover">
+                                    <i class="fa fa-arrow-left mr-1"/>Back
+                                </a>
                                 <h5 class="mb-0">
                                     <span class="text-nowrap" t-esc="return_req.name"/>
                                 </h5>
@@ -685,6 +690,10 @@
                                         t-if="return_req.state == 'draft'"
                                         data-target=".edit_return_form" class="btn btn-link btn-sm"><i
                                         class="fa fa-pencil mr-1"/>Edit</button>
+                                <button type="button" t-if="return_req.state in ['draft','confirm']"
+                                        class="btn btn-link btn-sm action_cancel_return" data-original-title="" title="">
+                                    <i class="fa fa-times-circle mr-1"/>Cancel
+                                </button>
                             </div>
                             <div class="row mb-2">
                                 <strong class="col-12 col-sm-4">Related Leave</strong>
