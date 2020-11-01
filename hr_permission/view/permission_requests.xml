@@ -54,7 +54,7 @@
         id="menu_hr_holidays_my_permissions"
         name="Permission Requests"
         action="hr_permission_action_my_request"
-        parent="hr_holidays.menu_hr_holidays_my_leaves"
+        parent="hr_holidays.hr_holidays_menu_manager_approve"
         sequence="4"/>
 
 </odoo>
