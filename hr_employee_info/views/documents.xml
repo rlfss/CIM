@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="hr_employee_view_form_documents" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.documents</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+<!--            <xpath expr="//header" position="inside">-->
+<!--             <button name="%(documents.document_action)d"-->
+<!--                     type="action"-->
+<!--                     string="Upload File"-->
+<!--                     context="{'search_default_owner_id': user_id.employee_id.name, 'default_owner_id': user_id.employee_id.name}"/>-->
+<!--            </xpath>-->
+            <xpath expr="//notebook[last()]" position="inside">
+                <page string="Documents" groups="hr_employee_info.group_documents_info">
+                     <button name="%(documents.document_action)d"
+                     type="action"
+                     string="Upload File"
+                     class="btn-primary"
+                     context="{'search_default_owner_id': user_id, 'default_owner_id': user_id}" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    </data>
+</odoo>

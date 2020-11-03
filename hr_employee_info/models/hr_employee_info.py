@@ -59,7 +59,7 @@ class Employee(models.Model):
 
     national_id = fields.Char(string='National No', groups="hr.group_hr_user", tracking=True)
     financial_id = fields.Char(string='Financial number', groups="hr.group_hr_user", tracking=True)
-    warranty_id = fields.Char(string='Warranty card number', groups="hr.group_hr_user", tracking=True)
+    warranty_id = fields.Char(string='Social card number', groups="hr.group_hr_user", tracking=True)
 
     family_registration_id = fields.Char(string='Family Registration Number', groups="hr.group_hr_user", tracking=True)
     family_booklet_id = fields.Char(string='Family Booklet Number', groups="hr.group_hr_user", tracking=True)
@@ -105,7 +105,7 @@ class Employee(models.Model):
 
     currentsalary_date = fields.Date(string="Date of acquiring Current Salary", groups="hr.group_hr_user", tracking=True)
     currentdegree_date = fields.Date(string="Date of acquiring Current Grade", groups="hr.group_hr_user", tracking=True)
-    financial_statrted_date = fields.Date('Work Started Date',compute='_compute_working_date',inverse='_inverse_working_date',tracking=True,stored=True)
+    financial_statrted_date = fields.Date('Work Start Date',compute='_compute_working_date',inverse='_inverse_working_date',tracking=True,stored=True)
 
 
 

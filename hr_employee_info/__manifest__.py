@@ -3,7 +3,7 @@
     'name' : 'hr employee info',
     'version' : '1.0',
     'sequence': 1,
-    'depends' : ['hr','hr_contract','job_degree','hr_holidays','base','helpdesk'],
+    'depends' : ['hr','hr_contract','job_degree','hr_holidays','base','helpdesk','documents'],
     'data': [
         'security/ir.model.access.csv',
         'security/groups.xml',
@@ -12,6 +12,7 @@
         'views/settings.xml',
         'views/employee_certificates.xml',
         'views/help_desk.xml',
+        #'views/documents.xml',
         'data/retirement_schdule_data.xml'
     ],
     'installable': True,

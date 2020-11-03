@@ -10,7 +10,7 @@ class WebsiteHelpdesk(http.Controller):
     def get_helpdesk_team_data(self, team, search=None):
         return {'team': team}
 
-    @http.route(['/helpdesk/', '/helpdesk/<model("helpdesk.team"):team>'], type='http', auth="public", website=True)
+    @http.route(['/helpdesk/', '/helpdesk/<model("helpdesk.team"):team>'], type='http', auth="user", website=True)
     def website_helpdesk_teams(self, team=None, **kwargs):
         search = kwargs.get('search')
         # For breadcrumb index: get all team
