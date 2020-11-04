@@ -20,6 +20,7 @@ access_hr_employee_certificate,hr.employee.certificate,model_hr_employee_certifi
 access_hr_employee_department,hr.employee.department,model_hr_employee_department,base.group_user,1,1,1,1
 access_hr_employee_faculty,hr.employee.faculty,model_hr_employee_faculty,base.group_user,1,1,1,1
 access_hr_employee_institute,hr.employee.institute,model_hr_employee_institute,base.group_user,1,1,1,1
+access_hr_job_group,job.group,model_job_group,base.group_user,1,1,1,1
 
 
 

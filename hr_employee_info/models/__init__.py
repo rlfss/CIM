@@ -4,3 +4,4 @@ from . import contract
 from . import hr_employee_retirement
 from . import settings
 from . import employee_certificates
+from . import job_group
